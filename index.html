@@ -640,11 +640,37 @@
                 </li>
               </ul>
             </template>
+            
+            
+            <!----JOB POSTINGS--->
+            
             <div class="jobs-placeholder" v-if=
             "!jobs.length && (!backfill_merge_enabled || !backfill_merge_backfill_jobs.length)">
-              <p v-if="!jobs_loading">No jobs were found.</p>
-              <p v-if="jobs_loading">Loading...</p>
+
+
+             <div id="jobs-list"></div>
+<script>
+fetch('/assets/jobs.json')
+  .then(response => response.json())
+  .then(jobs => {
+    const list = document.getElementById('jobs-list');
+    list.innerHTML = jobs.map(job => `
+      <div class="job-card">
+        <h3><a href="${job.link}" target="_blank">${job.title}</a></h3>
+        <p>${job.company} – ${job.location}</p>
+      </div>
+    `).join('');
+  });
+</script>
+
+              
             </div>
+
+
+
+
+
+            
             <div class="subscribe-wrap" id="subscribe">
               <form class="subscribe">
                 <p class="subscribe-text" v-if=
@@ -859,7 +885,10 @@
         </div>
       </div>
     </div>
-  </main><!-- Job template -->
+  </main>
+  
+  
+  <!-- Job template -->
   <script type="text/template" id="fulljob-template">
         <div class="job-box cf" :class="{locked: jobview_restricted}">
                 <!-- Non-restricted job -->
@@ -2616,7 +2645,7 @@
           <h6>Jobbyist</h6>
         </li>
         <li class="email">
-          <a href="mailto:info@tlean.co.za">Contact us</a>
+          <a href="mailto:info@jobbyist.co.za">Contact us</a>
         </li>
         <li>
           <a href="/tos">Terms Of Service</a>
