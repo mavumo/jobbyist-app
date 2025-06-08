@@ -305,7 +305,7 @@
       </div>
 
 
-      <!---
+      <div id="job-listings">
       <div class="section jobs-section" id="jobs">
         <div class="section-title-wrap">
           <h3 class="section-title">New jobs <span class=
@@ -642,13 +642,10 @@
             </template>
             
             
-            <!----JOB POSTINGS--->
             
-            <div class="jobs-placeholder" v-if=
-            "!jobs.length && (!backfill_merge_enabled || !backfill_merge_backfill_jobs.length)">
 
 
-             <div id="jobs-list"></div>
+             
 <script>
 fetch('/assets/jobs.json')
   .then(response => response.json())
@@ -667,7 +664,7 @@ fetch('/assets/jobs.json')
             </div>
 
 
-
+</div>
 
 
             
@@ -2723,5 +2720,40 @@ fetch('/assets/jobs.json')
     site, you agree to our <a href="/tos">Cookie
     Policy</a>.</p><button type="button">Accept</button>
   </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const jobsContainer = document.getElementById('job-listings');
+
+  fetch('jobs/jobs.json')
+    .then(response => response.json())
+    .then(data => {
+      if (!Array.isArray(data)) {
+        jobsContainer.innerHTML = "<p>No job data found.</p>";
+        return;
+      }
+
+      data.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.classList.add('job-card');
+
+        jobCard.innerHTML = `
+          <h3 class="job-title">${job.title}</h3>
+          <p class="company">${job.company}</p>
+          <p class="location">${job.location}</p>
+          <a href="${job.url}" class="apply-btn" target="_blank">Apply</a>
+        `;
+
+        jobsContainer.appendChild(jobCard);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading job listings:', error);
+      jobsContainer.innerHTML = "<p>Failed to load job listings.</p>";
+    });
+});
+</script>
+
+          
 </body>
 </html>
