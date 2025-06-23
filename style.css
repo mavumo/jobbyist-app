@@ -5269,7 +5269,7 @@ figcaption {
 }
 
 .footer-logo {
-  height: 40px;
+  height: auto;
 }
 
 .grid-footer-link {
