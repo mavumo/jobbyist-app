@@ -1,32 +1,26 @@
-name: Scrape and Update Jobs
-
+name: Scrape & Deploy
 on:
   schedule:
-    - cron: '0 6 * * *'  # Runs every day at 6 AM UTC
-  workflow_dispatch:
+    - cron: '0 */6 * * *'
+  push:
+    branches: [ main ]
 
 jobs:
-  build:
+  scrape:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
-    - name: Install Dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run Scraper
-      run: python scraper/scraper.py
-
-    - name: Commit and Push Changes
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'actions@github.com'
-        git add jobs/jobs.json
-        git commit -m 'Auto-update jobs data'
-        git push
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with: python-version: '3.11'
+      - run: |
+          pip install -r scraper/requirements.txt
+          python -m scraper.main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy via Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: .
