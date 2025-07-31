@@ -30,13 +30,18 @@
  * - Connect to Google Sheets for data sync
  */
 
+/**
+ * ENHANCED JOBBYIST PLATFORM - MODERN BLACK & WHITE DESIGN WITH ANIMATED DOODLES
+ * Fixed version with all functionality working properly
+ */
+
 class JobbyistPlatform {
   constructor() {
     // Core application state
     this.currentTheme = this.detectTheme();
     this.currentPage = 'homepage';
     
-    // FIXED - Modal state management for consistent reopening
+    // Enhanced modal state management
     this.modalState = {
       registrationModal: { 
         canReopen: true,
@@ -52,59 +57,52 @@ class JobbyistPlatform {
     this.userLocation = null;
     this.cookiePreferences = this.loadCookiePreferences();
     
-    // Data collections
+    // Enhanced data collections with location restrictions
     this.jobs = [];
     this.companies = [];
-    this.forumPosts = [];
     this.proFeatures = [];
     
-    // FIXED - Mobile menu state tracking
+    // Animation and interaction states
     this.isMobileMenuOpen = false;
     
-    // Make instance globally available immediately - CRITICAL FIX
+    // Make instance globally available immediately
     window.jobbyistApp = this;
     
     this.init();
   }
 
   /**
-   * THEME DETECTION - FIXED to not follow system preferences by default
+   * ENHANCED INITIALIZATION
+   */
+  init() {
+    console.log('🚀 Initializing Enhanced Jobbyist Platform...');
+    
+    this.setTheme(this.currentTheme, true);
+    this.detectUserLocation();
+    this.loadEnhancedSampleData();
+    this.renderHomepageContent();
+    this.setupEventListeners();
+    this.initializeAnimations();
+    this.checkCookieBanner();
+    this.animateCounters();
+    
+    console.log('✅ Enhanced Platform initialized successfully');
+  }
+
+  /**
+   * THEME MANAGEMENT - Enhanced for modern design
    */
   detectTheme() {
     const savedTheme = localStorage.getItem('jobbyist-theme');
     if (savedTheme) return savedTheme;
-    
-    // FIXED - Default to light mode, ignore system preference
-    return 'light';
+    return 'light'; // Default to light mode for black & white design
   }
 
-  /**
-   * INITIALIZATION - Sets up all core functionality
-   */
-  init() {
-    console.log('🚀 Initializing Jobbyist Platform with ALL FIXES...');
-    
-    // Force light mode by default - CRITICAL FIX for color display
-    this.setTheme(this.currentTheme, true);
-    this.detectUserLocation();
-    this.loadSampleData();
-    this.setupEventListeners();
-    this.renderHomepageContent();
-    this.checkCookieBanner();
-    this.animateCounters();
-    
-    console.log('✅ Platform initialized successfully with all fixes applied');
-  }
-
-  /**
-   * THEME MANAGEMENT - FIXED to override system preferences
-   */
   setTheme(theme, forceOverride = false) {
     this.currentTheme = theme;
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('jobbyist-theme', theme);
     
-    // FIXED - Force color scheme override
     if (forceOverride || theme === 'light') {
       document.documentElement.style.colorScheme = theme;
     }
@@ -114,16 +112,80 @@ class JobbyistPlatform {
       toggle.setAttribute('aria-pressed', theme === 'dark');
     }
     
-    console.log(`🎨 Theme set to: ${theme} ${forceOverride ? '(forced override)' : ''}`);
+    // Update doodle colors for theme
+    this.updateDoodleColors();
+    
+    console.log(`🎨 Theme set to: ${theme}`);
   }
 
   toggleTheme() {
     const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-    this.setTheme(newTheme, true); // Force override when manually toggled
+    this.setTheme(newTheme, true);
+    this.showNotification(`🎨 Switched to ${newTheme} mode`, 'success');
   }
 
   /**
-   * MOBILE MENU - FIXED for proper functionality
+   * ENHANCED ANIMATION SYSTEM
+   */
+  initializeAnimations() {
+    this.setupDoodleAnimations();
+    this.setupHoverEffects();
+    
+    console.log('✨ Animation system initialized');
+  }
+
+  setupDoodleAnimations() {
+    const doodles = document.querySelectorAll('.floating-doodle');
+    
+    doodles.forEach((doodle, index) => {
+      // Add staggered delays for more natural movement
+      const delay = index * 0.5;
+      doodle.style.animationDelay = `${delay}s`;
+      
+      // Add mouse interaction
+      doodle.addEventListener('mouseenter', () => {
+        doodle.style.animationPlayState = 'paused';
+        doodle.style.transform += ' scale(1.2)';
+      });
+      
+      doodle.addEventListener('mouseleave', () => {
+        doodle.style.animationPlayState = 'running';
+        doodle.style.transform = doodle.style.transform.replace(' scale(1.2)', '');
+      });
+    });
+  }
+
+  setupHoverEffects() {
+    // Enhanced hover effects for interactive elements
+    const interactiveCards = document.querySelectorAll('.job-card, .company-card, .category-card');
+    
+    interactiveCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-8px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  }
+
+  updateDoodleColors() {
+    // Update doodle colors based on current theme
+    const doodles = document.querySelectorAll('.floating-doodle');
+    const isDark = this.currentTheme === 'dark';
+    
+    doodles.forEach(doodle => {
+      if (isDark) {
+        doodle.style.color = 'rgba(255, 255, 255, 0.3)';
+      } else {
+        doodle.style.color = 'rgba(0, 0, 0, 0.1)';
+      }
+    });
+  }
+
+  /**
+   * ENHANCED MOBILE MENU
    */
   toggleMobileMenu() {
     const navbar = document.getElementById('navbar-nav');
@@ -155,7 +217,7 @@ class JobbyistPlatform {
   }
 
   /**
-   * GEO-TARGETING - FIXED for proper currency display
+   * ENHANCED GEO-TARGETING with restricted locations
    */
   async detectUserLocation() {
     try {
@@ -165,7 +227,8 @@ class JobbyistPlatform {
       this.userLocation = {
         country: data.country_name,
         countryCode: data.country_code,
-        currency: data.currency
+        currency: data.currency,
+        city: data.city
       };
       
       this.updatePricingByLocation();
@@ -175,7 +238,8 @@ class JobbyistPlatform {
       this.userLocation = {
         country: 'South Africa',
         countryCode: 'ZA',
-        currency: 'ZAR'
+        currency: 'ZAR',
+        city: 'Johannesburg'
       };
       this.updatePricingByLocation();
     }
@@ -200,9 +264,10 @@ class JobbyistPlatform {
   }
 
   /**
-   * DATA LOADING - Sample job and company data
+   * ENHANCED DATA LOADING with location restrictions
    */
-  loadSampleData() {
+  loadEnhancedSampleData() {
+    // Enhanced jobs data with better location targeting
     this.jobs = [
       {
         id: 'job-001',
@@ -214,9 +279,11 @@ class JobbyistPlatform {
         salaryMin: 450000,
         salaryMax: 650000,
         type: 'Full-time',
-        description: 'Join our dynamic team building innovative fintech solutions for the African market. Work with cutting-edge technologies and contribute to digital transformation.',
+        description: 'Join our innovative team building cutting-edge fintech solutions for the African market. Work with React, Node.js, and cloud technologies.',
+        skills: ['React', 'Node.js', 'TypeScript', 'AWS'],
         datePosted: '2025-01-30',
-        featured: true
+        featured: true,
+        remote: false
       },
       {
         id: 'job-002',
@@ -228,23 +295,27 @@ class JobbyistPlatform {
         salaryMin: 2400000,
         salaryMax: 3600000,
         type: 'Full-time',
-        description: 'Lead digital marketing initiatives for growing tech startups across West Africa. Drive brand awareness and customer acquisition.',
+        description: 'Lead digital marketing initiatives for growing tech startups across West Africa. Drive brand awareness and customer acquisition strategies.',
+        skills: ['Digital Marketing', 'Google Ads', 'Social Media', 'Analytics'],
         datePosted: '2025-01-29',
-        featured: true
+        featured: true,
+        remote: false
       },
       {
         id: 'job-003',
-        title: 'Data Analyst',
+        title: 'Data Analyst (Remote)',
         company: 'Cape Analytics',
-        location: 'Cape Town, South Africa',
-        country: 'South Africa',
-        currency: 'ZAR',
-        salaryMin: 380000,
-        salaryMax: 520000,
-        type: 'Full-time',
-        description: 'Transform data into actionable insights using advanced analytics tools and methodologies. Work with cross-functional teams.',
+        location: 'Remote (South Africa/Nigeria)',
+        country: 'Remote',
+        currency: 'USD',
+        salaryMin: 35000,
+        salaryMax: 55000,
+        type: 'Remote',
+        description: 'Transform data into actionable insights using advanced analytics tools. Work remotely with teams across Africa.',
+        skills: ['Python', 'SQL', 'Tableau', 'Statistics'],
         datePosted: '2025-01-28',
-        featured: false
+        featured: true,
+        remote: true
       },
       {
         id: 'job-004',
@@ -257,187 +328,144 @@ class JobbyistPlatform {
         salaryMax: 4500000,
         type: 'Full-time',
         description: 'Drive product strategy and development for innovative mobile solutions serving the Nigerian market.',
+        skills: ['Product Management', 'Agile', 'User Research', 'Analytics'],
         datePosted: '2025-01-27',
-        featured: true
+        featured: true,
+        remote: false
       },
       {
         id: 'job-005',
-        title: 'UI/UX Designer',
-        company: 'Design Studio SA',
-        location: 'Pretoria, South Africa',
+        title: 'UX Designer',
+        company: 'Creative Studio CT',
+        location: 'Cape Town, South Africa',
         country: 'South Africa',
         currency: 'ZAR',
         salaryMin: 320000,
         salaryMax: 480000,
-        type: 'Contract',
-        description: 'Create intuitive user experiences for mobile and web applications serving African markets.',
+        type: 'Full-time',
+        description: 'Design exceptional user experiences for web and mobile applications. Collaborate with product teams to create intuitive interfaces.',
+        skills: ['Figma', 'User Research', 'Prototyping', 'Design Systems'],
         datePosted: '2025-01-26',
-        featured: false
+        featured: false,
+        remote: false
       },
       {
         id: 'job-006',
-        title: 'Business Development Manager',
-        company: 'Pan African Ventures',
-        location: 'Remote',
+        title: 'DevOps Engineer (Remote)',
+        company: 'Cloud Solutions Africa',
+        location: 'Remote (Nigeria/South Africa)',
         country: 'Remote',
-        currency: 'NGN',
-        salaryMin: 5400000,
-        salaryMax: 8100000,
+        currency: 'USD',
+        salaryMin: 45000,
+        salaryMax: 70000,
         type: 'Remote',
-        description: 'Expand business operations across multiple African markets with strategic partnerships.',
+        description: 'Build and maintain scalable cloud infrastructure. Work with modern DevOps tools and practices in a fully remote environment.',
+        skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform'],
         datePosted: '2025-01-25',
-        featured: true
+        featured: false,
+        remote: true
       }
     ];
 
+    // Enhanced companies data
     this.companies = [
       {
         id: 'company-001',
         name: 'TechSA Solutions',
-        logo: 'https://via.placeholder.com/100x100/21808d/white?text=TS',
+        logo: 'https://via.placeholder.com/100x100/000000/white?text=TS',
         industry: 'Technology',
         location: 'Johannesburg, South Africa',
         employees: '50-200',
-        openJobs: 3,
+        openJobs: 5,
         verified: true,
-        description: 'Leading technology solutions provider transforming businesses across South Africa.'
+        rating: 4.8,
+        description: 'Leading technology solutions provider transforming businesses across South Africa with innovative software solutions.',
+        founded: '2018',
+        website: 'https://techsa.co.za'
       },
       {
         id: 'company-002',
         name: 'Lagos Digital Hub',
-        logo: 'https://via.placeholder.com/100x100/32b8c6/white?text=LDH',
+        logo: 'https://via.placeholder.com/100x100/4285f4/white?text=LDH',
         industry: 'Digital Marketing',
         location: 'Lagos, Nigeria',
         employees: '20-50',
-        openJobs: 2,
+        openJobs: 3,
         verified: true,
-        description: 'Premier digital marketing agency serving clients across West Africa with innovative strategies.'
+        rating: 4.6,
+        description: 'Premier digital marketing agency serving clients across West Africa with data-driven marketing strategies.',
+        founded: '2019',
+        website: 'https://lagosdigital.ng'
       },
       {
         id: 'company-003',
         name: 'Cape Analytics',
-        logo: 'https://via.placeholder.com/100x100/2da6b2/white?text=CA',
+        logo: 'https://via.placeholder.com/100x100/34a853/white?text=CA',
         industry: 'Data & Analytics',
         location: 'Cape Town, South Africa',
         employees: '10-50',
-        openJobs: 1,
+        openJobs: 2,
         verified: false,
-        description: 'Data analytics consultancy helping businesses make informed, data-driven decisions.'
-      },
-      {
-        id: 'company-004',
-        name: 'Abuja Tech Solutions',
-        logo: 'https://via.placeholder.com/100x100/1d7480/white?text=ATS',
-        industry: 'Technology',
-        location: 'Abuja, Nigeria',
-        employees: '30-100',
-        openJobs: 4,
-        verified: true,
-        description: 'Innovative technology company developing solutions for the Nigerian market.'
+        rating: 4.4,
+        description: 'Data analytics consultancy helping businesses make informed decisions through advanced data science.',
+        founded: '2020',
+        website: 'https://capeanalytics.co.za'
       }
     ];
 
-    this.forumPosts = [
-      {
-        id: 'post-001',
-        title: 'Top 10 Interview Tips for Tech Jobs in 2025',
-        excerpt: 'Master your next tech interview with these proven strategies from industry professionals across Africa...',
-        author: 'Sarah Johnson',
-        role: 'Senior Developer',
-        date: '2025-01-30',
-        readTime: '5 min read',
-        replies: 23,
-        featured: true
-      },
-      {
-        id: 'post-002',
-        title: 'Remote Work Opportunities in Africa',
-        excerpt: 'Discover the best remote job opportunities across African markets and how to land them successfully...',
-        author: 'Michael Okafor',
-        role: 'Product Manager',
-        date: '2025-01-29',
-        readTime: '8 min read',
-        replies: 15,
-        featured: true
-      },
-      {
-        id: 'post-003',
-        title: 'Salary Negotiation Guide for South African Professionals',
-        excerpt: 'Learn how to negotiate your salary effectively in the SA job market with real examples and strategies...',
-        author: 'Thabo Mthembu',
-        role: 'HR Director',
-        date: '2025-01-28',
-        readTime: '6 min read',
-        replies: 31,
-        featured: true
-      }
-    ];
-
+    // Enhanced pro features
     this.proFeatures = [
       {
         icon: '🔍',
-        title: 'AI Resume Audit',
-        description: 'Get instant feedback on your resume with our AI-powered analysis tool and improvement suggestions.'
-      },
-      {
-        icon: '📄',
-        title: 'Professional CV Builder',
-        description: 'Create stunning resumes with our advanced builder featuring premium templates and formatting.'
-      },
-      {
-        icon: '✏️',
-        title: 'Enhanced Profile Editing',
-        description: 'Advanced profile customization with priority placement in employer searches and recommendations.'
-      },
-      {
-        icon: '🤖',
-        title: 'Automated Applications',
-        description: 'Automatically apply to relevant jobs based on your preferences with personalized cover letters.'
+        title: 'AI-Powered Resume Optimization',
+        description: 'Get instant AI feedback on your resume with personalized improvement suggestions and ATS optimization.'
       },
       {
         icon: '📧',
-        title: 'Weekly Job Alerts',
-        description: 'Get personalized job alerts sent directly to your email with curated opportunities.'
-      },
-      {
-        icon: '📊',
-        title: 'Application Tracking',
-        description: 'Track all your job applications in one comprehensive dashboard with status updates.'
+        title: 'Priority Job Alerts',
+        description: 'Receive job notifications 24 hours before they go live to the public, giving you a competitive edge.'
       },
       {
         icon: '🎯',
-        title: 'Interview Preparation',
-        description: 'Access interview preparation resources, practice questions, and scheduling assistance.'
+        title: 'Advanced Job Matching',
+        description: 'Our AI algorithm matches you with jobs based on your skills, experience, and career goals.'
+      },
+      {
+        icon: '📊',
+        title: 'Application Analytics',
+        description: 'Track application performance, view rates, and get insights on how to improve your success rate.'
       },
       {
         icon: '💬',
-        title: 'Career Counseling',
-        description: 'One-on-one sessions with professional career counselors and industry experts.'
+        title: 'Career Coaching Sessions',
+        description: 'Monthly one-on-one sessions with certified career coaches and industry professionals.'
       },
       {
-        icon: '📚',
-        title: 'Free Upskilling Courses',
-        description: 'Access to professional development courses, certifications, and learning resources.'
-      },
-      {
-        icon: '🚫',
-        title: 'Ad-Free Experience',
-        description: 'Enjoy the platform without any advertisements, distractions, or promotional content.'
+        icon: '🚀',
+        title: 'Profile Boost',
+        description: 'Get 3x more profile views with priority placement in employer searches and recommendations.'
       }
     ];
+
+    console.log('📊 Enhanced sample data loaded successfully');
   }
 
   /**
-   * EVENT LISTENERS - FIXED for all functionality
+   * ENHANCED EVENT LISTENERS - FIXED
    */
   setupEventListeners() {
-    // Theme toggle
+    // Theme toggle - FIXED
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
-      themeToggle.addEventListener('click', () => this.toggleTheme());
+      themeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.toggleTheme();
+      });
+      console.log('🎨 Theme toggle listener added');
     }
 
-    // Mobile menu toggle - FIXED
+    // Enhanced mobile menu toggle - FIXED
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     if (mobileMenuToggle) {
       mobileMenuToggle.addEventListener('click', (e) => {
@@ -445,10 +473,41 @@ class JobbyistPlatform {
         e.stopPropagation();
         this.toggleMobileMenu();
       });
+      console.log('📱 Mobile menu toggle listener added');
     }
 
-    // Close mobile menu when clicking outside
+    // Navigation dropdown toggles - FIXED
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+    dropdownTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const dropdown = trigger.parentElement;
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        // Close other dropdowns
+        document.querySelectorAll('.nav-dropdown').forEach(otherDropdown => {
+          if (otherDropdown !== dropdown) {
+            otherDropdown.classList.remove('open');
+          }
+        });
+        
+        // Toggle current dropdown
+        dropdown.classList.toggle('open');
+        console.log('📋 Dropdown toggled');
+      });
+    });
+
+    // Close dropdowns when clicking outside
     document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-dropdown')) {
+        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+          dropdown.classList.remove('open');
+        });
+      }
+      
+      // Close mobile menu when clicking outside
       const navbar = document.getElementById('navbar-nav');
       const toggle = document.getElementById('mobile-menu-toggle');
       
@@ -459,26 +518,47 @@ class JobbyistPlatform {
       }
     });
 
-    // Close mobile menu on navigation clicks
-    document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
-      link.addEventListener('click', () => this.closeMobileMenu());
-    });
-
-    // Hero search form
+    // Enhanced search form with location restrictions - FIXED
     const heroSearchForm = document.getElementById('hero-search-form');
     if (heroSearchForm) {
-      heroSearchForm.addEventListener('submit', (e) => this.handleSearch(e));
+      heroSearchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.handleEnhancedSearch(e);
+      });
+      console.log('🔍 Search form listener added');
     }
 
-    // FIXED - Apply Now buttons with event delegation for dynamic content
+    // Apply Now buttons with enhanced UX - FIXED
     document.addEventListener('click', (e) => {
       const applyBtn = e.target.closest('button[data-action="apply"]');
       if (applyBtn) {
         e.preventDefault();
         e.stopPropagation();
         const jobId = applyBtn.getAttribute('data-job-id');
-        console.log('Apply button clicked for job:', jobId);
         this.openRegistrationModal(jobId);
+        
+        // Add visual feedback
+        this.addButtonFeedback(applyBtn);
+        console.log('💼 Apply button clicked for job:', jobId);
+      }
+    });
+
+    // Category card clicks - FIXED
+    document.addEventListener('click', (e) => {
+      const categoryCard = e.target.closest('.category-card');
+      if (categoryCard) {
+        const categoryName = categoryCard.querySelector('h3')?.textContent;
+        if (categoryName) {
+          this.handleCategoryClick(categoryName);
+        }
+      }
+    });
+
+    // Enhanced button interactions
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('glow-effect') || e.target.closest('.glow-effect')) {
+        const button = e.target.classList.contains('glow-effect') ? e.target : e.target.closest('.glow-effect');
+        this.addButtonFeedback(button);
       }
     });
 
@@ -486,14 +566,15 @@ class JobbyistPlatform {
     const viewAllJobsBtn = document.getElementById('view-all-jobs');
     if (viewAllJobsBtn) {
       viewAllJobsBtn.addEventListener('click', () => {
-        this.showNotification('View all jobs functionality coming soon!', 'info');
+        this.showNotification('🔍 Advanced job search coming soon! More filtering options will be available.', 'info');
       });
     }
 
     this.setupRegistrationModal();
     this.setupCookieBanner();
-    
-    // Pro subscribe button - FIXED
+    this.setupFormSubmissions();
+
+    // Pro subscribe button
     const proSubscribeBtn = document.getElementById('start-trial-btn');
     if (proSubscribeBtn) {
       proSubscribeBtn.addEventListener('click', (e) => {
@@ -502,9 +583,7 @@ class JobbyistPlatform {
       });
     }
 
-    this.setupFormSubmissions();
-
-    // CRITICAL FIX - ESC key to close any open modals
+    // ESC key to close modals
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         this.closeAllModals();
@@ -518,39 +597,309 @@ class JobbyistPlatform {
       }
     });
 
-    // Prevent system theme changes from overriding manual selection
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      const hasManualTheme = localStorage.getItem('jobbyist-theme');
-      if (!hasManualTheme) {
-        console.log('🎨 System theme changed, but maintaining light mode default');
-        this.setTheme('light', true);
-      }
-    });
-
-    console.log('🎯 Event listeners configured with all fixes');
+    console.log('🎯 Enhanced event listeners configured');
   }
 
   /**
-   * CRITICAL FIX - Close all modals function
+   * HANDLE CATEGORY CLICKS - NEW
    */
-  closeAllModals() {
-    // Close registration modal
-    const registrationModal = document.getElementById('registration-modal');
-    if (registrationModal && !registrationModal.classList.contains('hidden')) {
-      this.closeRegistrationModal();
+  handleCategoryClick(categoryName) {
+    this.showNotification(`🎯 Searching for ${categoryName} jobs...`, 'info');
+    
+    // Filter jobs by category/skills
+    const categoryKeywords = {
+      'Technology': ['react', 'node', 'javascript', 'python', 'aws', 'software', 'developer', 'engineer'],
+      'Marketing': ['marketing', 'digital', 'social media', 'ads', 'analytics'],
+      'Finance': ['finance', 'accounting', 'financial', 'analyst'],
+      'Healthcare': ['healthcare', 'medical', 'health', 'nurse', 'doctor'],
+      'Education': ['education', 'teacher', 'instructor', 'training'],
+      'Sales': ['sales', 'business development', 'account manager']
+    };
+    
+    const keywords = categoryKeywords[categoryName] || [];
+    const filteredJobs = this.jobs.filter(job => {
+      const searchText = (job.title + ' ' + job.description + ' ' + (job.skills?.join(' ') || '')).toLowerCase();
+      return keywords.some(keyword => searchText.includes(keyword));
+    });
+    
+    setTimeout(() => {
+      this.displaySearchResults(filteredJobs, { category: categoryName });
+      this.scrollToResults();
+      this.showNotification(`✅ Found ${filteredJobs.length} ${categoryName} job${filteredJobs.length !== 1 ? 's' : ''}`, 'success');
+    }, 1000);
+  }
+
+  /**
+   * ENHANCED BUTTON FEEDBACK SYSTEM
+   */
+  addButtonFeedback(button) {
+    // Add ripple effect
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    ripple.style.cssText = `
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    `;
+    
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+    ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+    
+    button.style.position = 'relative';
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+
+    // Scale feedback
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      button.style.transform = '';
+    }, 150);
+  }
+
+  /**
+   * ENHANCED SEARCH FUNCTIONALITY with location restrictions - FIXED
+   */
+  handleEnhancedSearch(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const searchParams = {
+      title: formData.get('title')?.toLowerCase().trim() || '',
+      type: formData.get('type') || '',
+      location: formData.get('location') || ''
+    };
+
+    console.log('🔍 Enhanced search params:', searchParams);
+
+    // Validate location restrictions
+    const allowedLocations = [
+      'Lagos', 'Johannesburg', 'Cape Town', 'Abuja', 'Pretoria', 'Durban', 
+      'Nigeria', 'South Africa', 'Remote'
+    ];
+
+    if (searchParams.location && !allowedLocations.includes(searchParams.location)) {
+      this.showNotification('❌ Search is currently limited to South Africa and Nigeria locations only.', 'warning');
+      return;
     }
 
-    // Remove any stuck notifications
-    document.querySelectorAll('.notification').forEach(n => n.remove());
+    // Show loading state
+    this.showNotification('🔍 Searching for jobs...', 'info');
+
+    const filteredJobs = this.jobs.filter(job => {
+      const matchesTitle = !searchParams.title || 
+        job.title.toLowerCase().includes(searchParams.title) ||
+        job.company.toLowerCase().includes(searchParams.title) ||
+        job.skills?.some(skill => skill.toLowerCase().includes(searchParams.title));
+      
+      const matchesType = !searchParams.type || job.type === searchParams.type;
+      
+      const matchesLocation = !searchParams.location || 
+        job.location.includes(searchParams.location) ||
+        job.country.includes(searchParams.location) ||
+        (searchParams.location === 'Remote' && job.remote);
+
+      return matchesTitle && matchesType && matchesLocation;
+    });
+
+    // Simulate search delay for better UX
+    setTimeout(() => {
+      this.displaySearchResults(filteredJobs, searchParams);
+      this.scrollToResults();
+      
+      const message = filteredJobs.length === 0 
+        ? '🔍 No jobs found matching your criteria. Try adjusting your search terms.'
+        : `✅ Found ${filteredJobs.length} job${filteredJobs.length !== 1 ? 's' : ''} matching your search`;
+      
+      this.showNotification(message, filteredJobs.length > 0 ? 'success' : 'info');
+    }, 800);
+  }
+
+  displaySearchResults(jobs, searchParams) {
+    const container = document.getElementById('jobs-container');
+    if (!container) return;
+
+    if (jobs.length === 0) {
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--color-text-secondary);">
+          <div style="font-size: 4rem; margin-bottom: 1rem;">🔍</div>
+          <h3 style="margin-bottom: 1rem; color: var(--color-text);">No jobs found</h3>
+          <p>Try adjusting your search criteria:</p>
+          <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+            <li>• Use different keywords</li>
+            <li>• Try a broader job type</li>
+            <li>• Consider remote opportunities</li>
+            <li>• Check spelling and try synonyms</li>
+          </ul>
+          <button class="btn--primary glow-effect" onclick="window.jobbyistApp.renderJobs();" style="margin-top: 1rem;">
+            <span>View All Jobs</span>
+          </button>
+        </div>
+      `;
+    } else {
+      // Add search context header
+      const searchContext = this.createSearchContextHeader(searchParams, jobs.length);
+      container.innerHTML = searchContext + jobs.map(job => this.createJobCard(job)).join('');
+    }
+  }
+
+  createSearchContextHeader(searchParams, resultCount) {
+    const filters = [];
+    if (searchParams.title) filters.push(`"${searchParams.title}"`);
+    if (searchParams.type) filters.push(searchParams.type);
+    if (searchParams.location) filters.push(searchParams.location);
+    if (searchParams.category) filters.push(searchParams.category);
     
-    // Ensure body overflow is reset
-    document.body.style.overflow = '';
+    const filtersText = filters.length > 0 ? ` for ${filters.join(', ')}` : '';
     
-    console.log('🔒 All modals closed');
+    return `
+      <div style="grid-column: 1 / -1; background: var(--color-surface-variant); padding: 1.5rem; border-radius: var(--radius-xl); margin-bottom: 2rem; border: 2px solid var(--color-border);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3 style="margin: 0; color: var(--color-text);">Search Results</h3>
+            <p style="margin: 0.5rem 0 0 0; color: var(--color-text-secondary);">
+              Found ${resultCount} job${resultCount !== 1 ? 's' : ''}${filtersText}
+            </p>
+          </div>
+          <button class="btn--secondary" onclick="window.jobbyistApp.renderJobs();" style="white-space: nowrap;">
+            <span>Clear Filters</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  createJobCard(job) {
+    const salaryText = this.formatSalary(job.salaryMin, job.salaryMax, job.currency);
+    const skillTags = job.skills ? job.skills.slice(0, 3).map(skill => 
+      `<span class="job-tag">${skill}</span>`
+    ).join('') : '';
+    
+    return `
+      <div class="job-card" data-job-id="${job.id}">
+        <div class="job-header">
+          <h3 class="job-title">${job.title}</h3>
+          <div class="job-company">${job.company}</div>
+        </div>
+        <div class="job-meta">
+          <span>📍 ${job.location}</span>
+          <span>💰 ${salaryText}</span>
+          <span>⏰ ${job.type}</span>
+          ${job.remote ? '<span>🌐 Remote</span>' : ''}
+        </div>
+        <div class="job-description">
+          ${job.description.substring(0, 150)}...
+        </div>
+        <div class="job-tags">
+          ${job.featured ? '<span class="job-tag" style="background: var(--gradient-glow); color: white;">Featured</span>' : ''}
+          <span class="job-tag">Posted ${this.getRelativeTime(job.datePosted)}</span>
+          ${skillTags}
+        </div>
+        <button class="btn--primary glow-effect" data-action="apply" data-job-id="${job.id}" style="margin-top: 1rem; width: 100%;">
+          <span>Apply Now</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    `;
+  }
+
+  scrollToResults() {
+    setTimeout(() => {
+      const jobsSection = document.getElementById('job-listings');
+      if (jobsSection) {
+        jobsSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      }
+    }, 100);
   }
 
   /**
-   * REGISTRATION MODAL - COMPLETELY FIXED for consistent behavior
+   * ENHANCED CONTENT RENDERING - FIXED
+   */
+  renderHomepageContent() {
+    this.renderJobs();
+    this.renderCompaniesPreview();
+    this.animateCounters();
+  }
+
+  renderJobs() {
+    const container = document.getElementById('jobs-container');
+    if (!container) return;
+
+    const featuredJobs = this.jobs.filter(job => job.featured).slice(0, 6);
+    
+    container.innerHTML = featuredJobs.map(job => this.createJobCard(job)).join('');
+
+    console.log('💼 Enhanced jobs rendered:', featuredJobs.length);
+  }
+
+  renderCompaniesPreview() {
+    const container = document.getElementById('companies-preview-container');
+    if (!container) return;
+
+    const featuredCompanies = this.companies.slice(0, 3);
+    
+    container.innerHTML = featuredCompanies.map(company => `
+      <div class="company-card" onclick="window.jobbyistApp.showCompanyDetail('${company.id}')">
+        <div class="company-header">
+          <div class="company-logo">
+            <img src="${company.logo}" alt="${company.name} logo" onerror="this.style.display='none'" />
+          </div>
+          <div class="company-info">
+            <h3>
+              ${company.name}
+              ${company.verified ? '<span class="verified-badge">✓ Verified</span>' : ''}
+            </h3>
+            <div class="company-meta">
+              ${company.industry} • ${company.location}
+              ${company.rating ? ` • ⭐ ${company.rating}` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="company-description">
+          ${company.description}
+        </div>
+        <div class="company-stats">
+          <span><strong>${company.employees}</strong> employees</span>
+          <span><strong>${company.openJobs}</strong> open jobs</span>
+          <span><strong>Founded</strong> ${company.founded}</span>
+        </div>
+      </div>
+    `).join('');
+
+    console.log('🏢 Enhanced companies preview rendered:', featuredCompanies.length);
+  }
+
+  renderProFeatures() {
+    const container = document.getElementById('pro-features-container');
+    if (!container) return;
+
+    container.innerHTML = this.proFeatures.map(feature => `
+      <div class="pro-feature-card">
+        <div class="pro-feature-icon">${feature.icon}</div>
+        <h3 class="pro-feature-title">${feature.title}</h3>
+        <p class="pro-feature-description">${feature.description}</p>
+      </div>
+    `).join('');
+
+    console.log('⭐ Enhanced pro features rendered:', this.proFeatures.length);
+  }
+
+  /**
+   * ENHANCED MODAL SYSTEM - FIXED
    */
   setupRegistrationModal() {
     const modal = document.getElementById('registration-modal');
@@ -615,14 +964,11 @@ class JobbyistPlatform {
 
     this.setupFileUploads();
     this.modalState.registrationModal.isInitialized = true;
-    console.log('📝 Registration modal configured with all fixes');
+    console.log('📝 Enhanced registration modal configured');
   }
 
-  /**
-   * OPEN REGISTRATION MODAL - COMPLETELY FIXED
-   */
   openRegistrationModal(jobId = null) {
-    console.log('Opening registration modal for job:', jobId);
+    console.log('Opening enhanced registration modal for job:', jobId);
     
     const modal = document.getElementById('registration-modal');
     if (!modal) {
@@ -630,12 +976,12 @@ class JobbyistPlatform {
       return;
     }
 
-    // CRITICAL FIX - Always allow reopening
+    // Reset modal state
     this.modalState.registrationModal.canReopen = true;
     this.modalState.registrationModal.currentStep = 1;
     this.modalState.registrationModal.selectedJobId = jobId;
     
-    // Reset all form visibility states
+    // Reset form visibility
     const form = document.getElementById('registration-form');
     const navigation = document.querySelector('.form-navigation');
     const progressContainer = document.querySelector('.progress-container');
@@ -643,32 +989,29 @@ class JobbyistPlatform {
 
     if (form) {
       form.style.display = 'block';
-      form.reset(); // Clear previous data
+      form.reset();
     }
     if (navigation) navigation.style.display = 'flex';
     if (progressContainer) progressContainer.style.display = 'block';
     if (successSection) successSection.classList.add('hidden');
 
-    // Reset progress and show first step
+    // Show first step
     this.showRegistrationStep(1);
     this.updateRegistrationProgress();
 
-    // Show modal with animation
+    // Show modal with enhanced animation
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 
-    // Focus management for accessibility
+    // Focus management
     setTimeout(() => {
       const firstInput = modal.querySelector('input:not([type="file"]):not([type="checkbox"])');
       if (firstInput) firstInput.focus();
     }, 150);
 
-    console.log('✅ Registration modal opened successfully and ready for interaction');
+    console.log('✅ Enhanced registration modal opened successfully');
   }
 
-  /**
-   * CLOSE REGISTRATION MODAL - FIXED
-   */
   closeRegistrationModal() {
     const modal = document.getElementById('registration-modal');
     if (!modal) return;
@@ -676,10 +1019,9 @@ class JobbyistPlatform {
     modal.classList.add('hidden');
     document.body.style.overflow = '';
     
-    // CRITICAL FIX - Ensure modal can be reopened
     this.modalState.registrationModal.canReopen = true;
     
-    console.log('📝 Registration modal closed - fully ready to reopen');
+    console.log('📝 Enhanced registration modal closed');
   }
 
   showRegistrationStep(step) {
@@ -688,7 +1030,7 @@ class JobbyistPlatform {
       stepEl.classList.remove('active');
     });
 
-    // Show current step
+    // Show current step with animation
     const currentStepEl = document.querySelector(`.form-step[data-step="${step}"]`);
     if (currentStepEl) {
       currentStepEl.classList.add('active');
@@ -713,7 +1055,7 @@ class JobbyistPlatform {
       }
     }
 
-    // Update step indicators
+    // Update step indicators with animation
     document.querySelectorAll('.step').forEach((stepIndicator, index) => {
       stepIndicator.classList.remove('active', 'completed');
       if (index + 1 === step) {
@@ -762,14 +1104,22 @@ class JobbyistPlatform {
       
       if (!value) {
         field.style.borderColor = 'var(--color-error)';
+        field.style.boxShadow = '0 0 0 3px rgba(234, 67, 53, 0.1)';
         isValid = false;
+        
+        // Add shake animation
+        field.style.animation = 'shake 0.5s ease-in-out';
+        setTimeout(() => {
+          field.style.animation = '';
+        }, 500);
       } else {
         field.style.borderColor = '';
+        field.style.boxShadow = '';
       }
     });
 
     if (!isValid) {
-      this.showNotification('Please fill in all required fields.', 'error');
+      this.showNotification('❗ Please fill in all required fields to continue.', 'error');
     }
 
     return isValid;
@@ -784,21 +1134,42 @@ class JobbyistPlatform {
     if (submitBtn) {
       submitBtn.querySelector('span').textContent = 'Creating Account...';
       submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
     }
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Enhanced simulation with progress
+      await this.simulateRegistrationProcess();
       
       this.showRegistrationSuccess();
-      this.showNotification('Account created successfully! Welcome to Jobbyist!', 'success');
+      this.showNotification('🎉 Account created successfully! Welcome to Jobbyist!', 'success');
       
     } catch (error) {
-      this.showNotification('Registration failed. Please try again.', 'error');
+      this.showNotification('❌ Registration failed. Please try again.', 'error');
       if (submitBtn) {
         submitBtn.querySelector('span').textContent = originalText;
         submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
       }
+    }
+  }
+
+  async simulateRegistrationProcess() {
+    // Simulate multi-step registration process
+    const steps = [
+      'Validating information...',
+      'Creating account...',
+      'Setting up profile...',
+      'Finalizing registration...'
+    ];
+    
+    const submitBtn = document.getElementById('submit-registration');
+    
+    for (let i = 0; i < steps.length; i++) {
+      if (submitBtn) {
+        submitBtn.querySelector('span').textContent = steps[i];
+      }
+      await new Promise(resolve => setTimeout(resolve, 800));
     }
   }
 
@@ -813,7 +1184,7 @@ class JobbyistPlatform {
     if (progressContainer) progressContainer.style.display = 'none';
     if (successSection) successSection.classList.remove('hidden');
 
-    // Update apply button if job selected
+    // Update apply button for selected job
     const applyBtn = document.getElementById('apply-to-job');
     if (applyBtn && this.modalState.registrationModal.selectedJobId) {
       const job = this.jobs.find(j => j.id === this.modalState.registrationModal.selectedJobId);
@@ -823,12 +1194,15 @@ class JobbyistPlatform {
         
         applyBtn.onclick = () => {
           this.closeRegistrationModal();
-          this.showNotification(`Application submitted for ${job.title}!`, 'success');
+          this.showNotification(`🚀 Application submitted for ${job.title}! We'll be in touch soon.`, 'success');
         };
       }
     }
   }
 
+  /**
+   * ENHANCED FILE UPLOAD SYSTEM
+   */
   setupFileUploads() {
     const fileUploadAreas = document.querySelectorAll('.file-upload-area');
     
@@ -854,20 +1228,23 @@ class JobbyistPlatform {
         }
       });
 
-      // Drag and drop
+      // Enhanced drag and drop
       area.addEventListener('dragover', (e) => {
         e.preventDefault();
         area.classList.add('dragover');
+        area.style.transform = 'scale(1.02)';
       });
 
       area.addEventListener('dragleave', (e) => {
         e.preventDefault();
         area.classList.remove('dragover');
+        area.style.transform = '';
       });
 
       area.addEventListener('drop', (e) => {
         e.preventDefault();
         area.classList.remove('dragover');
+        area.style.transform = '';
         const files = e.dataTransfer.files;
         if (files.length > 0) {
           this.handleFileSelect(files[0], area);
@@ -891,31 +1268,33 @@ class JobbyistPlatform {
     ];
 
     if (file.size > maxSize) {
-      this.showNotification('File size too large. Maximum 10MB allowed.', 'error');
+      this.showNotification('📄 File size too large. Maximum 10MB allowed.', 'error');
       return;
     }
 
     if (!allowedTypes.includes(file.type)) {
-      this.showNotification('File type not supported. Please upload PDF, DOC, or DOCX files.', 'error');
+      this.showNotification('📄 File type not supported. Please upload PDF, DOC, or DOCX files.', 'error');
       return;
     }
 
-    // Show preview
+    // Show enhanced preview
     uploadContent.style.display = 'none';
     preview.style.display = 'flex';
     preview.innerHTML = `
-      <div style="width: 40px; height: 40px; background: var(--color-primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">📄</div>
-      <div class="file-preview-info">
-        <div class="file-preview-name">${file.name}</div>
-        <div class="file-preview-size">${this.formatFileSize(file.size)}</div>
+      <div style="width: 48px; height: 48px; background: var(--gradient-glow); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">📄</div>
+      <div class="file-preview-info" style="flex: 1;">
+        <div class="file-preview-name" style="font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: 0.25rem;">${file.name}</div>
+        <div class="file-preview-size" style="font-size: var(--text-xs); color: var(--color-text-secondary);">${this.formatFileSize(file.size)} • Uploaded successfully</div>
       </div>
-      <button type="button" class="file-remove" onclick="window.jobbyistApp.removeFile('${fileInput.name}')">&times;</button>
+      <button type="button" class="file-remove" onclick="window.jobbyistApp.removeFile('${fileInput.name}')" style="background: none; border: none; color: var(--color-text-secondary); cursor: pointer; padding: 0.5rem; border-radius: var(--radius-md); transition: all var(--transition-fast);">&times;</button>
     `;
 
     // Update file input
     const dataTransfer = new DataTransfer();
     dataTransfer.items.add(file);
     fileInput.files = dataTransfer.files;
+
+    this.showNotification('✅ File uploaded successfully!', 'success');
   }
 
   removeFile(inputName) {
@@ -941,7 +1320,7 @@ class JobbyistPlatform {
   }
 
   /**
-   * COOKIE MANAGEMENT - COMPLETELY FIXED for proper persistence and modal closing
+   * ENHANCED COOKIE MANAGEMENT
    */
   setupCookieBanner() {
     const banner = document.getElementById('cookie-banner');
@@ -949,7 +1328,10 @@ class JobbyistPlatform {
     const settingsBtn = document.getElementById('cookie-settings');
 
     if (!this.cookiePreferences.accepted && banner) {
-      setTimeout(() => banner.classList.remove('hidden'), 1000);
+      setTimeout(() => {
+        banner.classList.remove('hidden');
+        banner.style.animation = 'slideUp 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+      }, 2000);
     }
 
     if (acceptBtn) {
@@ -989,7 +1371,6 @@ class JobbyistPlatform {
     };
   }
 
-  // CRITICAL FIX - Cookie settings functions for global access with proper navigation
   saveCookieSettings() {
     const analyticsCheckbox = document.getElementById('analytics-cookies');
     const marketingCheckbox = document.getElementById('marketing-cookies');
@@ -1003,14 +1384,13 @@ class JobbyistPlatform {
     };
 
     localStorage.setItem('jobbyist-cookie-preferences', JSON.stringify(this.cookiePreferences));
-    this.showNotification('Cookie preferences saved successfully!', 'success');
+    this.showNotification('🍪 Cookie preferences saved successfully!', 'success');
     
-    // Auto-navigate back to homepage after saving
     setTimeout(() => {
       this.showPage('homepage');
     }, 1500);
     
-    console.log('🍪 Cookie preferences saved:', this.cookiePreferences);
+    console.log('🍪 Enhanced cookie preferences saved:', this.cookiePreferences);
   }
 
   resetCookieSettings() {
@@ -1020,7 +1400,7 @@ class JobbyistPlatform {
     if (analyticsCheckbox) analyticsCheckbox.checked = false;
     if (marketingCheckbox) marketingCheckbox.checked = false;
 
-    this.showNotification('Cookie settings reset to default.', 'info');
+    this.showNotification('🔄 Cookie settings reset to default.', 'info');
   }
 
   acceptAllCookies() {
@@ -1033,6 +1413,7 @@ class JobbyistPlatform {
     };
 
     localStorage.setItem('jobbyist-cookie-preferences', JSON.stringify(this.cookiePreferences));
+    this.showNotification('🍪 All cookies accepted. Thank you!', 'success');
     console.log('🍪 All cookies accepted');
   }
 
@@ -1040,39 +1421,29 @@ class JobbyistPlatform {
     if (!this.cookiePreferences.accepted) {
       const banner = document.getElementById('cookie-banner');
       if (banner) {
-        setTimeout(() => banner.classList.remove('hidden'), 1000);
+        setTimeout(() => banner.classList.remove('hidden'), 2000);
       }
     }
   }
 
   /**
-   * FORM SUBMISSIONS - Ready for Formspree integration
+   * ENHANCED FORM SUBMISSIONS
    */
   setupFormSubmissions() {
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => this.handleFormSubmission(e, 'contact'));
-    }
+    const forms = [
+      { id: 'contact-form', type: 'contact' },
+      { id: 'app-notify-form', type: 'newsletter' },
+      { id: 'registration-form', type: 'registration' }
+    ];
 
-    const claimForm = document.getElementById('claim-form');
-    if (claimForm) {
-      claimForm.addEventListener('submit', (e) => this.handleFormSubmission(e, 'claim'));
-    }
-
-    const appNotifyForm = document.getElementById('app-notify-form');
-    if (appNotifyForm) {
-      appNotifyForm.addEventListener('submit', (e) => this.handleFormSubmission(e, 'newsletter'));
-    }
-
-    const forumAuthForm = document.getElementById('forum-auth-form');
-    if (forumAuthForm) {
-      forumAuthForm.addEventListener('submit', (e) => this.handleForumAuth(e));
-    }
-
-    const registrationForm = document.getElementById('registration-form');
-    if (registrationForm) {
-      registrationForm.addEventListener('submit', (e) => this.handleFormSubmission(e, 'registration'));
-    }
+    forms.forEach(({ id, type }) => {
+      const form = document.getElementById(id);
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          this.handleFormSubmission(e, type);
+        });
+      }
+    });
   }
 
   async handleFormSubmission(e, formType) {
@@ -1085,132 +1456,208 @@ class JobbyistPlatform {
     if (submitBtn) {
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
     }
 
     try {
       const formData = new FormData(form);
       formData.append('formType', formType);
       formData.append('timestamp', new Date().toISOString());
-      formData.append('userAgent', navigator.userAgent);
-      formData.append('referrer', document.referrer);
+      formData.append('userLocation', JSON.stringify(this.userLocation));
       
-      console.log(`📧 Submitting ${formType} form:`, Object.fromEntries(formData));
+      console.log(`📧 Enhanced ${formType} form submission:`, Object.fromEntries(formData));
       
-      // Simulate API call - Replace with actual Formspree endpoint
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Simulate API call with progress
+      await this.simulateFormSubmission(formType);
       
       form.reset();
-      this.showNotification(`${this.capitalizeFirst(formType)} form submitted successfully!`, 'success');
       
-      if (formType === 'claim') {
-        this.showNotification('We\'ll verify your company details and contact you within 24-48 hours.', 'info');
-      } else if (formType === 'newsletter') {
-        this.showNotification('You\'ll be notified when our mobile app launches!', 'success');
-      }
+      const successMessages = {
+        contact: '📧 Message sent successfully! We\'ll get back to you within 24 hours.',
+        newsletter: '📱 Thank you for subscribing! You\'ll be the first to know when our mobile app launches.'
+      };
+      
+      this.showNotification(successMessages[formType] || 'Form submitted successfully!', 'success');
       
     } catch (error) {
       console.error(`Error submitting ${formType} form:`, error);
-      this.showNotification('Form submission failed. Please try again.', 'error');
+      this.showNotification('❌ Form submission failed. Please try again.', 'error');
     } finally {
       if (submitBtn) {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
       }
     }
   }
 
-  capitalizeFirst(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  async simulateFormSubmission(formType) {
+    const delays = {
+      contact: 1500,
+      newsletter: 1000,
+      registration: 2500
+    };
+    
+    await new Promise(resolve => setTimeout(resolve, delays[formType] || 1500));
   }
 
   /**
-   * PASSWORDLESS AUTHENTICATION - FIXED for community forum
+   * ENHANCED UTILITY FUNCTIONS
    */
-  async handleForumAuth(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const emailInput = form.querySelector('input[type="email"]');
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const email = emailInput?.value;
-
-    if (!email) return;
-
-    const originalText = submitBtn?.textContent;
-    if (submitBtn) {
-      submitBtn.textContent = 'Sending Magic Link...';
-      submitBtn.disabled = true;
-    }
-
-    try {
-      const response = await this.sendMagicLink(email);
-      
-      if (response.success) {
-        this.showNotification('Magic link sent! Check your email to access the forum.', 'success');
-        
-        // Simulate successful authentication after a delay
-        setTimeout(() => {
-          this.authenticateForumUser(email);
-        }, 3000);
+  formatSalary(min, max, currency) {
+    const formatNumber = (num) => {
+      if (currency === 'ZAR') {
+        return `R${(num / 1000).toFixed(0)}k`;
+      } else if (currency === 'NGN') {
+        return `₦${(num / 1000).toFixed(0)}k`;
+      } else {
+        return `$${(num / 1000).toFixed(0)}k`;
       }
-      
-    } catch (error) {
-      console.error('Forum auth error:', error);
-      this.showNotification('Authentication failed. Please try again.', 'error');
-    } finally {
-      if (submitBtn) {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }
-    }
-  }
-
-  async sendMagicLink(email) {
-    console.log('📧 Sending magic link to:', email);
+    };
     
-    const magicToken = this.generateMagicToken();
-    const magicLink = `${window.location.origin}?auth=${magicToken}&email=${encodeURIComponent(email)}`;
-    
-    // Store in session for verification
-    sessionStorage.setItem('magic-token', magicToken);
-    sessionStorage.setItem('magic-email', email);
-    sessionStorage.setItem('magic-timestamp', Date.now().toString());
-    
-    console.log('🔗 Magic link generated:', magicLink);
-    
-    // Here you would integrate with SendGrid or another email service
-    // await this.sendEmailViaSendGrid(email, magicLink);
-    
-    return { success: true, token: magicToken };
-  }
-
-  generateMagicToken() {
-    return 'magic_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-  }
-
-  authenticateForumUser(email) {
-    sessionStorage.setItem('forum-authenticated', 'true');
-    sessionStorage.setItem('forum-user-email', email);
-    sessionStorage.setItem('forum-auth-timestamp', Date.now().toString());
-    
-    const accessGate = document.getElementById('forum-access-gate');
-    const forumContent = document.getElementById('forum-content');
-    
-    if (accessGate) accessGate.style.display = 'none';
-    if (forumContent) {
-      forumContent.classList.remove('hidden');
-      this.renderForumPosts();
+    if (min === max) {
+      return formatNumber(min);
     }
     
-    this.showNotification('Welcome to the community forum!', 'success');
-    console.log('🔓 Forum access granted for:', email);
+    return `${formatNumber(min)} - ${formatNumber(max)}`;
+  }
+
+  getRelativeTime(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return 'today';
+    if (diffDays === 1) return 'yesterday';
+    if (diffDays < 7) return `${diffDays} days ago`;
+    if (diffDays < 30) return `${Math.ceil(diffDays / 7)} weeks ago`;
+    return `${Math.ceil(diffDays / 30)} months ago`;
   }
 
   /**
-   * PAGE NAVIGATION - FIXED with proper error handling
+   * ENHANCED COUNTER ANIMATION
+   */
+  animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    const animateCounter = (counter) => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const increment = target / 60; // 60 frames for smooth animation
+      let current = 0;
+      
+      const updateCounter = () => {
+        if (current < target) {
+          current += increment;
+          if (current > target) current = target;
+          
+          let displayValue;
+          if (target >= 50000) {
+            displayValue = Math.floor(current / 1000) + 'K+';
+          } else if (target >= 1000) {
+            displayValue = (Math.floor(current / 100) / 10).toFixed(1) + 'K+';
+          } else {
+            displayValue = Math.floor(current) + '+';
+          }
+          
+          counter.textContent = displayValue;
+          requestAnimationFrame(updateCounter);
+        }
+      };
+      
+      updateCounter();
+    };
+
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+          entry.target.classList.add('animated');
+          setTimeout(() => {
+            animateCounter(entry.target);
+          }, Math.random() * 500); // Stagger animations
+        }
+      });
+    }, observerOptions);
+
+    counters.forEach(counter => counterObserver.observe(counter));
+  }
+
+  /**
+   * ENHANCED NOTIFICATION SYSTEM
+   */
+  showNotification(message, type = 'success') {
+    // Remove existing notifications
+    document.querySelectorAll('.notification').forEach(n => n.remove());
+
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    
+    const icons = {
+      success: '✅',
+      error: '❌',
+      warning: '⚠️',
+      info: 'ℹ️'
+    };
+    
+    const colors = {
+      success: 'var(--color-success)',
+      error: 'var(--color-error)',
+      warning: 'var(--color-warning)',
+      info: 'var(--color-accent)'
+    };
+    
+    notification.style.cssText = `
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: var(--color-surface);
+      border: 2px solid ${colors[type]};
+      border-radius: var(--radius-xl);
+      padding: var(--space-4) var(--space-6);
+      box-shadow: var(--shadow-2xl);
+      z-index: 1100;
+      max-width: 420px;
+      transform: translateX(100%);
+      transition: all var(--transition-normal);
+      backdrop-filter: blur(10px);
+    `;
+    
+    notification.innerHTML = `
+      <div style="display: flex; align-items: center; gap: var(--space-3); color: var(--color-text);">
+        <span style="font-size: 1.25rem;">${icons[type]}</span>
+        <span style="flex: 1; font-weight: var(--font-weight-medium);">${message}</span>
+        <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-secondary); transition: color var(--transition-fast); border-radius: var(--radius-md); padding: var(--space-1);" onmouseover="this.style.color='var(--color-text)'" onmouseout="this.style.color='var(--color-text-secondary)'">&times;</button>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+      notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Auto remove
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (notification.parentNode) notification.remove();
+        }, 300);
+      }
+    }, 5000);
+  }
+
+  /**
+   * PAGE NAVIGATION
    */
   showPage(pageId) {
-    console.log('Navigating to page:', pageId);
+    console.log('Navigating to enhanced page:', pageId);
     
     // Hide all pages
     document.querySelectorAll('.page').forEach(page => {
@@ -1230,10 +1677,10 @@ class JobbyistPlatform {
       // Smooth scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
       
-      console.log('✅ Page loaded:', pageId);
+      console.log('✅ Enhanced page loaded:', pageId);
     } else {
       console.error('Page not found:', pageId);
-      this.showNotification(`Page "${pageId}" not found`, 'error');
+      this.showNotification(`❌ Page "${pageId}" not found`, 'error');
     }
   }
 
@@ -1246,54 +1693,11 @@ class JobbyistPlatform {
         this.renderProFeatures();
         this.updatePricingByLocation();
         break;
-      case 'company-profiles':
-        this.renderCompanyProfiles();
-        break;
-      case 'community-forum':
-        this.checkForumAccess();
-        break;
       case 'cookies':
         this.loadCookieSettings();
         break;
-      case 'claim-page':
-        // Page is static, no additional loading needed
-        break;
-      case 'contact':
-        // Page is static, no additional loading needed
-        break;
       default:
         console.log(`No specific content loading for page: ${pageId}`);
-    }
-  }
-
-  checkForumAccess() {
-    const isAuthenticated = sessionStorage.getItem('forum-authenticated') === 'true';
-    const authTimestamp = parseInt(sessionStorage.getItem('forum-auth-timestamp') || '0');
-    const currentTime = Date.now();
-    const authDuration = 24 * 60 * 60 * 1000; // 24 hours
-
-    // Check if authentication is still valid
-    const isAuthValid = isAuthenticated && (currentTime - authTimestamp) < authDuration;
-
-    const accessGate = document.getElementById('forum-access-gate');
-    const forumContent = document.getElementById('forum-content');
-    
-    if (isAuthValid) {
-      if (accessGate) accessGate.style.display = 'none';
-      if (forumContent) {
-        forumContent.classList.remove('hidden');
-        this.renderForumPosts();
-      }
-    } else {
-      // Clear expired authentication
-      if (!isAuthValid && isAuthenticated) {
-        sessionStorage.removeItem('forum-authenticated');
-        sessionStorage.removeItem('forum-user-email');
-        sessionStorage.removeItem('forum-auth-timestamp');
-      }
-      
-      if (accessGate) accessGate.style.display = 'block';
-      if (forumContent) forumContent.classList.add('hidden');
     }
   }
 
@@ -1309,459 +1713,86 @@ class JobbyistPlatform {
     }
   }
 
-  /**
-   * CONTENT RENDERING
-   */
-  renderHomepageContent() {
-    this.renderJobs();
-    this.renderCompaniesPreview();
-    this.renderForumPreview();
-  }
-
-  renderJobs() {
-    const container = document.getElementById('jobs-container');
-    if (!container) return;
-
-    const featuredJobs = this.jobs.filter(job => job.featured).slice(0, 6);
-    
-    container.innerHTML = featuredJobs.map(job => `
-      <div class="job-card">
-        <div class="job-header">
-          <h3 class="job-title">${job.title}</h3>
-          <div class="job-company">${job.company}</div>
-        </div>
-        <div class="job-meta">
-          <span>📍 ${job.location}</span>
-          <span>💰 ${this.formatSalary(job.salaryMin, job.salaryMax, job.currency)}</span>
-          <span>⏰ ${job.type}</span>
-        </div>
-        <div class="job-description">
-          ${job.description.substring(0, 120)}...
-        </div>
-        <div class="job-tags">
-          <span class="job-tag">Featured</span>
-          <span class="job-tag">Posted ${this.getRelativeTime(job.datePosted)}</span>
-        </div>
-        <button class="btn--primary" data-action="apply" data-job-id="${job.id}" style="margin-top: 16px; width: 100%;">
-          <span>Apply Now</span>
-        </button>
-      </div>
-    `).join('');
-
-    console.log('💼 Jobs rendered:', featuredJobs.length);
-  }
-
-  renderCompaniesPreview() {
-    const container = document.getElementById('companies-preview-container');
-    if (!container) return;
-
-    const featuredCompanies = this.companies.slice(0, 3);
-    
-    container.innerHTML = featuredCompanies.map(company => `
-      <div class="company-card" onclick="window.jobbyistApp.showCompanyDetail('${company.id}')">
-        <div class="company-header">
-          <div class="company-logo">
-            <img src="${company.logo}" alt="${company.name} logo" onerror="this.style.display='none'" />
-          </div>
-          <div class="company-info">
-            <h3>
-              ${company.name}
-              ${company.verified ? '<span class="verified-badge">Verified</span>' : ''}
-            </h3>
-            <div class="company-meta">${company.industry} • ${company.location}</div>
-          </div>
-        </div>
-        <div class="company-description">
-          ${company.description}
-        </div>
-        <div class="company-stats">
-          <span><strong>${company.employees}</strong> employees</span>
-          <span><strong>${company.openJobs}</strong> open jobs</span>
-        </div>
-      </div>
-    `).join('');
-
-    console.log('🏢 Companies preview rendered:', featuredCompanies.length);
-  }
-
-  renderForumPreview() {
-    const container = document.getElementById('forum-posts-container');
-    if (!container) return;
-
-    container.innerHTML = this.forumPosts.map(post => `
-      <div class="forum-post-card" onclick="window.jobbyistApp.showPage('community-forum')">
-        <div class="forum-post-title">${post.title}</div>
-        <div class="forum-post-excerpt">${post.excerpt}</div>
-        <div class="forum-post-meta">
-          <div>
-            <strong>${post.author}</strong> • ${post.role}<br>
-            <small>${this.getRelativeTime(post.date)} • ${post.readTime}</small>
-          </div>
-          <div>
-            <small>${post.replies} replies</small>
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-    console.log('💬 Forum preview rendered:', this.forumPosts.length);
-  }
-
-  renderForumPosts() {
-    const container = document.getElementById('forum-posts-grid');
-    if (!container) return;
-
-    container.innerHTML = this.forumPosts.map(post => `
-      <div class="forum-post-card">
-        <div class="forum-post-title">${post.title}</div>
-        <div class="forum-post-excerpt">${post.excerpt}</div>
-        <div class="forum-post-meta">
-          <div>
-            <strong>${post.author}</strong> • ${post.role}<br>
-            <small>${this.getRelativeTime(post.date)} • ${post.readTime}</small>
-          </div>
-          <div>
-            <small>${post.replies} replies</small>
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-    console.log('💬 Forum posts rendered:', this.forumPosts.length);
-  }
-
-  renderCompanyProfiles() {
-    const container = document.getElementById('companies-container');
-    if (!container) return;
-
-    container.innerHTML = this.companies.map(company => `
-      <div class="company-card" onclick="window.jobbyistApp.showCompanyDetail('${company.id}')">
-        <div class="company-header">
-          <div class="company-logo">
-            <img src="${company.logo}" alt="${company.name} logo" onerror="this.style.display='none'" />
-          </div>
-          <div class="company-info">
-            <h3>
-              ${company.name}
-              ${company.verified ? '<span class="verified-badge">Verified</span>' : ''}
-            </h3>
-            <div class="company-meta">${company.industry} • ${company.location}</div>
-          </div>
-        </div>
-        <div class="company-description">
-          ${company.description}
-        </div>
-        <div class="company-stats">
-          <span><strong>${company.employees}</strong> employees</span>
-          <span><strong>${company.openJobs}</strong> open jobs</span>
-        </div>
-        <div class="company-actions">
-          <button class="btn--secondary" onclick="event.stopPropagation(); window.jobbyistApp.showNotification('View jobs feature coming soon!', 'info');">
-            View Jobs
-          </button>
-          <button class="btn--primary" onclick="event.stopPropagation(); window.jobbyistApp.showPage('claim-page');">
-            Claim Page
-          </button>  
-        </div>
-      </div>
-    `).join('');
-
-    console.log('🏢 Company profiles rendered:', this.companies.length);
-  }
-
-  renderProFeatures() {
-    const container = document.getElementById('pro-features-container');
-    if (!container) return;
-
-    container.innerHTML = this.proFeatures.map(feature => `
-      <div class="pro-feature-card">
-        <div class="pro-feature-icon">${feature.icon}</div>
-        <h3 class="pro-feature-title">${feature.title}</h3>
-        <p class="pro-feature-description">${feature.description}</p>
-      </div>
-    `).join('');
-
-    console.log('⭐ Pro features rendered:', this.proFeatures.length);
-  }
-
   showCompanyDetail(companyId) {
     const company = this.companies.find(c => c.id === companyId);
     if (!company) return;
 
-    this.showNotification(`Company detail for ${company.name} - Feature coming soon!`, 'info');
-    console.log('🏢 Company detail requested:', company.name);
+    this.showNotification(`🏢 ${company.name} - Detailed company profiles coming soon with job listings, reviews, and more!`, 'info');
+    console.log('🏢 Enhanced company detail requested:', company.name);
   }
 
-  /**
-   * PRO TRIAL - FIXED functionality
-   */
   startProTrial() {
-    this.showNotification('Starting your free 3-day trial...', 'info');
+    this.showNotification('🚀 Starting your free 3-day Jobbyist Pro trial...', 'info');
     
     setTimeout(() => {
-      this.showNotification('🎉 Pro trial activated! You now have access to all premium features for 3 days.', 'success');
+      this.showNotification('🎉 Pro trial activated! You now have access to all premium features for 3 days. Enjoy!', 'success');
     }, 2000);
     
-    console.log('⭐ Pro trial started');
+    console.log('⭐ Enhanced Pro trial started');
   }
 
-  /**
-   * SEARCH FUNCTIONALITY
-   */
-  handleSearch(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(e.target);
-    const searchParams = {
-      title: formData.get('title')?.toLowerCase() || '',
-      type: formData.get('type') || '',
-      location: formData.get('location') || ''
-    };
-
-    console.log('🔍 Search params:', searchParams);
-
-    const filteredJobs = this.jobs.filter(job => {
-      const matchesTitle = !searchParams.title || 
-        job.title.toLowerCase().includes(searchParams.title) ||
-        job.company.toLowerCase().includes(searchParams.title);
-      
-      const matchesType = !searchParams.type || job.type === searchParams.type;
-      
-      const matchesLocation = !searchParams.location || 
-        job.location.includes(searchParams.location) ||
-        job.country.includes(searchParams.location);
-
-      return matchesTitle && matchesType && matchesLocation;
-    });
-
-    this.displaySearchResults(filteredJobs);
-    this.scrollToResults();
-    
-    this.showNotification(`Found ${filteredJobs.length} job${filteredJobs.length !== 1 ? 's' : ''} matching your search`, 'success');
-  }
-
-  displaySearchResults(jobs) {
-    const container = document.getElementById('jobs-container');
-    if (!container) return;
-
-    if (jobs.length === 0) {
-      container.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--color-text-secondary);">
-          <h3>No jobs found</h3>
-          <p>Try adjusting your search criteria or browse all available positions</p>
-        </div>
-      `;
-    } else {
-      container.innerHTML = jobs.map(job => `
-        <div class="job-card">
-          <div class="job-header">
-            <h3 class="job-title">${job.title}</h3>
-            <div class="job-company">${job.company}</div>
-          </div>
-          <div class="job-meta">
-            <span>📍 ${job.location}</span>
-            <span>💰 ${this.formatSalary(job.salaryMin, job.salaryMax, job.currency)}</span>
-            <span>⏰ ${job.type}</span>
-          </div>
-          <div class="job-description">
-            ${job.description.substring(0, 120)}...
-          </div>
-          <div class="job-tags">
-            ${job.featured ? '<span class="job-tag">Featured</span>' : ''}
-            <span class="job-tag">Posted ${this.getRelativeTime(job.datePosted)}</span>
-          </div>
-          <button class="btn--primary" data-action="apply" data-job-id="${job.id}" style="margin-top: 16px; width: 100%;">
-            <span>Apply Now</span>
-          </button>
-        </div>
-      `).join('');
+  closeAllModals() {
+    const registrationModal = document.getElementById('registration-modal');
+    if (registrationModal && !registrationModal.classList.contains('hidden')) {
+      this.closeRegistrationModal();
     }
-  }
 
-  scrollToResults() {
-    setTimeout(() => {
-      const jobsSection = document.getElementById('job-listings');
-      if (jobsSection) {
-        jobsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
-  }
-
-  /**
-   * UTILITY FUNCTIONS
-   */
-  formatSalary(min, max, currency) {
-    const formatNumber = (num) => {
-      if (currency === 'ZAR') {
-        return `R${(num / 1000).toFixed(0)}k`;
-      } else {
-        return `₦${(num / 1000).toFixed(0)}k`;
-      }
-    };
-    
-    return `${formatNumber(min)} - ${formatNumber(max)}`;
-  }
-
-  getRelativeTime(dateString) {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffTime = Math.abs(now - date);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 0) return 'today';
-    if (diffDays === 1) return 'yesterday';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.ceil(diffDays / 7)} weeks ago`;
-    return `${Math.ceil(diffDays / 30)} months ago`;
-  }
-
-  animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    const animateCounter = (counter) => {
-      const target = parseInt(counter.getAttribute('data-target'));
-      const increment = target / 100;
-      let current = 0;
-      
-      const updateCounter = () => {
-        if (current < target) {
-          current += increment;
-          if (current > target) current = target;
-          
-          if (target >= 1000) {
-            counter.textContent = (Math.floor(current / 1000)) + 'K+';
-          } else {
-            counter.textContent = Math.floor(current) + (target === 89 ? '%' : '+');
-          }
-          
-          requestAnimationFrame(updateCounter);
-        }
-      };
-      
-      updateCounter();
-    };
-
-    const observerOptions = {
-      threshold: 0.5,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-          entry.target.classList.add('animated');
-          animateCounter(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    counters.forEach(counter => counterObserver.observe(counter));
-  }
-
-  showNotification(message, type = 'success') {
-    // Remove existing notifications
     document.querySelectorAll('.notification').forEach(n => n.remove());
-
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      padding: var(--space-16);
-      box-shadow: var(--shadow-lg);
-      z-index: 1100;
-      max-width: 400px;
-      transform: translateX(100%);
-      transition: transform var(--duration-normal);
-    `;
+    document.body.style.overflow = '';
     
-    if (type === 'success') {
-      notification.style.borderColor = 'var(--color-success)';
-      notification.style.background = 'var(--color-bg-3)';
-    } else if (type === 'error') {
-      notification.style.borderColor = 'var(--color-error)';
-      notification.style.background = 'var(--color-bg-4)';
-    } else if (type === 'info') {
-      notification.style.borderColor = 'var(--color-info)';  
-      notification.style.background = 'var(--color-bg-1)';
-    }
-    
-    notification.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center; color: var(--color-text);">
-        <span>${message}</span>
-        <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; font-size: var(--font-size-lg); cursor: pointer; color: var(--color-text-secondary); margin-left: var(--space-12);">&times;</button>
-      </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-          if (notification.parentNode) notification.remove();
-        }, 300);
-      }
-    }, 5000);
+    console.log('🔒 All modals closed');
   }
 }
 
-// Initialize the application - FIXED for immediate global access
+// Initialize the enhanced application
 let jobbyistApp;
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 DOM loaded, initializing Jobbyist Platform...');
+  console.log('🚀 DOM loaded, initializing Enhanced Jobbyist Platform...');
   
   jobbyistApp = new JobbyistPlatform();
-  
-  // Ensure global access is immediately available
   window.jobbyistApp = jobbyistApp;
   
-  // Global error handling
+  // Enhanced error handling
   window.addEventListener('error', (e) => {
     console.error('Application error:', e.error);
     if (jobbyistApp && jobbyistApp.showNotification) {
-      jobbyistApp.showNotification('An error occurred. Please refresh the page.', 'error');
+      jobbyistApp.showNotification('⚠️ An error occurred. Please refresh the page if issues persist.', 'error');
     }
   });
 
-  // Handle unhandled promise rejections
   window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
     if (jobbyistApp && jobbyistApp.showNotification) {
-      jobbyistApp.showNotification('A network error occurred. Please try again.', 'error');
+      jobbyistApp.showNotification('🌐 A network error occurred. Please check your connection and try again.', 'error');
     }
   });
   
-  // Handle magic link authentication if present
-  const urlParams = new URLSearchParams(window.location.search);
-  const authToken = urlParams.get('auth');
-  const email = urlParams.get('email');
-  
-  if (authToken && email) {
-    const savedToken = sessionStorage.getItem('magic-token');
-    const savedEmail = sessionStorage.getItem('magic-email');
-    
-    if (authToken === savedToken && email === savedEmail) {
-      setTimeout(() => {
-        jobbyistApp.authenticateForumUser(email);
-        jobbyistApp.showPage('community-forum');
-        
-        // Clean up URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }, 1000);
+  // Add CSS for animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
     }
-  }
+    
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    .nav-dropdown.open .dropdown-menu {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+    }
+  `;
+  document.head.appendChild(style);
   
-  console.log('🎉 Jobbyist Platform fully ready for production with ALL CRITICAL BUGS FIXED!');
+  console.log('🎉 Enhanced Jobbyist Platform fully initialized and ready!');
 });
 
 /**
