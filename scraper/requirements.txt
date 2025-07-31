@@ -1,6 +1,0 @@
-requests
-beautifulsoup4
-jinja2
-apscheduler
-python-dotenv
-pygithub
