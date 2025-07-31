@@ -1815,8 +1815,8 @@ a:hover {
 }
 
 .company-logo {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: var(--radius-xl);
   overflow: hidden;
   flex-shrink: 0;
@@ -1833,7 +1833,7 @@ a:hover {
 }
 
 .company-info h3 {
-  font-size: 18px !important;
+  font-size: 16px !important;
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-1);
   color: var(--color-text);
@@ -1864,7 +1864,7 @@ a:hover {
   color: var(--color-white);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-md);
-  font-size: var(--text-xs);
+  font-size: 11px !important;
   font-weight: var(--font-weight-medium);
   margin-left: var(--space-2);
 }
