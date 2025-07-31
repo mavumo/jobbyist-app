@@ -1833,7 +1833,7 @@ a:hover {
 }
 
 .company-info h3 {
-  font-size: var(--text-xl);
+  font-size: 18px !important;
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-1);
   color: var(--color-text);
