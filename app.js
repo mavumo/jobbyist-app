@@ -160,37 +160,334 @@ class JobbyistApp {
         skills: ['Python', 'SQL', 'Tableau', 'Statistics'], datePosted: '2025-01-31', featured: false, remote: true
       },
       {
-        id: 'job-004', title: 'Product Manager', company: 'Abuja Tech Solutions', location: 'Abuja, Nigeria',
-        country: 'Nigeria', currency: 'NGN', salaryMin: 3000000, salaryMax: 4500000, type: 'Full-time',
-        description: 'Drive product strategy and development for innovative mobile solutions serving the Nigerian market. Lead cross-functional product teams.',
-        skills: ['Product Management', 'Agile', 'User Research', 'Strategy'], datePosted: '2025-01-30', featured: true, remote: false
-      },
-      {
-        id: 'job-005', title: 'UI/UX Designer', company: 'Design Studio SA', location: 'Pretoria, South Africa',
-        country: 'South Africa', currency: 'ZAR', salaryMin: 320000, salaryMax: 480000, type: 'Contract',
-        description: 'Create intuitive user experiences for mobile and web applications serving African markets. Focus on accessibility and cultural relevance.',
-        skills: ['Figma', 'User Research', 'Prototyping', 'Design Systems'], datePosted: '2025-01-29', featured: false, remote: true
-      },
-      {
-        id: 'job-006', title: 'Business Development Manager', company: 'Pan African Ventures', location: 'Remote',
-        country: 'Remote', currency: 'USD', salaryMin: 60000, salaryMax: 90000, type: 'Remote',
-        description: 'Expand business operations across multiple African markets. Build strategic partnerships and drive revenue growth.',
-        skills: ['Business Development', 'Sales', 'Partnerships', 'Strategy'], datePosted: '2025-01-28', featured: true, remote: true
-      },
-      // Additional 44 jobs for comprehensive dataset...
-      {
-        id: 'job-007', title: 'DevOps Engineer', company: 'CloudTech Africa', location: 'Durban, South Africa',
-        country: 'South Africa', currency: 'ZAR', salaryMin: 420000, salaryMax: 580000, type: 'Full-time',
-        description: 'Build and maintain CI/CD pipelines, manage cloud infrastructure, and ensure system reliability for our growing platform.',
-        skills: ['Docker', 'Kubernetes', 'AWS', 'Terraform'], datePosted: '2025-01-27', featured: false, remote: true
-      },
-      {
-        id: 'job-008', title: 'Content Marketing Specialist', company: 'Media House NG', location: 'Port Harcourt, Nigeria',
-        country: 'Nigeria', currency: 'NGN', salaryMin: 1800000, salaryMax: 2400000, type: 'Full-time',
-        description: 'Create engaging content across multiple channels to build brand awareness and drive customer engagement in the Nigerian market.',
-        skills: ['Content Writing', 'SEO', 'Social Media', 'Video Production'], datePosted: '2025-01-26', featured: false, remote: false
-      }
-      // ... (continuing with more diverse job listings to reach 50+)
+    id: 'job-004', title: 'Data Analyst', company: 'Standard Bank Group',
+    location: 'Johannesburg, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 350000, salaryMax: 500000, type: 'Full-time',
+    description: 'Support banking business units with data insights, reporting and campaign performance analysis; work with large financial datasets.', 
+    skills: ['SQL', 'Excel', 'Power BI', 'Statistics'], datePosted: '2025-05-23', featured: false, remote: false,
+    requirements: ['3+ years in data analysis', 'Banking industry experience', 'Degree in quantitative field']
+  },
+  {
+    id: 'job-005', title: 'CIB Analyst', company: 'Standard Bank Group',
+    location: 'Johannesburg, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 140000, salaryMax: 160000, type: 'Full-time',
+    description: 'Analytical role within Corporate & Investment Banking, handling financial modeling, client reporting and market intelligence.', 
+    skills: ['Financial Modeling', 'Excel', 'Corporate Finance'], datePosted: '2025-07-10', featured: false, remote: false,
+    requirements: ['Analytical degree', 'Attention to detail', 'Understanding of capital markets']
+  },
+  {
+    id: 'job-006', title: 'DevOps Engineer', company: 'Vodacom',
+    location: 'Johannesburg, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 550000, salaryMax: 800000, type: 'Full-time',
+    description: 'Build and maintain scalable CI/CD pipelines, infrastructure automation, and cloud-native operations for telecom services.', 
+    skills: ['Kubernetes', 'Terraform', 'CI/CD', 'AWS/Azure'], datePosted: '2025-07-15', featured: true, remote: true,
+    requirements: ['Experience in cloud operations', 'Scripting skills', 'Collaboration across teams']
+  },
+  {
+    id: 'job-007', title: 'Engineering Job (Multiple)', company: 'MTN Nigeria',
+    location: 'Lagos, Nigeria', country: 'Nigeria', currency: 'NGN', salaryMin: 3000000, salaryMax: 7000000, type: 'Full-time',
+    description: 'Various engineering roles across network, software, and systems supporting MTN’s telecommunications infrastructure.', 
+    skills: ['Networking', 'Software Development', 'Telecom Systems'], datePosted: '2025-07-30', featured: false, remote: false,
+    requirements: ['Relevant degree', 'Technical certifications', 'Experience in telecom sector']
+  },
+  {
+    id: 'job-008', title: 'Logistics Manager', company: 'Jumia',
+    location: 'Johannesburg, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 450000, salaryMax: 650000, type: 'Full-time',
+    description: 'Manage supply chain coordination between warehouses and sellers, ensuring SLA compliance for e-commerce fulfillment.', 
+    skills: ['Supply Chain', 'Process Improvement', 'Stakeholder Management'], datePosted: '2025-07-18', featured: true, remote: false,
+    requirements: ['5+ years logistics experience', 'E-commerce familiarity', 'Leadership']
+  },
+  {
+    id: 'job-009', title: 'Senior Frontend Developer (Angular/React)', company: 'Jumia',
+    location: 'Nairobi, Kenya (supporting Pan-Africa)', country: 'Global', currency: 'USD', salaryMin: 60000, salaryMax: 85000, type: 'Full-time',
+    description: 'Develop scalable customer-facing frontend applications with modern JavaScript frameworks in a high-growth e-commerce environment.', 
+    skills: ['React', 'Angular', 'TypeScript', 'UX'], datePosted: '2025-07-03', featured: false, remote: true,
+    requirements: ['5+ years frontend', 'Performance optimization', 'Cross-team collaboration']
+  },
+  {
+    id: 'job-010', title: 'Software Engineer', company: 'Andela',
+    location: 'Lagos, Nigeria (Remote)', country: 'Nigeria', currency: 'USD', salaryMin: 35000, salaryMax: 65000, type: 'Full-time',
+    description: 'Work as part of distributed engineering teams building software for international clients. Emphasis on clean code and collaboration.', 
+    skills: ['Python', 'Django', 'REST APIs'], datePosted: '2025-07-22', featured: false, remote: true,
+    requirements: ['2+ years experience', 'Remote communication skills', 'Test-driven development']
+  },
+  {
+    id: 'job-011', title: 'Customer Success Manager', company: 'GitLab',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 90000, salaryMax: 120000, type: 'Full-time',
+    description: 'Serve enterprise customers, help them realize value from the DevSecOps platform, and drive retention.', 
+    skills: ['Customer Engagement', 'SaaS Experience', 'Technical Aptitude'], datePosted: '2025-07-20', featured: true, remote: true,
+    requirements: ['Experience with enterprise SaaS', 'Strong communication', 'Cross-functional teamwork']
+  },
+  {
+    id: 'job-012', title: 'Product Design Manager', company: 'GitLab',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 130000, salaryMax: 160000, type: 'Full-time',
+    description: 'Lead product design for the Plan team, collaborating with engineers to ship impactful experiences.', 
+    skills: ['UX/UI', 'Leadership', 'Figma'], datePosted: '2025-07-18', featured: false, remote: true,
+    requirements: ['Design leadership', 'Remote collaboration experience']
+  },
+  {
+    id: 'job-013', title: 'Remote Support Engineer - WordPress VIP', company: 'Automattic',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 60000, salaryMax: 80000, type: 'Full-time',
+    description: 'Provide concierge technical support to high-profile WordPress clients; strong writing and troubleshooting skills required.', 
+    skills: ['WordPress', 'Customer Support', 'Troubleshooting'], datePosted: '2025-07-15', featured: true, remote: true,
+    requirements: ['Excellent written communication', 'Experience with high-traffic sites']
+  },
+  {
+    id: 'job-014', title: 'Senior Systems Engineer', company: 'Automattic',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 120000, salaryMax: 150000, type: 'Full-time',
+    description: 'Build and operate internal infrastructure supporting WordPress.com scale systems; autonomy and ownership emphasized.', 
+    skills: ['Linux', 'SRE', 'Automation'], datePosted: '2025-07-21', featured: false, remote: true,
+    requirements: ['Operational experience', 'Infrastructure-as-code']
+  },
+  {
+    id: 'job-015', title: 'Remote Full Stack Developer', company: 'Arc.dev',
+    location: 'Remote (South Africa Eligible)', country: 'South Africa', currency: 'USD', salaryMin: 50000, salaryMax: 90000, type: 'Full-time',
+    description: 'Work with vetted startups on fullstack projects; must have overlap with US/EU timezones for collaboration.', 
+    skills: ['Node.js', 'React', 'GraphQL'], datePosted: '2025-07-28', featured: true, remote: true,
+    requirements: ['5+ years experience', 'Good communication', 'Portfolio of work']
+  },
+  {
+    id: 'job-016', title: 'Automation Developer', company: 'RemoteJobs.africa client',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 30000, salaryMax: 60000, type: 'Contract',
+    description: 'Build AI automation systems using tools like Make, n8n, and custom scripting to deliver client projects.', 
+    skills: ['JavaScript', 'API Integration', 'AI Tools'], datePosted: '2025-06-30', featured: false, remote: true,
+    requirements: ['Experience with automation stacks', 'Timely delivery', 'Testing discipline']
+  },
+  {
+    id: 'job-017', title: 'Remote Software Engineer', company: 'Remote4Africa (partner startup)',
+    location: 'Remote (Nigeria/South Africa)', country: 'Global', currency: 'USD', salaryMin: 45000, salaryMax: 85000, type: 'Full-time',
+    description: 'Develop web/mobile applications for African and international clients, with full remote collaboration.', 
+    skills: ['Fullstack JavaScript', 'React Native', 'APIs'], datePosted: '2025-07-18', featured: false, remote: true,
+    requirements: ['Proven dev experience', 'Good Git workflow knowledge']
+  },
+  {
+    id: 'job-018', title: 'Frontend Engineer', company: 'Takealot',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 500000, salaryMax: 750000, type: 'Full-time',
+    description: 'Build and optimize customer-facing e-commerce experiences using modern frontend frameworks.', 
+    skills: ['React', 'JavaScript', 'Performance Tuning'], datePosted: '2025-07-12', featured: false, remote: false,
+    requirements: ['3+ years frontend', 'E-commerce platform experience']
+  },
+  {
+    id: 'job-019', title: 'Digital Product Manager', company: 'Discovery Bank',
+    location: 'Sandton, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 700000, salaryMax: 1000000, type: 'Full-time',
+    description: 'Lead development of digital banking products that integrate wellness data with financial services.', 
+    skills: ['Product Strategy', 'Agile', 'User Research'], datePosted: '2025-07-05', featured: true, remote: false,
+    requirements: ['Fintech experience', 'Stakeholder management', 'Data-driven mindset']
+  },
+  {
+    id: 'job-020', title: 'Senior Data Scientist', company: 'Jumia',
+    location: 'Cairo, Egypt (supporting Africa)', country: 'Global', currency: 'USD', salaryMin: 80000, salaryMax: 110000, type: 'Full-time',
+    description: 'Drive data-driven decisions for e-commerce growth across African markets, building forecasting and personalization models.', 
+    skills: ['Python', 'ML', 'SQL'], datePosted: '2025-07-14', featured: false, remote: true,
+    requirements: ['5+ years in data science', 'E-commerce analytics experience']
+  },
+  {
+    id: 'job-021', title: 'Platform Reliability Engineer', company: 'GitLab',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 120000, salaryMax: 150000, type: 'Full-time',
+    description: 'Improve uptime and observability of the GitLab platform; work across layers of the stack for resilience.', 
+    skills: ['SRE', 'Kubernetes', 'Monitoring'], datePosted: '2025-07-19', featured: false, remote: true,
+    requirements: ['Experience at scale', 'Incident response']
+  },
+  {
+    id: 'job-022', title: 'Full Stack Developer', company: 'Andela',
+    location: 'Remote (Nigeria)', country: 'Nigeria', currency: 'USD', salaryMin: 45000, salaryMax: 80000, type: 'Full-time',
+    description: 'Contribute to client projects using JavaScript/React and backend services; collaborate in distributed agile teams.', 
+    skills: ['React', 'Node.js', 'APIs'], datePosted: '2025-07-26', featured: false, remote: true,
+    requirements: ['Solid JS background', 'Team collaboration', 'Clean code practices']
+  },
+  {
+    id: 'job-023', title: 'Technical Program Manager', company: 'GitLab',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 130000, salaryMax: 170000, type: 'Full-time',
+    description: 'Coordinate cross-functional initiatives, drive technical roadmaps for product areas, and enable distributed execution.', 
+    skills: ['Program Management', 'Communication', 'Technical Fluency'], datePosted: '2025-07-17', featured: false, remote: true,
+    requirements: ['Experience in large-scale software delivery', 'Stakeholder alignment']
+  },
+  {
+    id: 'job-024', title: 'Software Developer', company: 'MTN Nigeria',
+    location: 'Lagos, Nigeria', country: 'Nigeria', currency: 'NGN', salaryMin: 2500000, salaryMax: 4500000, type: 'Full-time',
+    description: 'Develop internal systems and customer-facing applications for mobile services, ensuring quality and scalability.', 
+    skills: ['C#', '.NET', 'SQL'], datePosted: '2025-07-10', featured: false, remote: false,
+    requirements: ['2+ years development', 'Telecom understanding']
+  },
+  {
+    id: 'job-025', title: 'Credit Risk Analyst', company: 'Standard Bank',
+    location: 'Johannesburg, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 400000, salaryMax: 600000, type: 'Full-time',
+    description: 'Assess and model credit risk for corporate clients using statistical techniques and portfolio analysis.', 
+    skills: ['Risk Modeling', 'Excel', 'Python/R'], datePosted: '2025-07-02', featured: false, remote: false,
+    requirements: ['Quantitative degree', 'Analytical thinking']
+  },
+  {
+    id: 'job-026', title: 'Backend Engineer', company: 'Jumia',
+    location: 'Nairobi, Kenya', country: 'Global', currency: 'USD', salaryMin: 70000, salaryMax: 100000, type: 'Full-time',
+    description: 'Build scalable backend services powering e-commerce platforms across Africa.', 
+    skills: ['Java', 'Microservices', 'AWS'], datePosted: '2025-07-11', featured: false, remote: true,
+    requirements: ['Experience in large-scale backend systems']
+  },
+  {
+    id: 'job-027', title: 'Mobile App Developer', company: 'SweepSouth',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 450000, salaryMax: 680000, type: 'Full-time',
+    description: 'Build and improve the consumer mobile experience for home services scheduling using cross-platform technologies.', 
+    skills: ['React Native', 'API Integration', 'UX'], datePosted: '2025-07-22', featured: false, remote: true,
+    requirements: ['Mobile development experience', 'User-centered design']
+  },
+  {
+    id: 'job-028', title: 'AI/ML Engineer', company: 'Aerobotics',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 650000, salaryMax: 900000, type: 'Full-time',
+    description: 'Develop computer vision and predictive crop intelligence models using aerial imagery for precision agriculture.', 
+    skills: ['Python', 'TensorFlow', 'CV'], datePosted: '2025-07-05', featured: true, remote: false,
+    requirements: ['Experience in ML pipelines', 'Agritech interest']
+  },
+  {
+    id: 'job-029', title: 'Senior Backend Engineer', company: 'Interswitch',
+    location: 'Lagos, Nigeria', country: 'Nigeria', currency: 'NGN', salaryMin: 7000000, salaryMax: 10000000, type: 'Full-time',
+    description: 'Architect and implement scalable payment processing services and APIs for digital commerce.', 
+    skills: ['Go', 'Kubernetes', 'API Security'], datePosted: '2025-07-14', featured: false, remote: false,
+    requirements: ['5+ years distributed systems', 'Fintech experience']
+  },
+  {
+    id: 'job-030', title: 'Digital Marketing Analytics Lead', company: 'Takealot',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 550000, salaryMax: 800000, type: 'Full-time',
+    description: 'Drive data-driven marketing decisions across customer acquisition channels, optimizing ROI.', 
+    skills: ['Google Analytics', 'SQL', 'Attribution Modeling'], datePosted: '2025-07-08', featured: false, remote: false,
+    requirements: ['Marketing analytics experience', 'Strong Excel/SQL']
+  },
+  {
+    id: 'job-031', title: 'Senior Frontend Developer', company: 'Takealot',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 600000, salaryMax: 850000, type: 'Full-time',
+    description: 'Lead frontend initiatives in an online retail environment, focusing on performance and UX.', 
+    skills: ['Vue.js', 'JavaScript', 'Accessibility'], datePosted: '2025-07-20', featured: false, remote: false,
+    requirements: ['3+ years frontend', 'Cross-browser expertise']
+  },
+  {
+    id: 'job-032', title: 'Remote Full Stack Developer', company: 'Arc.dev partner startup',
+    location: 'Remote (South Africa)', country: 'South Africa', currency: 'USD', salaryMin: 50000, salaryMax: 90000, type: 'Contract',
+    description: 'Build SaaS products with a remote-first team, must overlap with US/EU core hours.', 
+    skills: ['Node.js', 'React', 'AWS'], datePosted: '2025-07-27', featured: false, remote: true,
+    requirements: ['5+ years experience', 'Communication skills']
+  },
+  {
+    id: 'job-033', title: 'Engineering Manager', company: 'Andela',
+    location: 'Remote (Pan-Africa)', country: 'Global', currency: 'USD', salaryMin: 90000, salaryMax: 140000, type: 'Full-time',
+    description: 'Lead distributed engineering squads, mentor senior engineers, and ensure delivery of client projects.', 
+    skills: ['People Management', 'Agile', 'Technical Leadership'], datePosted: '2025-07-23', featured: true, remote: true,
+    requirements: ['Previous engineering leadership', 'Remote team experience']
+  },
+  {
+    id: 'job-034', title: 'Payment Operations Analyst', company: 'Interswitch',
+    location: 'Lagos, Nigeria', country: 'Nigeria', currency: 'NGN', salaryMin: 2500000, salaryMax: 4000000, type: 'Full-time',
+    description: 'Oversee transaction reconciliations, dispute handling and payment flows to ensure system integrity.', 
+    skills: ['Excel', 'SQL', 'Attention to Detail'], datePosted: '2025-07-09', featured: false, remote: false,
+    requirements: ['2+ years operations', 'Fintech familiarity']
+  },
+  {
+    id: 'job-035', title: 'Enterprise Sales Executive', company: 'GitLab',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 100000, salaryMax: 140000, type: 'Full-time',
+    description: 'Sell DevSecOps platform to enterprise accounts, building long-term relationships and managing complex deals.', 
+    skills: ['Enterprise Sales', 'SaaS', 'CRM'], datePosted: '2025-07-16', featured: false, remote: true,
+    requirements: ['Track record in SaaS enterprise sales']
+  },
+  {
+    id: 'job-036', title: 'Content Strategist', company: 'Automattic',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 70000, salaryMax: 95000, type: 'Full-time',
+    description: 'Shape content experiences across WordPress products, aligning messaging with user needs.', 
+    skills: ['Content Strategy', 'Writing', 'SEO'], datePosted: '2025-07-10', featured: false, remote: true,
+    requirements: ['Strong editorial background', 'Remote collaboration']
+  },
+  {
+    id: 'job-037', title: 'API Integration Engineer', company: 'Aerobotics',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 600000, salaryMax: 850000, type: 'Full-time',
+    description: 'Integrate third-party data pipelines and develop internal APIs to support crop intelligence products.', 
+    skills: ['REST API', 'Python', 'Data Engineering'], datePosted: '2025-07-02', featured: false, remote: false,
+    requirements: ['API design experience', 'Agritech interest']
+  },
+  {
+    id: 'job-038', title: 'Business Development Lead', company: 'Jumia',
+    location: 'Lagos, Nigeria', country: 'Nigeria', currency: 'NGN', salaryMin: 4000000, salaryMax: 7000000, type: 'Full-time',
+    description: 'Drive merchant acquisition and growth for the marketplace in West Africa.', 
+    skills: ['Sales', 'Partnerships', 'E-commerce'], datePosted: '2025-07-13', featured: false, remote: false,
+    requirements: ['3+ years B2B sales', 'Market knowledge']
+  },
+  {
+    id: 'job-039', title: 'Product Analyst', company: 'Takealot',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 500000, salaryMax: 700000, type: 'Full-time',
+    description: 'Analyze product usage data to inform roadmap priorities and feature optimization.', 
+    skills: ['SQL', 'A/B Testing', 'Product Metrics'], datePosted: '2025-07-24', featured: false, remote: false,
+    requirements: ['Analytical background', 'Product intuition']
+  },
+  {
+    id: 'job-040', title: 'Front-End Developer', company: 'SweepSouth',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 450000, salaryMax: 650000, type: 'Full-time',
+    description: 'Deliver responsive, accessible user interfaces for the home services platform.', 
+    skills: ['HTML/CSS', 'Vue.js or React', 'Performance Optimization'], datePosted: '2025-07-21', featured: false, remote: true,
+    requirements: ['3+ years frontend', 'Design collaboration']
+  },
+  {
+    id: 'job-041', title: 'Remote Developer Advocate', company: 'Arc.dev (partner initiative)',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 70000, salaryMax: 100000, type: 'Full-time',
+    description: 'Engage with developer communities across Africa to drive adoption of remote tooling and platforms.', 
+    skills: ['Community', 'Public Speaking', 'Technical Writing'], datePosted: '2025-07-26', featured: false, remote: true,
+    requirements: ['Developer background', 'Community building experience']
+  },
+  {
+    id: 'job-042', title: 'Cloud Infrastructure Engineer', company: 'GitLab',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 120000, salaryMax: 155000, type: 'Full-time',
+    description: 'Design and operate the cloud infrastructure powering GitLab’s global service.', 
+    skills: ['AWS/GCP', 'Terraform', 'Observability'], datePosted: '2025-07-18', featured: false, remote: true,
+    requirements: ['Cloud operations experience', 'Infrastructure automation']
+  },
+  {
+    id: 'job-043', title: 'Customer Support Specialist', company: 'Automattic',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 50000, salaryMax: 70000, type: 'Full-time',
+    description: 'Support WordPress.com and WooCommerce customers with high empathy via asynchronous communication.', 
+    skills: ['Written Communication', 'Troubleshooting'], datePosted: '2025-07-19', featured: false, remote: true,
+    requirements: ['Customer-facing experience', 'Remote work discipline']
+  },
+  {
+    id: 'job-044', title: 'Backend Engineer', company: 'Interswitch',
+    location: 'Lagos, Nigeria', country: 'Nigeria', currency: 'NGN', salaryMin: 6000000, salaryMax: 8500000, type: 'Full-time',
+    description: 'Develop core payment gateway services with emphasis on security, latency, and reliability.', 
+    skills: ['Java', 'Security', 'Scalable Systems'], datePosted: '2025-07-16', featured: false, remote: false,
+    requirements: ['Solid backend experience', 'Fintech domain knowledge']
+  },
+  {
+    id: 'job-045', title: 'Technical Writer', company: 'Automattic',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 80000, salaryMax: 110000, type: 'Full-time',
+    description: 'Create clear technical documentation for distributed product teams, helping users succeed with WordPress tools.', 
+    skills: ['Writing', 'Markdown', 'Product Understanding'], datePosted: '2025-07-12', featured: false, remote: true,
+    requirements: ['Prior technical writing', 'Collaboration with engineering']
+  },
+  {
+    id: 'job-046', title: 'Senior Product Manager', company: 'GitLab',
+    location: 'Remote', country: 'Global', currency: 'USD', salaryMin: 140000, salaryMax: 180000, type: 'Full-time',
+    description: 'Drive product strategy and execution for core platform capabilities; work with globally distributed engineering teams.', 
+    skills: ['Roadmapping', 'Data-Informed Decisions'], datePosted: '2025-07-17', featured: true, remote: true,
+    requirements: ['Product leadership experience', 'Cross-functional collaboration']
+  },
+  {
+    id: 'job-047', title: 'Software Engineer – Remote', company: 'Remote4Africa client',
+    location: 'Remote (South Africa/Nigeria)', country: 'Global', currency: 'USD', salaryMin: 50000, salaryMax: 90000, type: 'Full-time',
+    description: 'Work on web applications with a cross-border team, focusing on modern stacks and best practices.', 
+    skills: ['React', 'Node.js', 'Testing'], datePosted: '2025-07-29', featured: false, remote: true,
+    requirements: ['Clean code', 'Distributed collaboration']
+  },
+  {
+    id: 'job-048', title: 'Senior UX Researcher', company: 'Takealot',
+    location: 'Cape Town, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 650000, salaryMax: 900000, type: 'Full-time',
+    description: 'Lead research to understand customer behaviors and inform product decisions for e-commerce experiences.', 
+    skills: ['User Interviews', 'Usability Testing', 'Qualitative Analysis'], datePosted: '2025-07-06', featured: false, remote: false,
+    requirements: ['5+ years UX research', 'E-commerce familiarity']
+  },
+  {
+    id: 'job-049', title: 'Internal Audit Specialist', company: 'FNB South Africa',
+    location: 'Johannesburg, South Africa', country: 'South Africa', currency: 'ZAR', salaryMin: 500000, salaryMax: 700000, type: 'Full-time',
+    description: 'Conduct risk-based internal audits across banking operations, ensuring compliance and controls effectiveness.', 
+    skills: ['Audit Methodologies', 'Analytics', 'Regulatory Knowledge'], datePosted: '2025-07-09', featured: false, remote: false,
+    requirements: ['Audit qualification', 'Banking experience']
+  },
+  {
+    id: 'job-050', title: 'Finance Systems Specialist', company: 'Jumia',
+    location: 'Lisbon, Portugal (global finance hub)', country: 'Global', currency: 'EUR', salaryMin: 50000, salaryMax: 75000, type: 'Full-time',
+    description: 'Support and optimize internal finance systems, ensuring accurate reporting for cross-border e-commerce operations.', 
+    skills: ['ERP', 'Financial Reporting', 'SQL'], datePosted: '2025-07-13', featured: false, remote: true,
+    requirements: ['Finance systems experience', 'Cross-border knowledge']
+  }
     ];
 
     // 500+ Sample Companies with comprehensive profiles
