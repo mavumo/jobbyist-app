@@ -218,7 +218,65 @@ class JobbyistApp {
         description: 'Data analytics consultancy helping businesses make informed, data-driven decisions through advanced analytics and machine learning.',
         founded: '2020', website: 'https://capeanalytics.co.za', benefits: ['Stock Options', 'Conference Attendance', 'Home Office Setup'],
         culture: 'Data-driven culture with emphasis on continuous learning and analytical thinking.'
-      }
+      },
+       {
+    id: 'company-004', name: 'Zenith Bank Plc', logo: 'https://via.placeholder.com/100x100/004d99/ffffff?text=ZB',
+    industry: 'Banking', location: 'Lagos, Nigeria', size: '5,001-10,000', employees: '9,271',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 161,
+    description: 'Leading Nigerian bank with regional presence, known for strong corporate governance and expanding financial services.',
+    founded: '1990', website: 'https://www.zenithbank.com', benefits: ['Health Benefits', 'Performance Incentives', 'Professional Development', 'Flexible Work Options'],
+    culture: 'Performance-oriented with emphasis on innovation, integrity, and stakeholder value.'
+  },
+  {
+    id: 'company-005', name: 'Guaranty Trust Bank (GTBank)', logo: 'https://via.placeholder.com/100x100/009966/ffffff?text=GTB',
+    industry: 'Banking & Finance', location: 'Lagos, Nigeria', size: '5,001-10,000', employees: 'approx. 7,000-9,000',
+    openJobs: 0, verified: true, rating: 4.6, reviewCount: 193,
+    description: 'Pan-African financial institution renowned for digital banking excellence and customer-centric services across multiple countries.',
+    founded: '1990', website: 'https://www.gtbank.com', benefits: ['Digital Tools', 'Health Insurance', 'Career Progression', 'Wellness Programs'],
+    culture: 'Proudly African and truly international; emphasizes excellence, governance, and innovation.'
+  },
+  {
+    id: 'company-006', name: 'Standard Bank Group', logo: 'https://via.placeholder.com/100x100/0055aa/ffffff?text=SBG',
+    industry: 'Banking', location: 'Johannesburg, South Africa', size: '10,001+', employees: '50,316',
+    openJobs: 0, verified: true, rating: 4.3, reviewCount: 210,
+    description: 'Largest African bank by assets, offering personal, business and corporate banking across the continent with strong emerging markets focus.',
+    founded: '1862', website: 'https://www.standardbank.com', benefits: ['Retirement Fund', 'Health Cover', 'Employee Share Options', 'Learning & Development'],
+    culture: 'Inclusive and purpose-driven with an emphasis on transformation and client impact.' 
+  },
+  {
+    id: 'company-007', name: 'Shoprite Holdings', logo: 'https://via.placeholder.com/100x100/cc0000/ffffff?text=SH',
+    industry: 'Retail', location: 'Cape Town, South Africa', size: '10,001+', employees: 'approx. 140,000+ (across Africa)',
+    openJobs: 0, verified: true, rating: 4.1, reviewCount: 178,
+    description: 'Leading supermarket chain in Africa, operating multiple retail brands across several countries, focused on affordability and accessibility.',
+    founded: '1979', website: 'https://www.shopriteholdings.co.za', benefits: ['Staff Discounts', 'Health Benefits', 'Training & Upskilling', 'Performance Rewards'],
+    culture: 'Customer-first, community-minded with a strong operational execution focus.'
+  },
+  {
+    id: 'company-008', name: 'Naspers Limited', logo: 'https://via.placeholder.com/100x100/222222/ffffff?text=N',
+    industry: 'Technology / Investment', location: 'Cape Town, South Africa', size: '5,001-10,000', employees: '25,564',
+    openJobs: 0, verified: true, rating: 4.5, reviewCount: 142,
+    description: 'Global consumer internet group investing in and building technology companies across emerging markets; parent of Prosus.',
+    founded: '1915', website: 'https://www.naspers.com', benefits: ['Equity Participation', 'Global Mobility', 'Learning Stipends', 'Health Insurance'],
+    culture: 'Entrepreneurial with a growth mindset; emphasis on long-term value creation and innovation.'
+  },
+  {
+    id: 'company-009', name: 'Vodacom Group', logo: 'https://via.placeholder.com/100x100/0099ff/ffffff?text=V',
+    industry: 'Telecommunications', location: 'Johannesburg, South Africa', size: '10,001+', employees: 'approx. 7,000-8,000 (regional operations heavy)',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 159,
+    description: 'Pan-African telecom and tech company evolving into a broader technology services provider with mobile, fixed, and financial services.',
+    founded: '1994', website: 'https://www.vodacom.com', benefits: ['Tech Discounts', 'Flexible Work', 'Wellness Programs', 'Professional Certification Support'],
+    culture: 'Transformation-focused, aiming to be Africa’s leading TechCo with a people-first ethos.'
+  },
+  {
+    id: 'company-010', name: 'Woolworths Holdings Limited', logo: 'https://via.placeholder.com/100x100/006633/ffffff?text=W',
+    industry: 'Retail / Consumer Goods', location: 'Cape Town, South Africa', size: '10,001+', employees: 'approx. 50,000+ (across regions)',
+    openJobs: 0, verified: true, rating: 4.2, reviewCount: 175,
+    description: 'Premium retailer offering food, clothing and homeware with omni-channel presence across South Africa, Australia and New Zealand.',
+    founded: '1931', website: 'https://www.woolworthsholdings.co.za', benefits: ['Employee Wellness', 'Discounts', 'Career Development', 'Diversity & Inclusion Initiatives'],
+    culture: 'Values people, sustainability, and quality; focused on regional integration and customer experience.'
+  },
+
+      
       // ... (continuing with 47 more diverse companies)
     ];
 
@@ -250,8 +308,432 @@ class JobbyistApp {
         education: "Bachelor's Degree", expectedSalary: { min: 4000000, max: 6000000, currency: 'NGN' },
         portfolio: 'https://fatima-pm.com', email: 'fatima@example.com', phone: '+234-xxx-xxxx',
         avatar: 'FH', profileCompleteness: 92
-      }
-      // ... (continuing with 47 more diverse candidates)
+      },
+    
+  {
+    id: 'candidate-004', name: 'Lerato van Heerden', title: 'UX Designer', location: 'Cape Town, South Africa',
+    experience: 'Senior', industry: 'Technology', availability: 'Available', rating: 4.7,
+    skills: ['Figma', 'User Research', 'Interaction Design', 'Prototyping', 'Accessibility'], languages: ['English', 'Afrikaans', 'Xhosa'],
+    summary: 'Designed intuitive interfaces for mobile and web with a focus on inclusivity and conversion optimization.',
+    education: "Bachelor's Degree", expectedSalary: { min: 550000, max: 750000, currency: 'ZAR' },
+    portfolio: 'https://leratoux.design', email: 'lerato.vh@example.co.za', phone: '+27-72-333-4455',
+    avatar: 'LV', profileCompleteness: 90
+  },
+  {
+    id: 'candidate-005', name: 'Ifeanyi Nwosu', title: 'DevOps Engineer', location: 'Port Harcourt, Nigeria',
+    experience: 'Mid', industry: 'Energy', availability: 'Employed', rating: 4.4,
+    skills: ['Docker', 'Kubernetes', 'AWS', 'CI/CD', 'Terraform'], languages: ['English'],
+    summary: 'Automating deployment pipelines and improving system reliability for energy sector applications.',
+    education: "Bachelor's Degree", expectedSalary: { min: 3000000, max: 4200000, currency: 'NGN' },
+    portfolio: 'https://iforuns.devops', email: 'ifeanyi.nwosu@example.com', phone: '+234-803-777-6600',
+    avatar: 'IN', profileCompleteness: 83
+  },
+  {
+    id: 'candidate-006', name: 'Zanele Dlamini', title: 'Human Resources Specialist', location: 'Durban, South Africa',
+    experience: 'Mid', industry: 'Healthcare', availability: 'Available', rating: 4.6,
+    skills: ['Talent Acquisition', 'Employee Relations', 'HRIS', 'Compliance', 'Payroll'], languages: ['English', 'Zulu'],
+    summary: 'Skilled HR professional with experience managing recruitment and employee engagement in hospitals.',
+    education: "Bachelor's Degree", expectedSalary: { min: 400000, max: 580000, currency: 'ZAR' },
+    portfolio: '', email: 'zanele.dlamini@example.co.za', phone: '+27-76-222-3344',
+    avatar: 'ZD', profileCompleteness: 82
+  },
+  {
+    id: 'candidate-007', name: 'Siphiwe Khumalo', title: 'Mobile App Developer', location: 'Pretoria, South Africa',
+    experience: 'Junior', industry: 'Technology', availability: 'Available', rating: 4.2,
+    skills: ['Flutter', 'Dart', 'Firebase', 'REST APIs', 'Git'], languages: ['English', 'Afrikaans'],
+    summary: 'Building cross-platform mobile applications with responsive designs and real-time sync.',
+    education: "Diploma", expectedSalary: { min: 280000, max: 400000, currency: 'ZAR' },
+    portfolio: 'https://siphiweapps.dev', email: 'siphiwe.k@example.co.za', phone: '+27-60-111-2233',
+    avatar: 'SK', profileCompleteness: 75
+  },
+  {
+    id: 'candidate-008', name: 'Ngozi Chukwu', title: 'Cybersecurity Analyst', location: 'Lagos, Nigeria',
+    experience: 'Senior', industry: 'Finance', availability: 'Employed', rating: 4.9,
+    skills: ['SIEM', 'Penetration Testing', 'Threat Modeling', 'Incident Response', 'Network Security'], languages: ['English', 'Igbo'],
+    summary: 'Protecting financial systems through proactive threat detection and vulnerability assessments.',
+    education: "Master's Degree", expectedSalary: { min: 5000000, max: 7000000, currency: 'NGN' },
+    portfolio: '', email: 'ngozi.chukwu@example.com', phone: '+234-807-888-9900',
+    avatar: 'NC', profileCompleteness: 97
+  },
+  {
+    id: 'candidate-009', name: 'Kwame Mensah', title: 'Sales Manager', location: 'Johannesburg, South Africa',
+    experience: 'Lead', industry: 'Retail', availability: 'Available', rating: 4.3,
+    skills: ['B2B Sales', 'CRM', 'Pipeline Management', 'Negotiation', 'Team Leadership'], languages: ['English', 'Sotho'],
+    summary: 'Driving revenue growth through strategic account management and high-performing sales teams.',
+    education: "Bachelor's Degree", expectedSalary: { min: 600000, max: 850000, currency: 'ZAR' },
+    portfolio: '', email: 'kwame.mensah@example.co.za', phone: '+27-83-444-5566',
+    avatar: 'KM', profileCompleteness: 89
+  },
+  {
+    id: 'candidate-010', name: 'Fatima Bello', title: 'Digital Marketing Specialist', location: 'Abuja, Nigeria',
+    experience: 'Mid', industry: 'Media', availability: 'Available', rating: 4.5,
+    skills: ['SEO', 'Google Ads', 'Content Strategy', 'Analytics', 'Email Marketing'], languages: ['English', 'Hausa'],
+    summary: 'Helping brands grow online with data-driven campaigns and content that converts.',
+    education: "Bachelor's Degree", expectedSalary: { min: 2200000, max: 3200000, currency: 'NGN' },
+    portfolio: 'https://fatimabello.marketing', email: 'fatima.bello@example.com', phone: '+234-806-333-2211',
+    avatar: 'FB', profileCompleteness: 86
+  },
+  {
+    id: 'candidate-011', name: 'Sibusiso Nkosi', title: 'Network Engineer', location: 'Cape Town, South Africa',
+    experience: 'Senior', industry: 'Telecommunications', availability: 'Employed', rating: 4.6,
+    skills: ['Cisco', 'Routing & Switching', 'VPN', 'Firewall Configuration', 'Wireless'], languages: ['English', 'Xhosa'],
+    summary: 'Maintaining high-availability enterprise networks with a focus on security and performance.',
+    education: "Bachelor's Degree", expectedSalary: { min: 650000, max: 900000, currency: 'ZAR' },
+    portfolio: '', email: 'sibusiso.nkosi@example.co.za', phone: '+27-74-555-6677',
+    avatar: 'SN', profileCompleteness: 91
+  },
+  {
+    id: 'candidate-012', name: 'Amina Yusuf', title: 'Content Writer', location: 'Lagos, Nigeria',
+    experience: 'Junior', industry: 'Media', availability: 'Available', rating: 4.1,
+    skills: ['Copywriting', 'Blogging', 'SEO Writing', 'Content Strategy', 'Research'], languages: ['English', 'Yoruba'],
+    summary: 'Creating engaging and SEO-friendly content for tech and lifestyle brands.',
+    education: "Bachelor's Degree", expectedSalary: { min: 1500000, max: 2200000, currency: 'NGN' },
+    portfolio: 'https://aminawrites.com', email: 'amina.yusuf@example.com', phone: '+234-805-222-7788',
+    avatar: 'AY', profileCompleteness: 78
+  },
+  {
+    id: 'candidate-013', name: 'Naledi Molefe', title: 'Financial Analyst', location: 'Johannesburg, South Africa',
+    experience: 'Mid', industry: 'Consulting', availability: 'Available', rating: 4.7,
+    skills: ['Financial Modeling', 'Forecasting', 'Excel', 'Valuation', 'Presentation'], languages: ['English', 'Zulu'],
+    summary: 'Delivering actionable financial insights to support strategic decision-making for clients.',
+    education: "Master's Degree", expectedSalary: { min: 500000, max: 700000, currency: 'ZAR' },
+    portfolio: '', email: 'naledi.molefe@example.co.za', phone: '+27-71-888-9900',
+    avatar: 'NM', profileCompleteness: 94
+  },
+  {
+    id: 'candidate-014', name: 'Oluwaseun Adeyemi', title: 'Backend Developer', location: 'Lagos, Nigeria',
+    experience: 'Senior', industry: 'Fintech', availability: 'Employed', rating: 4.8,
+    skills: ['Node.js', 'Express', 'PostgreSQL', 'Microservices', 'Redis'], languages: ['English', 'Yoruba'],
+    summary: 'Building resilient financial APIs and payment systems used by thousands of customers.',
+    education: "Bachelor's Degree", expectedSalary: { min: 4000000, max: 5500000, currency: 'NGN' },
+    portfolio: 'https://seunbackend.dev', email: 'oluwaseun.adeyemi@example.com', phone: '+234-802-111-3344',
+    avatar: 'OA', profileCompleteness: 96
+  },
+  {
+    id: 'candidate-015', name: 'Palesa Khanyile', title: 'Operations Manager', location: 'Durban, South Africa',
+    experience: 'Lead', industry: 'Logistics', availability: 'Available', rating: 4.5,
+    skills: ['Process Optimization', 'Supply Chain', 'KPI Tracking', 'Team Leadership', 'Cost Control'], languages: ['English', 'Zulu', 'English'],
+    summary: 'Streamlining operations to reduce costs and improve delivery reliability across regions.',
+    education: "Bachelor's Degree", expectedSalary: { min: 700000, max: 950000, currency: 'ZAR' },
+    portfolio: '', email: 'palesa.khanyile@example.co.za', phone: '+27-82-777-3344',
+    avatar: 'PK', profileCompleteness: 87
+  },
+  {
+    id: 'candidate-016', name: 'Emeka Obi', title: 'AI/ML Engineer', location: 'Lagos, Nigeria',
+    experience: 'Senior', industry: 'Healthcare', availability: 'Available', rating: 4.9,
+    skills: ['Python', 'TensorFlow', 'PyTorch', 'NLP', 'Data Engineering'], languages: ['English', 'Igbo'],
+    summary: 'Developing predictive models to improve patient outcomes in telehealth platforms.',
+    education: "PhD", expectedSalary: { min: 6500000, max: 9000000, currency: 'NGN' },
+    portfolio: 'https://emekaai.dev', email: 'emeka.obi@example.com', phone: '+234-805-999-1122',
+    avatar: 'EO', profileCompleteness: 98
+  },
+  {
+    id: 'candidate-017', name: 'Johannes van der Merwe', title: 'Cloud Solutions Architect', location: 'Cape Town, South Africa',
+    experience: 'Lead', industry: 'Technology', availability: 'Employed', rating: 4.8,
+    skills: ['AWS', 'Azure', 'System Design', 'Infrastructure as Code', 'Security'], languages: ['English', 'Afrikaans'],
+    summary: 'Designing multi-cloud architectures for enterprise SaaS platforms with scalability and security in mind.',
+    education: "Master's Degree", expectedSalary: { min: 900000, max: 1200000, currency: 'ZAR' },
+    portfolio: 'https://johannescloud.tech', email: 'johannes.vdm@example.co.za', phone: '+27-79-444-2211',
+    avatar: 'JM', profileCompleteness: 93
+  },
+  {
+    id: 'candidate-018', name: 'Ayo Balogun', title: 'Graphic Designer', location: 'Abuja, Nigeria',
+    experience: 'Mid', industry: 'Advertising', availability: 'Available', rating: 4.3,
+    skills: ['Adobe Illustrator', 'Photoshop', 'Brand Identity', 'Typography', 'Print Design'], languages: ['English'],
+    summary: 'Crafting visual narratives for brands across digital and print channels.',
+    education: "Diploma", expectedSalary: { min: 1800000, max: 2600000, currency: 'NGN' },
+    portfolio: 'https://ayobalogun.design', email: 'ayo.balogun@example.com', phone: '+234-808-333-4433',
+    avatar: 'AB', profileCompleteness: 80
+  },
+  {
+    id: 'candidate-019', name: 'Lindiwe Ncube', title: 'Legal Counsel', location: 'Johannesburg, South Africa',
+    experience: 'Senior', industry: 'Legal', availability: 'Employed', rating: 4.7,
+    skills: ['Contract Law', 'Compliance', 'Corporate Governance', 'Negotiation', 'Risk Management'], languages: ['English', 'Zulu'],
+    summary: 'Advising corporations on regulatory compliance and commercial contracts with attention to African jurisdictions.',
+    education: "LLB", expectedSalary: { min: 850000, max: 1100000, currency: 'ZAR' },
+    portfolio: '', email: 'lindiwe.ncube@example.co.za', phone: '+27-82-999-1100',
+    avatar: 'LN', profileCompleteness: 94
+  },
+  {
+    id: 'candidate-020', name: 'Samuel Adeniyi', title: 'Full Stack Developer', location: 'Lagos, Nigeria',
+    experience: 'Mid', industry: 'EdTech', availability: 'Available', rating: 4.6,
+    skills: ['Vue.js', 'Laravel', 'MySQL', 'REST', 'AWS'], languages: ['English', 'Yoruba'],
+    summary: 'Building end-to-end educational platforms that scale to thousands of learners.',
+    education: "Bachelor's Degree", expectedSalary: { min: 3200000, max: 4500000, currency: 'NGN' },
+    portfolio: 'https://samueldev.tech', email: 'samuel.adeniyi@example.com', phone: '+234-801-222-3344',
+    avatar: 'SA', profileCompleteness: 89
+  },
+  {
+    id: 'candidate-021', name: 'Mpho Sekhukhune', title: 'Customer Success Manager', location: 'Pretoria, South Africa',
+    experience: 'Mid', industry: 'SaaS', availability: 'Employed', rating: 4.4,
+    skills: ['Onboarding', 'Retention Strategies', 'CRM', 'Customer Feedback', 'Upselling'], languages: ['English', 'Tswana'],
+    summary: 'Ensuring SaaS clients realize value and renew through proactive engagement and support.',
+    education: "Bachelor's Degree", expectedSalary: { min: 480000, max: 650000, currency: 'ZAR' },
+    portfolio: '', email: 'mpho.sekhukhune@example.co.za', phone: '+27-66-555-2233',
+    avatar: 'MS', profileCompleteness: 84
+  },
+  {
+    id: 'candidate-022', name: 'Chidera Umeh', title: 'Blockchain Developer', location: 'Lagos, Nigeria',
+    experience: 'Junior', industry: 'Fintech', availability: 'Available', rating: 4.0,
+    skills: ['Solidity', 'Ethereum', 'Smart Contracts', 'Web3.js', 'IPFS'], languages: ['English', 'Igbo'],
+    summary: 'Building decentralized applications and exploring tokenomics for emerging African markets.',
+    education: "Bachelor's Degree", expectedSalary: { min: 2000000, max: 3000000, currency: 'NGN' },
+    portfolio: 'https://chiderablockchain.dev', email: 'chidera.umeh@example.com', phone: '+234-803-111-6677',
+    avatar: 'CU', profileCompleteness: 70
+  },
+  {
+    id: 'candidate-023', name: 'Adeleke Ojo', title: 'Systems Administrator', location: 'Lagos, Nigeria',
+    experience: 'Mid', industry: 'Education', availability: 'Employed', rating: 4.3,
+    skills: ['Windows Server', 'Linux', 'Active Directory', 'Backup & Recovery', 'Scripting'], languages: ['English', 'Yoruba'],
+    summary: 'Managing IT infrastructure for large educational institutions to ensure uptime and security.',
+    education: "Diploma", expectedSalary: { min: 2500000, max: 3500000, currency: 'NGN' },
+    portfolio: '', email: 'adeleke.ojo@example.com', phone: '+234-806-777-8899',
+    avatar: 'AO', profileCompleteness: 81
+  },
+  {
+    id: 'candidate-024', name: 'Nomvula Dube', title: 'Executive Assistant', location: 'Cape Town, South Africa',
+    experience: 'Senior', industry: 'Corporate', availability: 'Available', rating: 4.6,
+    skills: ['Calendar Management', 'Travel Coordination', 'Communication', 'Event Planning', 'Confidentiality'], languages: ['English', 'Afrikaans'],
+    summary: 'Supporting C-level executives with high-efficiency scheduling, communications, and logistics.',
+    education: "Certificate", expectedSalary: { min: 350000, max: 500000, currency: 'ZAR' },
+    portfolio: '', email: 'nomvula.dube@example.co.za', phone: '+27-78-888-3344',
+    avatar: 'ND', profileCompleteness: 88
+  },
+  {
+    id: 'candidate-025', name: 'Ibrahim Musa', title: 'Salesforce Administrator', location: 'Abuja, Nigeria',
+    experience: 'Mid', industry: 'Telecom', availability: 'Employed', rating: 4.4,
+    skills: ['Salesforce', 'Automation', 'Reports & Dashboards', 'User Training', 'Data Quality'], languages: ['English', 'Hausa'],
+    summary: 'Optimizing CRM workflows and user adoption for improved sales performance.',
+    education: "Bachelor's Degree", expectedSalary: { min: 2800000, max: 3800000, currency: 'NGN' },
+    portfolio: '', email: 'ibrahim.musa@example.com', phone: '+234-809-555-2233',
+    avatar: 'IM', profileCompleteness: 85
+  },
+  {
+    id: 'candidate-026', name: 'Sanele Phetla', title: 'Quality Assurance Engineer', location: 'Durban, South Africa',
+    experience: 'Junior', industry: 'Technology', availability: 'Available', rating: 4.2,
+    skills: ['Manual Testing', 'Automated Testing', 'Selenium', 'Test Plans', 'Bug Tracking'], languages: ['English', 'Zulu'],
+    summary: 'Ensuring software reliability through thorough test case design and regression suites.',
+    education: "Diploma", expectedSalary: { min: 260000, max: 350000, currency: 'ZAR' },
+    portfolio: '', email: 'sanele.phetla@example.co.za', phone: '+27-61-222-4455',
+    avatar: 'SP', profileCompleteness: 72
+  },
+  {
+    id: 'candidate-027', name: 'Adewale Akinyemi', title: 'AI Product Designer', location: 'Lagos, Nigeria',
+    experience: 'Senior', industry: 'Tech/AI', availability: 'Available', rating: 4.9,
+    skills: ['Design Thinking', 'Prompt Engineering', 'User Research', 'Figma', 'Ethical AI'], languages: ['English', 'Yoruba'],
+    summary: 'Bridging design and AI to build responsible, human-centered intelligent products.',
+    education: "Master's Degree", expectedSalary: { min: 5500000, max: 7500000, currency: 'NGN' },
+    portfolio: 'https://adewaleai.design', email: 'adewale.akinyemi@example.com', phone: '+234-802-444-9900',
+    avatar: 'AA', profileCompleteness: 99
+  },
+  {
+    id: 'candidate-028', name: 'Kimberley Pretorius', title: 'Business Analyst', location: 'Johannesburg, South Africa',
+    experience: 'Mid', industry: 'Insurance', availability: 'Employed', rating: 4.5,
+    skills: ['Requirements Gathering', 'Process Mapping', 'UAT', 'Stakeholder Interviews', 'SWOT Analysis'], languages: ['English', 'Afrikaans'],
+    summary: 'Translating business needs into actionable requirements to support digital transformation.',
+    education: "Bachelor's Degree", expectedSalary: { min: 480000, max: 650000, currency: 'ZAR' },
+    portfolio: '', email: 'kimberley.pretorius@example.co.za', phone: '+27-82-444-7788',
+    avatar: 'KP', profileCompleteness: 86
+  },
+  {
+    id: 'candidate-029', name: 'Chukwuemeka Ndu', title: 'Software Tester', location: 'Lagos, Nigeria',
+    experience: 'Junior', industry: 'Fintech', availability: 'Available', rating: 4.1,
+    skills: ['Manual Testing', 'Bug Reporting', 'Postman', 'Regression Testing', 'Agile'], languages: ['English', 'Igbo'],
+    summary: 'Detail-oriented tester ensuring transaction integrity and reliability in payment platforms.',
+    education: "Diploma", expectedSalary: { min: 1600000, max: 2300000, currency: 'NGN' },
+    portfolio: '', email: 'chukwuemeka.ndu@example.com', phone: '+234-805-555-3322',
+    avatar: 'CN', profileCompleteness: 68
+  },
+  {
+    id: 'candidate-030', name: 'Reabetswe Kgosi', title: 'Project Coordinator', location: 'Pretoria, South Africa',
+    experience: 'Junior', industry: 'Construction', availability: 'Available', rating: 4.3,
+    skills: ['Scheduling', 'Budget Tracking', 'MS Project', 'Communication', 'Vendor Management'], languages: ['English', 'Tswana'],
+    summary: 'Supporting large infrastructure projects by keeping timelines and stakeholders aligned.',
+    education: "Certificate", expectedSalary: { min: 300000, max: 420000, currency: 'ZAR' },
+    portfolio: '', email: 'reabetswe.kgosi@example.co.za', phone: '+27-64-555-1100',
+    avatar: 'RK', profileCompleteness: 77
+  },
+  {
+    id: 'candidate-031', name: 'Nkechi Udo', title: 'Corporate Trainer', location: 'Lagos, Nigeria',
+    experience: 'Mid', industry: 'Professional Services', availability: 'Available', rating: 4.6,
+    skills: ['Curriculum Development', 'Public Speaking', 'Coaching', 'Learning Management Systems', 'Soft Skills'], languages: ['English', 'Igbo'],
+    summary: 'Designs and delivers training programs to upskill teams in communication and leadership.',
+    education: "Bachelor's Degree", expectedSalary: { min: 2500000, max: 3400000, currency: 'NGN' },
+    portfolio: '', email: 'nkechi.udo@example.com', phone: '+234-807-222-1144',
+    avatar: 'NU', profileCompleteness: 85
+  },
+  {
+    id: 'candidate-032', name: 'Daniela van Wyk', title: 'Public Relations Specialist', location: 'Cape Town, South Africa',
+    experience: 'Mid', industry: 'Media', availability: 'Employed', rating: 4.4,
+    skills: ['Media Relations', 'Crisis Communication', 'Press Releases', 'Brand Messaging', 'Event PR'], languages: ['English', 'Afrikaans'],
+    summary: 'Building and protecting brand reputation across digital and traditional channels.',
+    education: "Bachelor's Degree", expectedSalary: { min: 420000, max: 580000, currency: 'ZAR' },
+    portfolio: '', email: 'daniela.vanwyk@example.co.za', phone: '+27-73-111-2233',
+    avatar: 'DV', profileCompleteness: 82
+  },
+  {
+    id: 'candidate-033', name: 'Musa Ibrahim', title: 'Logistics Analyst', location: 'Abuja, Nigeria',
+    experience: 'Junior', industry: 'Manufacturing', availability: 'Available', rating: 4.0,
+    skills: ['Inventory Management', 'Excel Modeling', 'Route Optimization', 'Vendor Coordination', 'Reporting'], languages: ['English', 'Hausa'],
+    summary: 'Supporting supply chain efficiency through data-backed logistics planning.',
+    education: "Diploma", expectedSalary: { min: 1700000, max: 2500000, currency: 'NGN' },
+    portfolio: '', email: 'musa.ibrahim@example.com', phone: '+234-803-444-5566',
+    avatar: 'MI', profileCompleteness: 69
+  },
+  {
+    id: 'candidate-034', name: 'Kgomotso Mokoena', title: 'Recruitment Consultant', location: 'Johannesburg, South Africa',
+    experience: 'Senior', industry: 'Staffing', availability: 'Available', rating: 4.7,
+    skills: ['Candidate Sourcing', 'Interviewing', 'Client Management', 'Headhunting', 'Market Mapping'], languages: ['English', 'Sesotho'],
+    summary: 'Connecting top talent with growing businesses across tech and professional services.',
+    education: "Bachelor's Degree", expectedSalary: { min: 500000, max: 700000, currency: 'ZAR' },
+    portfolio: '', email: 'kgomotso.mokoena@example.co.za', phone: '+27-81-222-3344',
+    avatar: 'KM', profileCompleteness: 92
+  },
+  {
+    id: 'candidate-035', name: 'Ifeoma Okeke', title: 'Content Strategist', location: 'Lagos, Nigeria',
+    experience: 'Mid', industry: 'E-commerce', availability: 'Employed', rating: 4.5,
+    skills: ['Editorial Calendars', 'SEO Strategy', 'User Journey Mapping', 'Analytics', 'Storytelling'], languages: ['English', 'Igbo'],
+    summary: 'Crafting content plans that drive customer engagement and increase retention on marketplaces.',
+    education: "Bachelor's Degree", expectedSalary: { min: 2500000, max: 3500000, currency: 'NGN' },
+    portfolio: 'https://ifeoma.content', email: 'ifeoma.okeke@example.com', phone: '+234-805-666-7788',
+    avatar: 'IO', profileCompleteness: 90
+  },
+  {
+    id: 'candidate-036', name: 'Rafael de Lange', title: 'Blockchain Consultant', location: 'Cape Town, South Africa',
+    experience: 'Lead', industry: 'Finance', availability: 'Available', rating: 4.8,
+    skills: ['Token Economics', 'Smart Contract Audits', 'Cryptoeconomics', 'Regulatory Strategy', 'Web3'], languages: ['English', 'Afrikaans'],
+    summary: 'Advising financial institutions on integrating decentralized finance solutions responsibly.',
+    education: "Master's Degree", expectedSalary: { min: 1000000, max: 1400000, currency: 'ZAR' },
+    portfolio: '', email: 'rafael.delange@example.co.za', phone: '+27-65-777-8899',
+    avatar: 'RD', profileCompleteness: 95
+  },
+  {
+    id: 'candidate-037', name: 'Olamide Adebayo', title: 'QA Automation Engineer', location: 'Lagos, Nigeria',
+    experience: 'Mid', industry: 'SaaS', availability: 'Available', rating: 4.6,
+    skills: ['Selenium', 'Cypress', 'JavaScript', 'Test Automation Frameworks', 'CI/CD Integration'], languages: ['English', 'Yoruba'],
+    summary: 'Building robust automated test suites to reduce regression risk in SaaS deployments.',
+    education: "Bachelor's Degree", expectedSalary: { min: 3300000, max: 4500000, currency: 'NGN' },
+    portfolio: '', email: 'olamide.adebayo@example.com', phone: '+234-802-333-4455',
+    avatar: 'OA', profileCompleteness: 88
+  },
+  {
+    id: 'candidate-038', name: 'Petrus van Rooyen', title: 'Blockchain Engineer', location: 'Pretoria, South Africa',
+    experience: 'Senior', industry: 'Technology', availability: 'Employed', rating: 4.9,
+    skills: ['Rust', 'Substrate', 'Consensus Protocols', 'Cryptography', 'Decentralized Systems'], languages: ['English', 'Afrikaans'],
+    summary: 'Building scalable layer-1/blockchain infrastructure with a focus on performance and security.',
+    education: "PhD", expectedSalary: { min: 950000, max: 1300000, currency: 'ZAR' },
+    portfolio: 'https://petruschain.dev', email: 'petrus.vr@example.co.za', phone: '+27-72-555-2233',
+    avatar: 'PV', profileCompleteness: 97
+  },
+  {
+    id: 'candidate-039', name: 'Amaka Ugwoke', title: 'Customer Support Lead', location: 'Lagos, Nigeria',
+    experience: 'Lead', industry: 'Telecom', availability: 'Available', rating: 4.5,
+    skills: ['Support Operations', 'KPI Management', 'CRM', 'Team Coaching', 'Escalation Handling'], languages: ['English', 'Igbo'],
+    summary: 'Leading support teams to deliver consistent, high-quality customer experiences at scale.',
+    education: "Bachelor's Degree", expectedSalary: { min: 2800000, max: 4000000, currency: 'NGN' },
+    portfolio: '', email: 'amaka.ugwoke@example.com', phone: '+234-807-111-2233',
+    avatar: 'AU', profileCompleteness: 90
+  },
+  {
+    id: 'candidate-040', name: 'Sarel Botha', title: 'Blockchain Researcher', location: 'Cape Town, South Africa',
+    experience: 'Mid', industry: 'Academia', availability: 'Available', rating: 4.4,
+    skills: ['Distributed Systems', 'Consensus Algorithms', 'Academic Writing', 'Cryptoeconomics', 'Simulation'], languages: ['English', 'Afrikaans'],
+    summary: 'Researching scalable decentralized protocols and publishing in peer-reviewed venues.',
+    education: "Master's Degree", expectedSalary: { min: 500000, max: 700000, currency: 'ZAR' },
+    portfolio: '', email: 'sarel.botha@example.co.za', phone: '+27-84-333-4466',
+    avatar: 'SB', profileCompleteness: 85
+  },
+  {
+    id: 'candidate-041', name: 'Funke Ajayi', title: 'Social Media Manager', location: 'Lagos, Nigeria',
+    experience: 'Mid', industry: 'Fashion', availability: 'Available', rating: 4.2,
+    skills: ['Instagram Strategy', 'Content Calendars', 'Analytics', 'Community Building', 'Brand Voice'], languages: ['English', 'Yoruba'],
+    summary: 'Growing brand presence and engagement for fashion labels across social platforms.',
+    education: "Bachelor's Degree", expectedSalary: { min: 1900000, max: 2600000, currency: 'NGN' },
+    portfolio: 'https://funkesocials.com', email: 'funke.ajayi@example.com', phone: '+234-806-444-5566',
+    avatar: 'FA', profileCompleteness: 79
+  },
+  {
+    id: 'candidate-042', name: 'Karen Smit', title: 'Enterprise Account Executive', location: 'Johannesburg, South Africa',
+    experience: 'Lead', industry: 'SaaS', availability: 'Employed', rating: 4.7,
+    skills: ['Enterprise Sales', 'CRM', 'Contract Negotiation', 'Forecasting', 'Strategic Partnerships'], languages: ['English', 'Afrikaans'],
+    summary: 'Closing multi-million contracts with large enterprise clients in cloud software.',
+    education: "Bachelor's Degree", expectedSalary: { min: 850000, max: 1200000, currency: 'ZAR' },
+    portfolio: '', email: 'karen.smit@example.co.za', phone: '+27-82-111-2233',
+    avatar: 'KS', profileCompleteness: 93
+  },
+  {
+    id: 'candidate-043', name: 'Aisha Mahmud', title: 'Healthcare Project Manager', location: 'Abuja, Nigeria',
+    experience: 'Senior', industry: 'Healthcare', availability: 'Available', rating: 4.6,
+    skills: ['Program Management', 'Healthcare Systems', 'Budgeting', 'Stakeholder Engagement', 'Monitoring & Evaluation'], languages: ['English', 'Hausa'],
+    summary: 'Managing public health initiatives with measurable impact in underserved regions.',
+    education: "Master's Degree", expectedSalary: { min: 5000000, max: 7000000, currency: 'NGN' },
+    portfolio: '', email: 'aisha.mahmud@example.com', phone: '+234-809-222-3344',
+    avatar: 'AM', profileCompleteness: 91
+  },
+  {
+    id: 'candidate-044', name: 'Thandiwe Maseko', title: 'SEO Specialist', location: 'Cape Town, South Africa',
+    experience: 'Mid', industry: 'E-commerce', availability: 'Available', rating: 4.5,
+    skills: ['On-page SEO', 'Technical SEO', 'Keyword Research', 'Link Building', 'Google Search Console'], languages: ['English', 'Xhosa'],
+    summary: 'Improving organic search visibility and traffic for online retailers.',
+    education: "Certificate", expectedSalary: { min: 330000, max: 480000, currency: 'ZAR' },
+    portfolio: 'https://thandiweseo.co.za', email: 'thandiwe.maseko@example.co.za', phone: '+27-63-444-5566',
+    avatar: 'TM', profileCompleteness: 87
+  },
+  {
+    id: 'candidate-045', name: 'Chimaobi Eze', title: 'Embedded Systems Engineer', location: 'Lagos, Nigeria',
+    experience: 'Senior', industry: 'IoT', availability: 'Employed', rating: 4.8,
+    skills: ['C/C++', 'Microcontrollers', 'RTOS', 'PCB Design', 'Firmware Optimization'], languages: ['English', 'Igbo'],
+    summary: 'Designing low-power embedded solutions for smart agriculture and remote monitoring.',
+    education: "Bachelor's Degree", expectedSalary: { min: 5500000, max: 7200000, currency: 'NGN' },
+    portfolio: 'https://chimaobiembedded.dev', email: 'chimaobi.eze@example.com', phone: '+234-805-777-8899',
+    avatar: 'CE', profileCompleteness: 94
+  },
+  {
+    id: 'candidate-046', name: 'Rethabile Khumalo', title: 'Enterprise Risk Analyst', location: 'Johannesburg, South Africa',
+    experience: 'Mid', industry: 'Banking', availability: 'Available', rating: 4.6,
+    skills: ['Risk Assessment', 'Regulatory Compliance', 'Scenario Analysis', 'Credit Risk', 'Reporting'], languages: ['English', 'Zulu'],
+    summary: 'Evaluating and mitigating financial risks to support sustainable lending practices.',
+    education: "Master's Degree", expectedSalary: { min: 600000, max: 800000, currency: 'ZAR' },
+    portfolio: '', email: 'rethabile.khumalo@example.co.za', phone: '+27-73-555-6699',
+    avatar: 'RK', profileCompleteness: 90
+  },
+  {
+    id: 'candidate-047', name: 'Olufunke Adeola', title: 'Healthcare Data Scientist', location: 'Lagos, Nigeria',
+    experience: 'Senior', industry: 'HealthTech', availability: 'Available', rating: 4.9,
+    skills: ['R', 'Python', 'EHR Analysis', 'Predictive Modeling', 'Data Visualization'], languages: ['English', 'Yoruba'],
+    summary: 'Leveraging patient data to drive predictive insights and optimize clinical workflows.',
+    education: "PhD", expectedSalary: { min: 7000000, max: 9500000, currency: 'NGN' },
+    portfolio: 'https://olufunkehealth.ai', email: 'olufunke.adeola@example.com', phone: '+234-806-999-2233',
+    avatar: 'OA', profileCompleteness: 99
+  },
+    {
+    id: 'candidate-048', name: 'Amara Okafor', title: 'Senior Frontend Developer', location: 'Lagos, Nigeria',
+    experience: 'Senior', industry: 'Technology', availability: 'Available', rating: 4.9,
+    skills: ['React', 'TypeScript', 'Next.js', 'GraphQL', 'UI/UX Design'], languages: ['English', 'Igbo', 'Yoruba'],
+    summary: '6+ years building scalable web applications with modern JavaScript frameworks. Passionate about creating exceptional user experiences.',
+    education: "Bachelor's Degree", expectedSalary: { min: 3500000, max: 5000000, currency: 'NGN' },
+    portfolio: 'https://amaraokafor.dev', email: 'amara.okafor@example.com', phone: '+234-801-555-0123',
+    avatar: 'AO', profileCompleteness: 95
+  },
+  {
+    id: 'candidate-049', name: 'Thabo Mkhize', title: 'Data Analyst', location: 'Johannesburg, South Africa',
+    experience: 'Mid', industry: 'Finance', availability: 'Employed', rating: 4.5,
+    skills: ['SQL', 'Python', 'Excel', 'Power BI', 'Statistics'], languages: ['English', 'Zulu', 'Sotho'],
+    summary: '3 years of experience turning complex datasets into actionable business insights in banking and fintech.',
+    education: "Bachelor's Degree", expectedSalary: { min: 450000, max: 650000, currency: 'ZAR' },
+    portfolio: 'https://thabomkhizeanalytics.co.za', email: 'thabo.mkhize@example.co.za', phone: '+27-82-555-9988',
+    avatar: 'TM', profileCompleteness: 88
+  },
+  {
+    id: 'candidate-050', name: 'Chinelo Eze', title: 'Product Manager', location: 'Abuja, Nigeria',
+    experience: 'Lead', industry: 'E-commerce', availability: 'Available', rating: 4.8,
+    skills: ['Roadmapping', 'Agile', 'User Research', 'KPI Strategy', 'Stakeholder Management'], languages: ['English', 'Igbo'],
+    summary: '8+ years leading cross-functional teams to launch consumer-facing products in high-growth markets.',
+    education: "Master's Degree", expectedSalary: { min: 6000000, max: 8000000, currency: 'NGN' },
+    portfolio: 'https://chineloeze.pm', email: 'chinelo.eze@example.com', phone: '+234-809-444-2211',
+    avatar: 'CE', profileCompleteness: 92
+  }    
+     
     ];
 
     // 12 Featured Blog Posts
@@ -295,8 +777,168 @@ class JobbyistApp {
         story: 'Used Jobbyist Pro features to optimize my profile and showcase my campaign successes. The AI-powered matching connected me with my dream role in financial services.',
         salaryIncrease: '180%', timeframe: '8 months', avatar: 'ND',
         skills: ['Digital Marketing', 'Strategy', 'Analytics'], industry: 'Finance'
-      }
-      // ... (continuing with more success stories)
+      },
+       {
+    id: 'story-003', name: 'Adewumi Oladipo', currentTitle: 'Lead Data Scientist at MTN Nigeria',
+    previousTitle: 'Data Analyst', company: 'MTN', location: 'Lagos, Nigeria',
+    story: 'Leveraged Jobbyist’s tailored job matching to transition from reporting to building predictive models. My work now informs national customer retention strategies.',
+    salaryIncrease: '220%', timeframe: '12 months', avatar: 'AO',
+    skills: ['Python', 'Machine Learning', 'SQL'], industry: 'Telecommunications'
+  },
+  {
+    id: 'story-004', name: 'Sipho Madlala', currentTitle: 'Head of Customer Experience at Discovery',
+    previousTitle: 'Customer Support Representative', company: 'Discovery', location: 'Johannesburg, South Africa',
+    story: 'Started on entry-level support, used Jobbyist mentoring to develop leadership and process improvement skills. Now leading experience initiatives for millions of clients.',
+    salaryIncrease: '190%', timeframe: '24 months', avatar: 'SM',
+    skills: ['CX Strategy', 'Leadership', 'Process Improvement'], industry: 'Insurance'
+  },
+  {
+    id: 'story-005', name: 'Chika Nwankwo', currentTitle: 'Senior UX Researcher at Flutterwave',
+    previousTitle: 'Junior Designer', company: 'Flutterwave', location: 'Lagos, Nigeria',
+    story: 'Through Jobbyist, connected with user research experts, refined my portfolio, and secured a role influencing payments UX across Africa.',
+    salaryIncrease: '160%', timeframe: '10 months', avatar: 'CN',
+    skills: ['User Research', 'Usability Testing', 'Figma'], industry: 'Fintech'
+  },
+  {
+    id: 'story-006', name: 'Lebohang Mahlangu', currentTitle: 'Operations Director at Woolworths SA',
+    previousTitle: 'Supply Chain Coordinator', company: 'Woolworths', location: 'Cape Town, South Africa',
+    story: 'Used Jobbyist’s career pathway content to upskill in logistics and cross-functional leadership, earning a promotion to oversee national operations.',
+    salaryIncrease: '140%', timeframe: '18 months', avatar: 'LM',
+    skills: ['Supply Chain', 'Cross-functional Leadership', 'Inventory Optimization'], industry: 'Retail'
+  },
+  {
+    id: 'story-007', name: 'Oluwakemi Adebayo', currentTitle: 'Senior DevOps Engineer at Andela',
+    previousTitle: 'Systems Administrator', company: 'Andela', location: 'Abuja, Nigeria',
+    story: 'Jobbyist’s certification guidance helped me prioritize learning cloud automation. I moved from admin to architecting CI/CD pipelines for distributed teams.',
+    salaryIncrease: '210%', timeframe: '14 months', avatar: 'OA',
+    skills: ['Kubernetes', 'CI/CD', 'AWS'], industry: 'Technology'
+  },
+  {
+    id: 'story-008', name: 'Nthabiseng Kgadime', currentTitle: 'Finance Manager at Sanlam',
+    previousTitle: 'Financial Reporting Analyst', company: 'Sanlam', location: 'Pretoria, South Africa',
+    story: 'With Jobbyist’s interview prep tools, I demonstrated strategic insight in interviews and secured a management role overseeing investment portfolios.',
+    salaryIncrease: '170%', timeframe: '11 months', avatar: 'NK',
+    skills: ['Financial Planning', 'Reporting', 'Excel Modeling'], industry: 'Finance'
+  },
+  {
+    id: 'story-009', name: 'Bamidele Olumide', currentTitle: 'Chief Technology Officer at AgriTech Startup',
+    previousTitle: 'Software Engineer', company: 'AgriTech Hub', location: 'Ibadan, Nigeria',
+    story: 'Started as an engineer, used Jobbyist to find mentorship and network with founders; within two years, co-founded and now lead tech strategy driving rural yield improvements.',
+    salaryIncrease: '500%', timeframe: '24 months', avatar: 'BO',
+    skills: ['System Architecture', 'Team Building', 'Agile'], industry: 'Agriculture/Tech'
+  },
+  {
+    id: 'story-010', name: 'Lerato Sibanda', currentTitle: 'Senior Legal Advisor at African Development Bank',
+    previousTitle: 'Legal Associate', company: 'AfDB', location: 'Johannesburg, South Africa',
+    story: 'Used Jobbyist to tailor my legal profile to international development roles and secure a position advising on cross-border infrastructure deals.',
+    salaryIncrease: '130%', timeframe: '9 months', avatar: 'LS',
+    skills: ['International Law', 'Contract Negotiation', 'Compliance'], industry: 'Development/Legal'
+  },
+  {
+    id: 'story-011', name: 'Emmanuella Okorie', currentTitle: 'Head of Content Strategy at Jumia Nigeria',
+    previousTitle: 'Content Creator', company: 'Jumia', location: 'Lagos, Nigeria',
+    story: 'Jobbyist features helped me quantify content impact, pitch myself internally, and take ownership of strategy for multiple markets.',
+    salaryIncrease: '180%', timeframe: '13 months', avatar: 'EO',
+    skills: ['Content Planning', 'Analytics', 'Brand Storytelling'], industry: 'E-commerce'
+  },
+  {
+    id: 'story-012', name: 'Mandla Zungu', currentTitle: 'Enterprise Sales Lead at SAP Africa',
+    previousTitle: 'Sales Executive', company: 'SAP', location: 'Durban, South Africa',
+    story: 'Through Jobbyist’s peer success stories I learned tactics for enterprise deal cycles; that knowledge helped me close major contracts and earn a leadership slot.',
+    salaryIncrease: '230%', timeframe: '16 months', avatar: 'MZ',
+    skills: ['Enterprise Sales', 'CRM Strategy', 'Negotiation'], industry: 'Enterprise Software'
+  },
+  {
+    id: 'story-013', name: 'Yewande Afolabi', currentTitle: 'Head of HR Operations at Zenith Bank',
+    previousTitle: 'HR Officer', company: 'Zenith Bank', location: 'Lagos, Nigeria',
+    story: 'Leveraged Jobbyist coaching to implement digital HR workflows; recognized with a fast-track promotion to oversee regional HR operations.',
+    salaryIncrease: '150%', timeframe: '12 months', avatar: 'YA',
+    skills: ['HRIS', 'Process Automation', 'Employee Engagement'], industry: 'Banking'
+  },
+  {
+    id: 'story-014', name: 'Sibongile Nkosi', currentTitle: 'Senior Environmental Consultant at Eskom',
+    previousTitle: 'Junior Analyst', company: 'Eskom', location: 'Johannesburg, South Africa',
+    story: 'Jobbyist helped me articulate my sustainability projects in a compelling portfolio, leading to responsibility for national impact assessments.',
+    salaryIncrease: '125%', timeframe: '20 months', avatar: 'SN',
+    skills: ['Environmental Impact', 'Data Analysis', 'Policy'], industry: 'Energy'
+  },
+  {
+    id: 'story-015', name: 'Ibrahim Okafor', currentTitle: 'Head of Procurement at Nigeria Breweries',
+    previousTitle: 'Procurement Specialist', company: 'Nigeria Breweries', location: 'Abuja, Nigeria',
+    story: 'Used Jobbyist’s networking tools to connect with supply chain leaders; gained insights that helped restructure sourcing and earn a leadership role.',
+    salaryIncrease: '160%', timeframe: '15 months', avatar: 'IO',
+    skills: ['Strategic Sourcing', 'Supplier Management', 'Cost Reduction'], industry: 'Manufacturing'
+  },
+  {
+    id: 'story-016', name: 'Pieter van Zyl', currentTitle: 'AI Ethics Lead at a Cape Town Startup',
+    previousTitle: 'Research Associate', company: 'AI Labs SA', location: 'Cape Town, South Africa',
+    story: 'Through Jobbyist I found a community and funding contacts to pivot my academic research into applied ethics leadership in AI product development.',
+    salaryIncrease: '200%', timeframe: '14 months', avatar: 'PZ',
+    skills: ['AI Ethics', 'Policy Design', 'Research Translation'], industry: 'AI/Research'
+  },
+  {
+    id: 'story-017', name: 'Amina Salisu', currentTitle: 'Chief Operations Officer at HealthLink Nigeria',
+    previousTitle: 'Operations Manager', company: 'HealthLink', location: 'Kano, Nigeria',
+    story: 'Used Jobbyist’s career mapping to identify gaps and accepted stretch assignments; now overseeing nationwide telehealth logistics.',
+    salaryIncrease: '210%', timeframe: '19 months', avatar: 'AS',
+    skills: ['Operations Strategy', 'Scaling Systems', 'Healthcare Logistics'], industry: 'HealthTech'
+  },
+  {
+    id: 'story-018', name: 'Keletso Radebe', currentTitle: 'Senior Project Manager at Vodacom South Africa',
+    previousTitle: 'Project Coordinator', company: 'Vodacom', location: 'Johannesburg, South Africa',
+    story: 'Jobbyist’s certification path suggestion got me PMP-aligned training and internal visibility, accelerating my move into high-impact project leadership.',
+    salaryIncrease: '175%', timeframe: '10 months', avatar: 'KR',
+    skills: ['Project Management', 'Risk Mitigation', 'Stakeholder Communication'], industry: 'Telecommunications'
+  },
+  {
+    id: 'story-019', name: 'Uchechukwu Nnamani', currentTitle: 'Director of Analytics at a Lagos Fintech',
+    previousTitle: 'Business Intelligence Analyst', company: 'Fintech X', location: 'Lagos, Nigeria',
+    story: 'Started with basic dashboards; Jobbyist mentorship connected me to best practices in customer segmentation, leading to a director role influencing product pricing.',
+    salaryIncrease: '260%', timeframe: '17 months', avatar: 'UN',
+    skills: ['BI', 'Customer Analytics', 'Leadership'], industry: 'Fintech'
+  },
+  {
+    id: 'story-020', name: 'Zodwa Khumalo', currentTitle: 'Creative Director at a Cape Town Agency',
+    previousTitle: 'Junior Graphic Designer', company: 'Madison Creative', location: 'Cape Town, South Africa',
+    story: 'Used Jobbyist to showcase award-winning campaigns and secure a leadership role where I now mentor emerging designers.',
+    salaryIncrease: '180%', timeframe: '13 months', avatar: 'ZK',
+    skills: ['Brand Strategy', 'Visual Storytelling', 'Team Leadership'], industry: 'Advertising'
+  },
+  {
+    id: 'story-021', name: 'Chinedu Ojo', currentTitle: 'Cloud Infrastructure Manager at a Nigerian Bank',
+    previousTitle: 'IT Support Technician', company: 'FirstBank', location: 'Lagos, Nigeria',
+    story: 'Jobbyist’s upskilling roadmap helped me transition into cloud; now I oversee hybrid infrastructure and lead resilience initiatives.',
+    salaryIncrease: '240%', timeframe: '18 months', avatar: 'CO',
+    skills: ['Cloud Architecture', 'Disaster Recovery', 'Security'], industry: 'Banking/IT'
+  },
+  {
+    id: 'story-022', name: 'Naledi Tshabalala', currentTitle: 'Head of Diversity & Inclusion at a Johannesburg Corporation',
+    previousTitle: 'HR Generalist', company: 'CorpSouth', location: 'Johannesburg, South Africa',
+    story: 'Leveraged Jobbyist’s thought leadership content to build a business case for D&I programs; now leading enterprise-wide culture transformation.',
+    salaryIncrease: '145%', timeframe: '12 months', avatar: 'NT',
+    skills: ['D&I Strategy', 'Change Management', 'Employee Engagement'], industry: 'Corporate'
+  },
+  {
+    id: 'story-023', name: 'Afolabi Adesina', currentTitle: 'Senior Mobile Architect at a Nigerian Telecom',
+    previousTitle: 'Mobile Developer', company: 'Airtel Nigeria', location: 'Lagos, Nigeria',
+    story: 'With Jobbyist’s peer benchmarking, I refined my technical roadmap, drove platform modernization, and earned a strategic architecture role.',
+    salaryIncrease: '200%', timeframe: '15 months', avatar: 'AA',
+    skills: ['Mobile Architecture', 'Scalability', 'Performance Tuning'], industry: 'Telecommunications'
+  },
+  {
+    id: 'story-024', name: 'Thabiso Mokoena', currentTitle: 'Director of Product at a Cape Town Startup',
+    previousTitle: 'Associate Product Manager', company: 'GreenTech SA', location: 'Cape Town, South Africa',
+    story: 'Jobbyist’s product career templates helped me prioritize outcome-driven work, resulting in rapid promotion and leading a flagship sustainable product.',
+    salaryIncrease: '165%', timeframe: '11 months', avatar: 'TM',
+    skills: ['Product Strategy', 'Sustainability', 'Metrics'], industry: 'CleanTech'
+  },
+  {
+    id: 'story-025', name: 'Halima Suleiman', currentTitle: 'E-commerce Growth Lead at Konga',
+    previousTitle: 'Junior Growth Analyst', company: 'Konga', location: 'Lagos, Nigeria',
+    story: 'Used Jobbyist’s A/B testing learning path and community feedback to drive conversion optimization, leading to a leadership role in growth.',
+    salaryIncrease: '190%', timeframe: '9 months', avatar: 'HS',
+    skills: ['Growth Hacking', 'A/B Testing', 'Analytics'], industry: 'E-commerce'
+  }
     ];
 
     // Pro Features
@@ -2132,8 +2774,8 @@ class JobbyistApp {
   getFormSuccessMessage(formType) {
     const messages = {
       contact: 'Message sent successfully! We\'ll get back to you within 24 hours.',
-      claim: 'Company claim submitted! We\'ll verify your details and contact you within 24-48 hours.',
-      newsletter: 'You\'ll be notified when our mobile app launches!',
+      claim: 'Company claim submitted! We will verify your details and contact you within 24-48 hours.',
+      newsletter: 'You will be notified when our mobile app launches!',
       recruitment: 'Early access request submitted! You\'ll receive onboarding details within 48 hours.',
       'share-story': 'Thank you for sharing your success story! It will be reviewed and published soon.'
     };
