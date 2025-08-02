@@ -2,92 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Jobbyist - Africa's Premier Job Discovery & Career Management Platform</title>
-  <meta name="description" content="Africa's leading job platform connecting talent across South Africa and Nigeria with global career opportunities & world-class support.">
+  <title>Jobbyist - Find Your Dream Job in Africa | South Africa & Nigeria Jobs</title>
+  <meta name="description" content="Jobbyist is Africa's leading job platform connecting talented professionals with top employers across Nigeria and South Africa. Find your perfect job today with automated matching and company profiles.">
+  <meta name="keywords" content="jobs south africa, jobs nigeria, african jobs, recruitment, careers, jobbyist, johannesburg jobs, lagos jobs, cape town jobs">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Feather Icons for buttons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  
   <link href="https://jobbyist.africa/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+  <!-- Animated Background Doodles -->
+  <div class="background-doodles">
+    <svg class="doodle doodle-circle" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="2"/>
+      <path d="M20,50 Q30,30 40,50 T60,50" fill="none" stroke="#000" stroke-width="1.5"/>
+    </svg>
+    
+    <svg class="doodle doodle-zigzag" viewBox="0 0 120 60">
+      <path d="M10,50 L30,10 L50,50 L70,10 L90,50 L110,10" fill="none" stroke="#000" stroke-width="2"/>
+    </svg>
+    
+    <svg class="doodle doodle-triangle" viewBox="0 0 100 100">
+      <polygon points="50,15 85,85 15,85" fill="none" stroke="#000" stroke-width="2"/>
+      <circle cx="50" cy="40" r="8" fill="none" stroke="#000" stroke-width="1.5"/>
+    </svg>
+    
+    <svg class="doodle doodle-wave" viewBox="0 0 200 100">
+      <path d="M20,50 Q60,20 100,50 T180,50" fill="none" stroke="#000" stroke-width="2"/>
+      <path d="M20,30 Q60,60 100,30 T180,30" fill="none" stroke="#000" stroke-width="1.5"/>
+    </svg>
+  </div>
+
   <!-- Navigation -->
   <header class="navbar">
     <div class="container">
       <div class="navbar-wrapper">
+        <!-- Logo -->
         <div class="navbar-brand">
           <div class="logo-container">
             <div class="logo-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
-                <path d="M10 16h12M16 10v12" stroke="currentColor" stroke-width="2"/>
+              <svg viewBox="0 0 40 40" fill="none">
+                <rect width="40" height="40" rx="8" fill="#000"/>
+                <path d="M12 28V12h4l4 8 4-8h4v16h-3V18l-3 6h-2l-3-6v10h-3z" fill="white"/>
               </svg>
             </div>
             <span class="logo-text">Jobbyist</span>
           </div>
         </div>
 
+        <!-- Navigation Menu -->
         <nav class="navbar-nav" id="navbar-nav">
           <div class="nav-dropdown">
             <button class="nav-link dropdown-trigger">
               For Job Seekers
-              <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8">
-                <path d="M6 8L0 0h12L6 8z"/>
-              </svg>
+              <i data-feather="chevron-down" class="dropdown-arrow"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('homepage')">Browse Jobs</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('candidate-profiles')">Candidate Profiles</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('jobbyist-pro')">Upgrade To Pro</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('saved')">Saved Jobs</a>
+              <a href="#job-listings" class="dropdown-item">Browse Jobs</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('resume-audit')">Resume Audit</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('pro')">Upgrade To Pro</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('upskilling')">Upskilling Tools</a>
             </div>
           </div>
           
           <div class="nav-dropdown">
             <button class="nav-link dropdown-trigger">
               For Employers
-              <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8">
-                <path d="M6 8L0 0h12L6 8z"/>
-              </svg>
+              <i data-feather="chevron-down" class="dropdown-arrow"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('claim-profile')">Claim Your Profile</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('claim-page')">Claim Your Page</a>
               <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('recruitment-suite')">Recruitment Suite</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('companies')">Company Directory</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('candidates')">Candidate Directory</a>
             </div>
           </div>
 
           <div class="nav-dropdown">
             <button class="nav-link dropdown-trigger">
-              Community
-              <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8">
-                <path d="M6 8L0 0h12L6 8z"/>
-              </svg>
+              Help & Legal
+              <i data-feather="chevron-down" class="dropdown-arrow"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('community-forum')">Community Forum</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('contact')">Help Center</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('privacy')">Privacy</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('cookies')">Cookies</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('terms')">Terms</a>
             </div>
           </div>
 
-          <!-- Language Selector -->
-          <div class="nav-dropdown">
-            <button class="nav-link dropdown-trigger" id="language-selector">
-              🇿🇦 EN
-              <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8">
-                <path d="M6 8L0 0h12L6 8z"/>
-              </svg>
-            </button>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.setLanguage('za-en')">🇿🇦 English (SA)</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.setLanguage('za-af')">🇿🇦 Afrikaans</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.setLanguage('ng-en')">🇳🇬 English (NG)</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.setLanguage('ng-yo')">🇳🇬 Yoruba</a>
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.setLanguage('ng-ig')">🇳🇬 Igbo</a>
-            </div>
-          </div>
+          <a href="#" class="nav-link" onclick="jobbyistApp.showPage('contact')">Help Center</a>
+          <a href="https://partners.jobbyist.africa" class="nav-link" target="_blank">Partner Program</a>
         </nav>
 
+        <!-- Actions -->
         <div class="navbar-actions">
+          <!-- Language Selector -->
+          <div class="language-selector">
+            <button class="language-toggle" id="language-toggle">
+              <span class="flag-icon">🇿🇦</span>
+              <span class="language-text">EN</span>
+              <i data-feather="chevron-down" class="language-arrow"></i>
+            </button>
+            <div class="language-dropdown" id="language-dropdown">
+              <button class="language-option" data-lang="za-en" data-flag="🇿🇦">
+                <span class="flag">🇿🇦</span>
+                <span>English (ZA)</span>
+              </button>
+              <button class="language-option" data-lang="za-af" data-flag="🇿🇦">
+                <span class="flag">🇿🇦</span>
+                <span>Afrikaans</span>
+              </button>
+              <button class="language-option" data-lang="ng-en" data-flag="🇳🇬">
+                <span class="flag">🇳🇬</span>
+                <span>English (NG)</span>
+              </button>
+              <button class="language-option" data-lang="ng-yo" data-flag="🇳🇬">
+                <span class="flag">🇳🇬</span>
+                <span>Yoruba</span>
+              </button>
+              <button class="language-option" data-lang="ng-ig" data-flag="🇳🇬">
+                <span class="flag">🇳🇬</span>
+                <span>Igbo</span>
+              </button>
+            </div>
+          </div>
+
           <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
             <span></span>
             <span></span>
@@ -100,40 +147,20 @@
 
   <!-- Main Content Container -->
   <main id="main-content">
-    <!-- Homepage -->
+    <!-- Homepage Content -->
     <div id="homepage" class="page active">
       <!-- Hero Section -->
       <section class="hero">
-        <div class="hero-background">
-          <div class="doodle-elements">
-            <div class="floating-doodle circle-doodle" style="top: 15%; left: 8%;">
-              <svg width="60" height="60" viewBox="0 0 60 60">
-                <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
-              </svg>
-            </div>
-            <div class="floating-doodle arrow-doodle" style="top: 25%; right: 10%;">
-              <svg width="50" height="50" viewBox="0 0 50 50">
-                <path d="M10 25 L40 25 M35 20 L40 25 L35 30" stroke="currentColor" stroke-width="3" fill="none"/>
-              </svg>
-            </div>
-            <div class="floating-doodle star-doodle" style="bottom: 20%; left: 15%;">
-              <svg width="40" height="40" viewBox="0 0 40 40">
-                <path d="M20 5 L25 15 L35 15 L27 22 L30 32 L20 26 L10 32 L13 22 L5 15 L15 15 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-        
         <div class="container">
           <div class="hero-content">
             <div class="hero-text">
               <h1 class="hero-title">
                 Find Your Dream Job in
-                <span class="highlight-text">South Africa & Nigeria</span>
+                <span class="highlight-text">Africa</span>
               </h1>
               <p class="hero-subtitle">
-                Connect with top employers and discover opportunities that match your skills. 
-                Start your career journey with Africa's most trusted job platform.
+                Connect with top employers across Nigeria and South Africa. 
+                Discover opportunities in tech, finance, healthcare, and more on Africa's leading job platform.
               </p>
             </div>
 
@@ -141,17 +168,21 @@
             <div class="search-container">
               <form class="search-form" id="hero-search-form">
                 <div class="search-field">
+                  <label for="job-title" class="sr-only">Job Title</label>
                   <div class="input-wrapper">
-                    <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="M21 21l-4.35-4.35"/>
-                    </svg>
-                    <input type="text" id="job-title" name="title" placeholder="e.g. Software Engineer" class="search-input"/>
-                    <div class="search-suggestions" id="search-suggestions"></div>
+                    <i data-feather="search" class="input-icon"></i>
+                    <input 
+                      type="text" 
+                      id="job-title" 
+                      name="title" 
+                      placeholder="Job title, keyword, or company"
+                      class="search-input"
+                    />
                   </div>
                 </div>
 
                 <div class="search-field">
+                  <label for="job-type" class="sr-only">Job Type</label>
                   <div class="select-wrapper">
                     <select id="job-type" name="type" class="search-select">
                       <option value="">Job Type</option>
@@ -161,31 +192,32 @@
                       <option value="Internship">Internship</option>
                       <option value="Remote">Remote</option>
                     </select>
+                    <i data-feather="chevron-down" class="select-icon"></i>
                   </div>
                 </div>
 
                 <div class="search-field">
+                  <label for="location" class="sr-only">Location</label>
                   <div class="select-wrapper">
                     <select id="location" name="location" class="search-select">
                       <option value="">Location</option>
+                      <option value="Nigeria">Nigeria</option>
+                      <option value="South Africa">South Africa</option>
+                      <option value="Remote">Remote</option>
                       <option value="Lagos">Lagos</option>
                       <option value="Johannesburg">Johannesburg</option>
                       <option value="Cape Town">Cape Town</option>
                       <option value="Abuja">Abuja</option>
                       <option value="Pretoria">Pretoria</option>
                       <option value="Durban">Durban</option>
-                      <option value="Nigeria">Nigeria</option>
-                      <option value="South Africa">South Africa</option>
-                      <option value="Remote">Remote</option>
                     </select>
+                    <i data-feather="chevron-down" class="select-icon"></i>
                   </div>
                 </div>
 
-                <button type="submit" class="search-btn btn--primary glow-effect">
-                  <span>Find Jobs</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
+                <button type="submit" class="search-btn btn-primary">
+                  <span>Search Jobs</span>
+                  <i data-feather="arrow-right" class="btn-icon"></i>
                 </button>
               </form>
             </div>
@@ -193,36 +225,61 @@
             <!-- Statistics -->
             <div class="hero-stats">
               <div class="stat-item">
-                <div class="stat-number" data-target="12000">0</div>
+                <div class="stat-number" data-target="15000">0</div>
                 <div class="stat-label">Jobs Posted</div>
               </div>
               <div class="stat-item">
-                <div class="stat-number" data-target="3290">0</div>
+                <div class="stat-number" data-target="2500">0</div>
                 <div class="stat-label">Companies</div>
               </div>
               <div class="stat-item">
-                <div class="stat-number" data-target="16800">0</div>
+                <div class="stat-number" data-target="50000">0</div>
                 <div class="stat-label">Candidates</div>
               </div>
               <div class="stat-item">
-                <div class="stat-number" data-target="4700">0</div>
-                <div class="stat-label">Successful Placements</div>
+                <div class="stat-number" data-target="89">0</div>
+                <div class="stat-label">Success Rate %</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Job Categories Section -->
-      <section class="job-categories">
+      <!-- Features Section -->
+      <section class="features">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Popular Job Categories</h2>
-            <p class="section-subtitle">Explore opportunities across different industries</p>
+            <h2 class="section-title">How Jobbyist Works</h2>
+            <p class="section-subtitle">Get hired in 3 simple steps</p>
           </div>
 
-          <div class="categories-grid" id="categories-grid">
-            <!-- Categories will be populated by JavaScript -->
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i data-feather="user-plus"></i>
+              </div>
+              <div class="feature-number">01</div>
+              <h3 class="feature-title">Create Profile</h3>
+              <p class="feature-description">Build your professional profile with our AI-powered resume builder and showcase your skills to top employers.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i data-feather="search"></i>
+              </div>
+              <div class="feature-number">02</div>
+              <h3 class="feature-title">Find Opportunities</h3>
+              <p class="feature-description">Discover thousands of job opportunities across Africa with our smart matching algorithm and personalized recommendations.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i data-feather="briefcase"></i>
+              </div>
+              <div class="feature-number">03</div>
+              <h3 class="feature-title">Get Hired</h3>
+              <p class="feature-description">Apply with one click, track your applications, and land your dream job with our interview preparation tools.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -240,29 +297,70 @@
           </div>
 
           <div class="section-footer">
-            <button class="btn--secondary glow-effect" id="view-all-jobs">
+            <button class="btn-secondary" id="view-all-jobs">
               <span>View All Jobs</span>
+              <i data-feather="arrow-right" class="btn-icon"></i>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- Blog Posts Section -->
-      <section class="blog-preview">
+      <!-- Categories Section -->
+      <section class="categories">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Featured Articles</h2>
-            <p class="section-subtitle">Career insights and industry news</p>
+            <h2 class="section-title">Popular Categories</h2>
+            <p class="section-subtitle">Explore jobs by industry</p>
           </div>
 
-          <div class="blog-grid" id="blog-container">
-            <!-- Blog posts will be populated by JavaScript -->
-          </div>
+          <div class="categories-grid">
+            <div class="category-card">
+              <div class="category-icon">
+                <i data-feather="code"></i>
+              </div>
+              <h3 class="category-title">Technology</h3>
+              <p class="category-count">1,234 jobs</p>
+            </div>
 
-          <div class="section-footer">
-            <button class="btn--primary glow-effect" onclick="jobbyistApp.showPage('community-forum')">
-              <span>Visit Community Forum</span>
-            </button>
+            <div class="category-card">
+              <div class="category-icon">
+                <i data-feather="dollar-sign"></i>
+              </div>
+              <h3 class="category-title">Finance</h3>
+              <p class="category-count">856 jobs</p>
+            </div>
+
+            <div class="category-card">
+              <div class="category-icon">
+                <i data-feather="heart"></i>
+              </div>
+              <h3 class="category-title">Healthcare</h3>
+              <p class="category-count">567 jobs</p>
+            </div>
+
+            <div class="category-card">
+              <div class="category-icon">
+                <i data-feather="trending-up"></i>
+              </div>
+              <h3 class="category-title">Marketing</h3>
+              <p class="category-count">423 jobs</p>
+            </div>
+
+            <div class="category-card">
+              <div class="category-icon">
+                <i data-feather="book"></i>
+              </div>
+              <h3 class="category-title">Education</h3>
+              <p class="category-count">345 jobs</p>
+            </div>
+
+            <div class="category-card">
+              <div class="category-icon">
+                <i data-feather="settings"></i>
+              </div>
+              <h3 class="category-title">Engineering</h3>
+              <p class="category-count">234 jobs</p>
+            </div>
           </div>
         </div>
       </section>
@@ -271,126 +369,158 @@
       <section class="company-preview">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Top Employers</h2>
+            <h2 class="section-title">Top Companies</h2>
             <p class="section-subtitle">Explore verified companies across Africa</p>
           </div>
 
-          <div class="companies-grid" id="companies-preview-container">
-            <!-- Companies will be populated by JavaScript -->
+          <div class="companies-carousel">
+            <div class="companies-track" id="companies-track">
+              <!-- Companies will be populated by JavaScript -->
+            </div>
+            <button class="carousel-btn carousel-prev" id="companies-prev">
+              <i data-feather="chevron-left"></i>
+            </button>
+            <button class="carousel-btn carousel-next" id="companies-next">
+              <i data-feather="chevron-right"></i>
+            </button>
           </div>
 
           <div class="section-footer">
-            <button class="btn--primary glow-effect" onclick="jobbyistApp.showPage('companies')">
+            <button class="btn-primary" onclick="jobbyistApp.showPage('company-profiles')">
               <span>View All Companies</span>
+              <i data-feather="arrow-right" class="btn-icon"></i>
             </button>
           </div>
         </div>
       </section>
-    </div>
 
-    <!-- Claim Your Profile Page -->
-    <div id="claim-profile" class="page">
-      <section class="claim-profile-hero">
+      <!-- Testimonials Section -->
+      <section class="testimonials">
         <div class="container">
-          <div class="hero-content">
-            <h1>Claim Your Company Profile</h1>
-            <p>Join thousands of verified employers across South Africa and Nigeria. Attract top talent with a professional company presence.</p>
-            <div class="free-banner">
-              <span class="free-badge">🎉 FREE</span>
-              <span>Complete verification at no cost</span>
+          <div class="section-header">
+            <h2 class="section-title">Success Stories</h2>
+            <p class="section-subtitle">Hear from professionals who found their dream jobs</p>
+          </div>
+
+          <div class="testimonials-slider">
+            <div class="testimonials-track" id="testimonials-track">
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  <p>"Jobbyist helped me land my dream job as a software engineer at a leading fintech company in Lagos. The platform's AI matching was spot-on!"</p>
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Adebayo Ogundimu">
+                  </div>
+                  <div class="author-info">
+                    <h4 class="author-name">Adebayo Ogundimu</h4>
+                    <p class="author-title">Software Engineer at PayStack</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  <p>"The recruitment tools on Jobbyist are incredible! We've hired 15 amazing candidates through their platform. Highly recommend for any growing company."</p>
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Sarah van der Merwe">
+                  </div>
+                  <div class="author-info">
+                    <h4 class="author-name">Sarah van der Merwe</h4>
+                    <p class="author-title">HR Director at Discovery Bank</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  <p>"From fresh graduate to product manager in 18 months! Jobbyist's career development resources and job matching made all the difference."</p>
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Thabo Mthembu">
+                  </div>
+                  <div class="author-info">
+                    <h4 class="author-name">Thabo Mthembu</h4>
+                    <p class="author-title">Product Manager at Nedbank</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="claim-form-section">
+      <!-- CTA Banner -->
+      <section class="cta-banner">
         <div class="container">
-          <div class="claim-form-wrapper">
-            <div class="form-card">
-              <h2>Company Verification Form</h2>
-              <form id="claim-profile-form" class="claim-form">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label class="form-label">Company Name *</label>
-                    <input type="text" name="companyName" class="form-control" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Industry *</label>
-                    <select name="industry" class="form-control" required>
-                      <option value="">Select Industry</option>
-                      <option value="Technology">Technology</option>
-                      <option value="Finance">Finance & Banking</option>
-                      <option value="Healthcare">Healthcare</option>
-                      <option value="Education">Education</option>
-                      <option value="Manufacturing">Manufacturing</option>
-                      <option value="Retail">Retail & Consumer</option>
-                      <option value="Construction">Construction</option>
-                      <option value="Marketing">Marketing & Advertising</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                </div>
+          <div class="cta-content">
+            <div class="cta-text">
+              <h2 class="cta-title">Ready to Find Your Dream Job?</h2>
+              <p class="cta-subtitle">Join thousands of professionals who have already found their perfect career match on Jobbyist.</p>
+            </div>
+            <div class="cta-actions">
+              <button class="btn-primary cta-primary" onclick="jobbyistApp.openRegistrationModal()">
+                <span>Get Started Now</span>
+                <i data-feather="arrow-right" class="btn-icon"></i>
+              </button>
+              <button class="btn-secondary cta-secondary" onclick="jobbyistApp.showPage('pro')">
+                <span>Explore Pro Features</span>
+                <i data-feather="star" class="btn-icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <div class="form-row">
-                  <div class="form-group">
-                    <label class="form-label">Company Size *</label>
-                    <select name="companySize" class="form-control" required>
-                      <option value="">Select Size</option>
-                      <option value="1-10">1-10 employees</option>
-                      <option value="11-50">11-50 employees</option>
-                      <option value="51-200">51-200 employees</option>
-                      <option value="201-1000">201-1000 employees</option>
-                      <option value="1000+">1000+ employees</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Location *</label>
-                    <select name="location" class="form-control" required>
-                      <option value="">Select Location</option>
-                      <option value="Lagos, Nigeria">Lagos, Nigeria</option>
-                      <option value="Johannesburg, South Africa">Johannesburg, South Africa</option>
-                      <option value="Cape Town, South Africa">Cape Town, South Africa</option>
-                      <option value="Abuja, Nigeria">Abuja, Nigeria</option>
-                      <option value="Pretoria, South Africa">Pretoria, South Africa</option>
-                      <option value="Durban, South Africa">Durban, South Africa</option>
-                      <option value="Port Harcourt, Nigeria">Port Harcourt, Nigeria</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                </div>
+      <!-- FAQ Section -->
+      <section class="faq">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know about Jobbyist</p>
+          </div>
 
-                <div class="form-group">
-                  <label class="form-label">Company Description *</label>
-                  <textarea name="description" rows="4" class="form-control" placeholder="Describe your company, mission, and what makes it a great place to work..." required></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Company Logo</label>
-                  <div class="file-upload-area" id="logo-upload">
-                    <div class="file-upload-content">
-                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                        <polyline points="21,15 16,10 5,21"/>
-                      </svg>
-                      <p>Drag & drop your logo here or <span class="upload-link">browse</span></p>
-                      <small>PNG, JPG up to 5MB</small>
-                    </div>
-                    <input type="file" name="logo" accept=".png,.jpg,.jpeg" class="file-input">
-                    <div class="file-preview" style="display: none;"></div>
-                  </div>
-                </div>
-
-                <button type="submit" class="btn--primary glow-effect btn-full-width">
-                  <span>Submit for Verification</span>
-                </button>
-              </form>
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>How do I create a profile on Jobbyist?</span>
+                <i data-feather="plus" class="faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Creating a profile is simple! Click "Get Started" and follow our step-by-step process. Upload your resume, add your skills and experience, and our AI will help optimize your profile for better job matches.</p>
+              </div>
             </div>
 
-            <div class="sample-companies">
-              <h3>Featured Companies</h3>
-              <div class="sample-companies-grid" id="sample-companies-grid">
-                <!-- Sample companies will be populated by JavaScript -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Is Jobbyist free to use?</span>
+                <i data-feather="plus" class="faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Yes! Jobbyist is completely free for job seekers. You can search jobs, apply to positions, and use our basic features at no cost. We also offer Jobbyist Pro with premium features for enhanced job searching.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>How does the job matching algorithm work?</span>
+                <i data-feather="plus" class="faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Our AI-powered algorithm analyzes your skills, experience, preferences, and career goals to match you with the most relevant job opportunities. The more complete your profile, the better your matches!</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Can employers from other African countries post jobs?</span>
+                <i data-feather="plus" class="faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Currently, we focus on South Africa and Nigeria, but we're expanding across Africa. Employers from other African countries can post remote positions or jobs for candidates willing to relocate.</p>
               </div>
             </div>
           </div>
@@ -398,189 +528,8 @@
       </section>
     </div>
 
-    <!-- Recruitment Suite Page -->
-    <div id="recruitment-suite" class="page">
-      <section class="recruitment-hero">
-        <div class="container">
-          <div class="hero-content">
-            <h1>Enterprise Recruitment Suite</h1>
-            <p>Transform your hiring process with AI-powered tools designed for modern HR teams. Get early access to cutting-edge recruitment technology.</p>
-            
-            <div class="early-access-form">
-              <h3>Join the Waiting List</h3>
-              <form id="recruitment-waitlist-form" class="waitlist-form">
-                <div class="form-row">
-                  <div class="form-group">
-                    <input type="email" name="email" placeholder="Your email address" class="form-control" required>
-                  </div>
-                  <button type="submit" class="btn--primary glow-effect">
-                    <span>Get Early Access</span>
-                  </button>
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <input type="text" name="company" placeholder="Company name" class="form-control" required>
-                  </div>
-                  <div class="form-group">
-                    <select name="companySize" class="form-control" required>
-                      <option value="">Company size</option>
-                      <option value="1-10">1-10 employees</option>
-                      <option value="11-50">11-50 employees</option>
-                      <option value="51-200">51-200 employees</option>
-                      <option value="201-1000">201-1000 employees</option>
-                      <option value="1000+">1000+ employees</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <textarea name="hiringNeeds" rows="3" placeholder="Tell us about your hiring needs..." class="form-control"></textarea>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="recruitment-features">
-        <div class="container">
-          <div class="features-grid">
-            <div class="feature-card">
-              <div class="feature-icon">🤖</div>
-              <h3>Advanced Candidate Matching</h3>
-              <p>AI algorithms that understand skills, experience, and cultural fit to find your perfect candidates faster than ever.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">📋</div>
-              <h3>Automated Screening & Assessment</h3>
-              <p>Intelligent screening tools that evaluate candidates automatically, saving your team hundreds of hours.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">📅</div>
-              <h3>Interview Scheduling & Management</h3>
-              <p>Seamless interview coordination with calendar integration, video calls, and automated reminders.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">👥</div>
-              <h3>Team Collaboration Features</h3>
-              <p>Real-time collaboration tools for hiring teams with shared notes, ratings, and decision tracking.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">📊</div>
-              <h3>Analytics & Reporting Dashboard</h3>
-              <p>Comprehensive insights into your hiring funnel, time-to-hire metrics, and recruitment ROI.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">🎯</div>
-              <h3>Talent Pipeline Management</h3>
-              <p>Build and nurture talent pools for future opportunities with automated engagement campaigns.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Candidate Profiles Page -->
-    <div id="candidate-profiles" class="page">
-      <section class="candidates-hero">
-        <div class="container">
-          <div class="hero-content">
-            <h1>Candidate Directory</h1>
-            <p>Discover talented professionals across South Africa and Nigeria. Filter by skills, experience, and availability.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="candidates-search">
-        <div class="container">
-          <div class="search-filters">
-            <div class="filter-group">
-              <label class="filter-label">Location</label>
-              <div class="multi-select" id="location-filter">
-                <button class="multi-select-trigger">Select locations</button>
-                <div class="multi-select-dropdown">
-                  <label><input type="checkbox" value="Nigeria"> Nigeria</label>
-                  <label><input type="checkbox" value="South Africa"> South Africa</label>
-                  <label><input type="checkbox" value="Remote"> Remote</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <label class="filter-label">Skills</label>
-              <div class="skills-filter" id="skills-filter">
-                <input type="text" placeholder="Add skills..." class="skills-input">
-                <div class="skills-chips"></div>
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <label class="filter-label">Experience Level</label>
-              <div class="range-slider">
-                <input type="range" id="experience-slider" min="0" max="10" value="0" class="slider">
-                <div class="range-labels">
-                  <span>Entry</span>
-                  <span>Mid</span>
-                  <span>Senior</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <label class="filter-label">Industry</label>
-              <select id="industry-filter" class="form-control">
-                <option value="">All Industries</option>
-                <option value="Technology">Technology</option>
-                <option value="Finance">Finance</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Education">Education</option>
-                <option value="Marketing">Marketing</option>
-              </select>
-            </div>
-
-            <div class="filter-group">
-              <label class="filter-label">Availability</label>
-              <label class="toggle-switch">
-                <input type="checkbox" id="availability-toggle">
-                <span class="toggle-slider"></span>
-                <span class="toggle-label">Available now</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="search-results-info">
-            <div class="results-count" id="candidates-count">Loading candidates...</div>
-            <button class="btn--secondary" onclick="jobbyistApp.clearCandidateFilters()">Clear Filters</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="candidates-list">
-        <div class="container">
-          <div class="candidates-grid" id="candidates-container">
-            <!-- Candidates will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Individual Candidate Page -->
-    <div id="candidate" class="page">
-      <section class="candidate-profile">
-        <div class="container">
-          <div class="candidate-detail" id="candidate-detail">
-            <!-- Candidate details will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Jobbyist Pro Landing Page -->
-    <div id="jobbyist-pro" class="page">
+    <!-- Other Pages -->
+    <div id="pro" class="page">
       <section class="pro-hero">
         <div class="container">
           <div class="pro-hero-content">
@@ -601,93 +550,15 @@
                 </div>
                 <div class="price-note" id="pro-price-note">ZAR pricing for South Africa</div>
               </div>
-              <button class="btn--primary glow-effect pro-subscribe" id="start-trial-btn">
+              <button class="btn-primary pro-subscribe" id="start-trial-btn">
                 <span>Start Free Trial</span>
+                <i data-feather="arrow-right" class="btn-icon"></i>
               </button>
               <div class="pricing-features">
                 <div class="feature-item">✓ 3-day free trial</div>
                 <div class="feature-item">✓ Cancel anytime</div>
                 <div class="feature-item">✓ All premium features included</div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="pro-features">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Premium Features</h2>
-            <p class="section-subtitle">Everything you need to land your dream job</p>
-          </div>
-
-          <div class="pro-features-grid" id="pro-features-container">
-            <!-- Pro features will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Saved Jobs Page -->
-    <div id="saved" class="page">
-      <section class="saved-jobs">
-        <div class="container">
-          <div class="section-header">
-            <h1>Saved Jobs</h1>
-            <p>Keep track of opportunities you're interested in</p>
-          </div>
-
-          <div class="saved-jobs-container" id="saved-jobs-container">
-            <!-- Saved jobs will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Companies Page -->
-    <div id="companies" class="page">
-      <section class="companies-directory">
-        <div class="container">
-          <div class="section-header">
-            <h1>Company Directory</h1>
-            <p>Explore verified employers across South Africa and Nigeria</p>
-          </div>
-
-          <div class="companies-grid" id="all-companies-container">
-            <!-- All companies will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Community Forum Page -->
-    <div id="community-forum" class="page">
-      <section class="forum-content">
-        <div class="container">
-          <div class="forum-header">
-            <h1>Community Forum</h1>
-            <p>Connect with professionals, share insights, and grow your career</p>
-          </div>
-
-          <div class="auth-gate" id="forum-auth-gate">
-            <div class="auth-card">
-              <h3>Access Required</h3>
-              <p>Please request access to join our exclusive community forum. We'll send you a magic link via email.</p>
-              
-              <form id="forum-access-form" class="auth-form">
-                <div class="form-group">
-                  <input type="email" name="email" placeholder="Your email address" class="form-control" required>
-                </div>
-                <button type="submit" class="btn--primary glow-effect">
-                  <span>Request Access</span>
-                </button>
-              </form>
-            </div>
-          </div>
-
-          <div class="forum-main hidden" id="forum-main">
-            <div class="blog-grid" id="forum-posts-container">
-              <!-- Forum posts will be populated by JavaScript -->
             </div>
           </div>
         </div>
@@ -706,7 +577,9 @@
           <div class="contact-grid">
             <div class="contact-info">
               <div class="contact-item">
-                <div class="contact-icon">📍</div>
+                <div class="contact-icon">
+                  <i data-feather="map-pin"></i>
+                </div>
                 <div>
                   <h3>Office Address</h3>
                   <p>297 Lucky Bean Crescent<br>Pretoria, GP, 1619<br>South Africa</p>
@@ -714,7 +587,9 @@
               </div>
               
               <div class="contact-item">
-                <div class="contact-icon">📞</div>
+                <div class="contact-icon">
+                  <i data-feather="phone"></i>
+                </div>
                 <div>
                   <h3>Phone</h3>
                   <p>+27-12-884-5125</p>
@@ -722,7 +597,9 @@
               </div>
               
               <div class="contact-item">
-                <div class="contact-icon">📧</div>
+                <div class="contact-icon">
+                  <i data-feather="mail"></i>
+                </div>
                 <div>
                   <h3>Email</h3>
                   <p>info@jobbyist.africa</p>
@@ -731,7 +608,7 @@
             </div>
             
             <div class="contact-form-container">
-              <form class="contact-form" id="contact-form">
+              <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                 <div class="form-row">
                   <div class="form-group">
                     <label class="form-label">Name *</label>
@@ -760,8 +637,9 @@
                   <textarea name="message" rows="5" class="form-control" placeholder="How can we help you?" required></textarea>
                 </div>
                 
-                <button type="submit" class="btn--primary glow-effect">
+                <button type="submit" class="btn-primary">
                   <span>Send Message</span>
+                  <i data-feather="send" class="btn-icon"></i>
                 </button>
               </form>
             </div>
@@ -779,33 +657,45 @@
           <div class="footer-logo">
             <div class="logo-container">
               <div class="logo-icon">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
-                  <path d="M10 16h12M16 10v12" stroke="currentColor" stroke-width="2"/>
+                <svg viewBox="0 0 40 40" fill="none">
+                  <rect width="40" height="40" rx="8" fill="#000"/>
+                  <path d="M12 28V12h4l4 8 4-8h4v16h-3V18l-3 6h-2l-3-6v10h-3z" fill="white"/>
                 </svg>
               </div>
               <span class="logo-text">Jobbyist</span>
             </div>
           </div>
           <p class="footer-description">Africa's leading job platform connecting talent with opportunity across South Africa and Nigeria.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="LinkedIn" target="_blank">
+              <i data-feather="linkedin"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter" target="_blank">
+              <i data-feather="twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook" target="_blank">
+              <i data-feather="facebook"></i>
+            </a>
+          </div>
         </div>
 
         <div class="footer-section">
           <h4 class="footer-title">For Job Seekers</h4>
           <ul class="footer-links">
-            <li><a href="#" onclick="jobbyistApp.showPage('homepage')">Browse Jobs</a></li>
-            <li><a href="#" onclick="jobbyistApp.showPage('candidate-profiles')">Candidate Profiles</a></li>
-            <li><a href="#" onclick="jobbyistApp.showPage('jobbyist-pro')">Upgrade To Pro</a></li>
-            <li><a href="#" onclick="jobbyistApp.showPage('saved')">Saved Jobs</a></li>
+            <li><a href="#job-listings">Browse Jobs</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('resume-audit')">Resume Audit</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('pro')">Upgrade To Pro</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('upskilling')">Upskilling Tools</a></li>
           </ul>
         </div>
 
         <div class="footer-section">
           <h4 class="footer-title">For Employers</h4>
           <ul class="footer-links">
-            <li><a href="#" onclick="jobbyistApp.showPage('claim-profile')">Claim Your Profile</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('claim-page')">Claim Your Page</a></li>
             <li><a href="#" onclick="jobbyistApp.showPage('recruitment-suite')">Recruitment Suite</a></li>
-            <li><a href="#" onclick="jobbyistApp.showPage('companies')">Company Directory</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('candidates')">Candidate Directory</a></li>
+            <li><a href="https://partners.jobbyist.africa" target="_blank">Partner Program</a></li>
           </ul>
         </div>
 
@@ -813,224 +703,75 @@
           <h4 class="footer-title">Support</h4>
           <ul class="footer-links">
             <li><a href="#" onclick="jobbyistApp.showPage('contact')">Help Center</a></li>
-            <li><a href="#" onclick="jobbyistApp.showPage('community-forum')">Community Forum</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('privacy')">Privacy Policy</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('terms')">Terms of Service</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('cookies')">Cookie Settings</a></li>
           </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-title">Contact Info</h4>
+          <div class="contact-info">
+            <p>297 Lucky Bean Crescent<br>Pretoria, GP, 1619</p>
+            <p>Phone: +27 (12) 884-5125</p>
+            <p>Email: info@jobbyist.africa</p>
+          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Jobbyist. All rights reserved. | Africa's leading job platform</p>
+        <p>&copy; 2025 Jobbyist. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Registration Modal -->
-  <div class="modal registration-modal hidden" id="registration-modal">
-    <div class="modal-backdrop" onclick="jobbyistApp.closeRegistrationModal()"></div>
-    <div class="modal-content registration-content">
-      <div class="modal-header">
-        <h3>Create Your Job Seeker Account</h3>
-        <button class="modal-close" onclick="jobbyistApp.closeRegistrationModal()">&times;</button>
-      </div>
-      
-      <div class="progress-container">
-        <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <div class="progress-steps">
-          <span class="step active" data-step="1">1</span>
-          <span class="step" data-step="2">2</span>
-          <span class="step" data-step="3">3</span>
-        </div>
-      </div>
-
-      <form id="registration-form" class="registration-form">
-        <div class="form-step active" data-step="1">
-          <h4 class="step-title">Personal Information</h4>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Full Name *</label>
-              <input type="text" name="fullName" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email Address *</label>
-              <input type="email" name="email" class="form-control" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Phone Number *</label>
-              <input type="tel" name="phone" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Location *</label>
-              <select name="location" class="form-control" required>
-                <option value="">Select location</option>
-                <option value="Lagos">Lagos</option>
-                <option value="Johannesburg">Johannesburg</option>
-                <option value="Cape Town">Cape Town</option>
-                <option value="Abuja">Abuja</option>
-                <option value="Pretoria">Pretoria</option>
-                <option value="Durban">Durban</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-step" data-step="2">
-          <h4 class="step-title">Professional Details</h4>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Current Job Title</label>
-              <input type="text" name="currentJobTitle" class="form-control" placeholder="e.g. Software Developer">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Years of Experience *</label>
-              <select name="experience" class="form-control" required>
-                <option value="">Select experience</option>
-                <option value="0-1 years">0-1 years</option>
-                <option value="1-3 years">1-3 years</option>
-                <option value="3-5 years">3-5 years</option>
-                <option value="5-10 years">5-10 years</option>
-                <option value="10+ years">10+ years</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Skills (comma separated)</label>
-              <input type="text" name="skills" class="form-control" placeholder="e.g. JavaScript, React, Node.js">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Industry</label>
-              <select name="industry" class="form-control">
-                <option value="">Select industry</option>
-                <option value="Technology">Technology</option>
-                <option value="Finance">Finance</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Education">Education</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-step" data-step="3">
-          <h4 class="step-title">Complete Registration</h4>
-          <div class="form-group">
-            <label class="form-label">Professional Summary</label>
-            <textarea name="summary" rows="4" class="form-control" placeholder="Brief description of your professional background and career goals"></textarea>
-          </div>
-          
-          <div class="terms-section">
-            <label class="checkbox-label">
-              <input type="checkbox" name="privacyAgreement" required>
-              <span class="checkbox-custom"></span>
-              I agree to the Privacy Policy and Terms of Service *
-            </label>
-            
-            <label class="checkbox-label">
-              <input type="checkbox" name="jobAlerts">
-              <span class="checkbox-custom"></span>
-              Send me email notifications about relevant job opportunities
-            </label>
-          </div>
-        </div>
-
-        <div class="form-navigation">
-          <button type="button" class="btn--secondary" id="prev-step" style="display: none;">Previous</button>
-          <button type="button" class="btn--primary glow-effect" id="next-step">
-            <span>Next</span>
-          </button>
-          <button type="submit" class="btn--primary glow-effect" id="submit-registration" style="display: none;">
-            <span>Create Account</span>
-          </button>
-        </div>
-      </form>
-
-      <div class="registration-success hidden" id="registration-success">
-        <div class="success-content">
-          <div class="success-icon">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22,4 12,14.01 9,11.01"/>
-            </svg>
-          </div>
-          <h3>Welcome to Jobbyist!</h3>
-          <p>Your profile has been created successfully. You can now apply to jobs and employers can discover you.</p>
-          <button class="btn--primary glow-effect" id="apply-to-job">
-            <span id="apply-job-text">Start Exploring Jobs</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Company Rating Modal -->
-  <div class="modal rating-modal hidden" id="rating-modal">
-    <div class="modal-backdrop" onclick="jobbyistApp.closeRatingModal()"></div>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Rate Company</h3>
-        <button class="modal-close" onclick="jobbyistApp.closeRatingModal()">&times;</button>
-      </div>
-      
-      <form id="rating-form" class="rating-form">
-        <div class="rating-stars" id="rating-stars">
-          <span class="star" data-rating="1">★</span>
-          <span class="star" data-rating="2">★</span>
-          <span class="star" data-rating="3">★</span>
-          <span class="star" data-rating="4">★</span>
-          <span class="star" data-rating="5">★</span>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">Your Review</label>
-          <textarea name="review" rows="4" class="form-control" placeholder="Share your experience..."></textarea>
-        </div>
-        
-        <button type="submit" class="btn--primary glow-effect">
-          <span>Submit Review</span>
-        </button>
-      </form>
-    </div>
-  </div>
-
   <!-- Floating Chatbot -->
-  <div class="chatbot-container">
-    <button class="chatbot-trigger" id="chatbot-trigger">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      </svg>
+  <div class="floating-chatbot">
+    <button class="chatbot-toggle" id="chatbot-toggle">
+      <i data-feather="message-circle" class="chatbot-icon"></i>
     </button>
     
     <div class="chatbot-panel hidden" id="chatbot-panel">
       <div class="chatbot-header">
-        <h4>JobbyAI Assistant</h4>
-        <button class="chatbot-close" onclick="jobbyistApp.toggleChatbot()">&times;</button>
+        <div class="chatbot-title">
+          <h4>Jobbyist Assistant</h4>
+          <span class="chatbot-status">Online</span>
+        </div>
+        <button class="chatbot-close" id="chatbot-close">
+          <i data-feather="x"></i>
+        </button>
       </div>
+      
       <div class="chatbot-messages" id="chatbot-messages">
-        <div class="bot-message">
-          <p>Hi! I'm JobbyAI, your career assistant. How can I help you today?</p>
+        <div class="chatbot-message bot-message">
+          <div class="message-avatar">
+            <i data-feather="user"></i>
+          </div>
+          <div class="message-content">
+            <p>Hi! I'm Jobby, your personal job assistant. How can I help you today?</p>
+          </div>
         </div>
       </div>
+      
       <div class="chatbot-input">
-        <input type="text" placeholder="Ask me anything..." id="chatbot-input">
-        <button onclick="jobbyistApp.sendChatMessage()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <line x1="22" y1="2" x2="11" y2="13"/>
-            <polygon points="22,2 15,22 11,13 2,9 22,2"/>
-          </svg>
-        </button>
+        <form class="chatbot-form" id="chatbot-form">
+          <input type="text" placeholder="Ask us anything..." class="chatbot-text-input" id="chatbot-text-input">
+          <button type="submit" class="chatbot-send">
+            <i data-feather="send"></i>
+          </button>
+        </form>
       </div>
     </div>
   </div>
 
   <script src="https://jobbyist.africa/app.js"></script>
+  <script>
+    // Initialize Feather icons after DOM load
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof feather !== 'undefined') {
+        feather.replace();
+      }
+    });
+  </script>
 </body>
 </html>
