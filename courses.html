@@ -1,0 +1,70 @@
+<!-- E-Learning Landing Page with Coming-Soon Modal -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Courses | Jobbyist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://jobbyist.co.za/style.css"/>
+</head>
+<body>
+  <header id="navbar-placeholder"></header>
+
+  <section class="section hero py-100">
+    <div class="container text-center">
+      <h1 class="heading-xl mb-16">Upskill with Jobbyist Courses</h1>
+      <p class="text-lg mb-40">Learn in-demand skills to stand out to African employers. Join our waiting list to get early access when our e-learning platform launches.</p>
+      <a href="#courses-grid" class="btn btn--primary smooth-scroll"><span>Explore Sample Courses</span><i data-feather="arrow-down"></i></a>
+    </div>
+  </section>
+
+  <section id="courses-grid" class="section py-80 bg-gray">
+    <div class="container">
+      <h2 class="heading-lg mb-32">Sample Courses</h2>
+      <div class="grid courses-grid">
+        <!-- Six Course Cards -->
+        <template id="course-card-template">
+          <div class="course-card card fade-in-up">
+            <div class="course-card__body">
+              <h3 class="heading-md course-title"></h3>
+              <p class="mb-16 course-desc"></p>
+              <button class="btn btn--outline preview-btn"><span>Preview</span><i data-feather="eye"></i></button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coming Soon Modal -->
+  <div class="modal hidden" id="courses-modal" role="dialog" aria-modal="true" aria-labelledby="courses-modal-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content courses-modal-content">
+      <div class="modal-header">
+        <h3 id="courses-modal-title">Course Coming Soon!</h3>
+        <button class="modal-close" aria-label="Close modal" data-close-modal><i data-feather="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-24" id="modal-course-name"></p>
+        <form id="courses-waitlist-form" action="https://formspree.io/f/COURSES_WAITLIST_FORM_ID" method="POST" class="waitlist-form">
+          <input type="hidden" name="course" id="hidden-course-input"/>
+          <label class="form-label" for="waitlist-email">Email address</label>
+          <input type="email" name="email" id="waitlist-email" class="form-control mb-16" placeholder="you@example.com" required/>
+          <label class="checkbox-label mb-16">
+            <input type="checkbox" name="gdpr" required/>
+            <span class="checkbox-custom"></span> I agree to receive updates about Jobbyist Courses.
+          </label>
+          <button type="submit" class="btn btn--primary"><span>Join Waiting List</span><i data-feather="send"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer-placeholder"></footer>
+
+  <script defer src="https://jobbyist.africa/nav.js"></script>
+  <script defer src="https://jobbyist.africa/courses-modal.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>
