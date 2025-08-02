@@ -1,0 +1,55 @@
+<!-- Dedicated Geo-Filtered Job Listings Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Browse Jobs | Jobbyist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="page" id="browse-jobs-page">
+    <!-- Re-use navbar include -->
+    <header id="navbar-placeholder"></header>
+
+    <section class="section py-80">
+      <div class="container">
+        <h1 class="heading-xl mb-24">Browse Job Listings</h1>
+        <!-- Filter Bar -->
+        <form class="job-filter-bar" id="job-filter-form" aria-label="Job filter">
+          <input type="text" id="filter-title" class="form-control" placeholder="Job title or keyword" aria-label="Job title"/>
+          <select id="filter-type" class="form-control" aria-label="Job type">
+            <option value="">All Types</option>
+            <option>Full-time</option>
+            <option>Part-time</option>
+            <option>Contract</option>
+            <option>Internship</option>
+            <option>Remote</option>
+          </select>
+          <select id="filter-city" class="form-control" aria-label="City"></select>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-remote"/>
+            <span class="checkbox-custom"></span>Remote only
+          </label>
+          <button type="submit" class="btn btn--primary"><span>Filter</span><i data-feather="filter"></i></button>
+        </form>
+
+        <!-- Job Cards Container -->
+        <div class="jobs-container mt-40" id="jobs-container"></div>
+      </div>
+    </section>
+
+    <!-- Footer Include -->
+    <footer id="footer-placeholder"></footer>
+  </div>
+
+  <script defer src="data-loader.js"></script>
+  <script defer src="https://jobbyist.africa/nav.js"></script>
+  <script defer src="search.js"></script>
+  <script defer src="bookmark.js"></script>
+  <script defer src="https://jobbyist.africa/app.js"></script>
+  <script defer src="https://jobbyist.africa/jobs-filter.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>
