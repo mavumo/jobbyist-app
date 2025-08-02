@@ -1572,6 +1572,248 @@ class JobbyistApp {
     description: 'Automation platform built into GitHub for building, testing, and deploying all from code repositories.', 
     founded: '2019 (feature launch)', website: 'https://github.com/features/actions', benefits: ['Integrated DevOps', 'Scalable Workflows'], 
     culture: 'Automation-first and integrated.'
+  },
+       {
+    id: 'company-171', name: 'FNB South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/53/First_National_Bank_%28South_Africa%29_logo.svg',
+    industry: 'Banking', location: 'Johannesburg, South Africa', size: '10,001+', employees: 'approx. 15,000',
+    openJobs: 0, verified: true, rating: 4.3, reviewCount: 190,
+    description: 'Major retail and business bank in South Africa, part of the FirstRand Group, known for digital innovation and customer-centric products.',
+    founded: '1838', website: 'https://www.fnb.co.za', benefits: ['Digital Tools', 'Retirement Plans', 'Wellness'], 
+    culture: 'Innovative, client-focused, and transformation-oriented.'
+  },
+  {
+    id: 'company-172', name: 'KPMG South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/KPMG_logo.svg',
+    industry: 'Professional Services', location: 'Johannesburg, South Africa', size: '5,001-10,000', employees: 'approx. 6,500',
+    openJobs: 0, verified: true, rating: 4.2, reviewCount: 160,
+    description: 'Member firm of the global KPMG network offering audit, tax and advisory services with strong presence across Africa.',
+    founded: '1897 (global)', website: 'https://home.kpmg/za', benefits: ['Professional Certification Support', 'Flexible Development Paths'], 
+    culture: 'Ethical, development-driven, and collaborative.'
+  },
+  {
+    id: 'company-173', name: 'Deloitte South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Deloitte.svg',
+    industry: 'Professional Services', location: 'Johannesburg, South Africa', size: '10,001+', employees: 'approx. 8,000',
+    openJobs: 0, verified: true, rating: 4.3, reviewCount: 175,
+    description: 'Global professional services network providing audit, consulting, financial advisory and risk advisory across South Africa.',
+    founded: '1845 (global)', website: 'https://www2.deloitte.com/za', benefits: ['Global Mobility', 'Learning & Development'], 
+    culture: 'High-performance with emphasis on impact and inclusion.'
+  },
+  {
+    id: 'company-174', name: 'PwC South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/PwC_Logo.svg',
+    industry: 'Professional Services', location: 'Johannesburg, South Africa', size: '10,001+', employees: 'approx. 7,000',
+    openJobs: 0, verified: true, rating: 4.2, reviewCount: 168,
+    description: 'Member firm of PricewaterhouseCoopers offering assurance, tax and advisory services with regional footprint.',
+    founded: '1998 (merger)', website: 'https://www.pwc.co.za', benefits: ['Career Pathing', 'Certifications'], 
+    culture: 'Collaborative and client-driven.'
+  },
+  {
+    id: 'company-175', name: 'EY South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/EY_logo.svg',
+    industry: 'Professional Services', location: 'Johannesburg, South Africa', size: '10,001+', employees: 'approx. 6,500',
+    openJobs: 0, verified: true, rating: 4.1, reviewCount: 155,
+    description: 'Global Ernst & Young member firm providing advisory, assurance, tax and transaction services in South Africa.',
+    founded: '1989 (as EY)', website: 'https://www.ey.com/en_za', benefits: ['Leadership Programs', 'Flexible Development'], 
+    culture: 'Entrepreneurial and purpose-driven.'
+  },
+  {
+    id: 'company-176', name: 'KPMG Nigeria', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/KPMG_logo.svg',
+    industry: 'Professional Services', location: 'Lagos, Nigeria', size: '1,001-2,000', employees: 'approx. 1,500',
+    openJobs: 0, verified: true, rating: 4.0, reviewCount: 140,
+    description: 'Provider of audit, tax and advisory services in Nigeria, part of the global KPMG network with emphasis on local compliance and growth.',
+    founded: '1996 (local presence)', website: 'https://home.kpmg/ng', benefits: ['Skill Development', 'Global Exposure'], 
+    culture: 'Integrity and capability building.'
+  },
+  {
+    id: 'company-177', name: 'PwC Nigeria', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/PwC_Logo.svg',
+    industry: 'Professional Services', location: 'Lagos, Nigeria', size: '1,001-2,000', employees: 'approx. 1,600',
+    openJobs: 0, verified: true, rating: 4.1, reviewCount: 142,
+    description: 'Advisory, tax and assurance services provider delivering multinational and local solutions in Nigeria.', 
+    founded: '1990s (local)', website: 'https://www.pwc.com/ng', benefits: ['Training', 'Career Mobility'], 
+    culture: 'Client-centered and collaborative.'
+  },
+  {
+    id: 'company-178', name: 'EY Nigeria', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/EY_logo.svg',
+    industry: 'Professional Services', location: 'Lagos, Nigeria', size: '1,001-2,000', employees: 'approx. 1,400',
+    openJobs: 0, verified: true, rating: 4.0, reviewCount: 135,
+    description: 'Part of the EY global network offering assurance, consulting and tax services tailored to Nigerian market challenges.', 
+    founded: '1990s (local)', website: 'https://www.ey.com/en_ng', benefits: ['Leadership Tracks', 'Global Secondments'], 
+    culture: 'Transformation and trust.'
+  },
+  {
+    id: 'company-179', name: 'McKinsey & Company South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/McKinsey_%26_Company_logo.svg',
+    industry: 'Management Consulting', location: 'Johannesburg, South Africa', size: '1,001-5,000', employees: 'approx. 1,200 (regional)',
+    openJobs: 0, verified: true, rating: 4.5, reviewCount: 210,
+    description: 'Global strategy consultancy with South African presence advising governments and enterprises on transformation.', 
+    founded: '1926 (global)', website: 'https://www.mckinsey.com/za', benefits: ['Strategy Exposure', 'Professional Development'], 
+    culture: 'Impact-first and analytical.'
+  },
+  {
+    id: 'company-180', name: 'Bain & Company South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Bain_%26_Company_logo.svg',
+    industry: 'Management Consulting', location: 'Johannesburg, South Africa', size: '1,001-5,000', employees: 'approx. 800 (regional)',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 190,
+    description: 'Top-tier management consulting firm helping clients achieve sustainable results across industries in South Africa.', 
+    founded: '1973 (global)', website: 'https://www.bain.com', benefits: ['Client Immersion', 'Learning'], 
+    culture: 'Results-oriented and collaborative.'
+  },
+  {
+    id: 'company-181', name: 'Boston Consulting Group South Africa', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/BCG_logo.svg',
+    industry: 'Management Consulting', location: 'Johannesburg, South Africa', size: '1,001-5,000', employees: 'approx. 900 (regional)',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 195,
+    description: 'Strategic advisory firm working with public and private sector clients to address complex challenges in Africa.', 
+    founded: '1963 (global)', website: 'https://www.bcg.com', benefits: ['Career Mobility', 'Thought Leadership'], 
+    culture: 'Collaborative and insight-driven.'
+  },
+  {
+    id: 'company-182', name: 'IHS Towers Nigeria', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/58/IHS_Towers_Logo.svg',
+    industry: 'Telecom Infrastructure', location: 'Lagos, Nigeria', size: '10,001+', employees: 'approx. 6,000',
+    openJobs: 0, verified: true, rating: 4.0, reviewCount: 150,
+    description: 'Leading independent tower company in Africa providing telecom infrastructure and neutral host services.', 
+    founded: '2001', website: 'https://www.ihstowers.com', benefits: ['Infrastructure Impact', 'Training'], 
+    culture: 'Operational excellence and scale.'
+  },
+  {
+    id: 'company-183', name: 'Discovery Bank', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Discovery_Bank_logo.svg',
+    industry: 'Banking / Fintech', location: 'Sandton, South Africa', size: '1,001-5,000', employees: 'approx. 2,500',
+    openJobs: 0, verified: true, rating: 4.3, reviewCount: 165,
+    description: 'Digital bank built on the Vitality wellness ecosystem, providing personalized banking products.', 
+    founded: '2019', website: 'https://www.discovery.co.za/bank', benefits: ['Wellness-linked Rewards', 'Innovative Products'], 
+    culture: 'Health-conscious financial innovation.'
+  },
+  {
+    id: 'company-184', name: 'United Capital Nigeria', logo: 'https://www.unitedcapitalplcgroup.com/images/logo.png',
+    industry: 'Financial Services', location: 'Lagos, Nigeria', size: '1,001-5,000', employees: 'approx. 1,800',
+    openJobs: 0, verified: true, rating: 4.2, reviewCount: 145,
+    description: 'Investment banking and wealth management firm offering financial advisory, asset management and investment solutions.', 
+    founded: '1997', website: 'https://www.unitedcapitalplcgroup.com', benefits: ['Private Client Exposure', 'Strategic Advisory'], 
+    culture: 'Client focus and professionalism.'
+  },
+  {
+    id: 'company-185', name: 'Old Mutual South Africa', logo: 'https://seeklogo.com/images/O/old-mutual-logo-9F1A9D4B64-seeklogo.com.png',
+    industry: 'Financial Services', location: 'Cape Town, South Africa', size: '10,001+', employees: 'approx. 11,000',
+    openJobs: 0, verified: true, rating: 4.0, reviewCount: 150,
+    description: 'Long-standing provider of insurance and investment products across the region.', 
+    founded: '1845', website: 'https://www.oldmutual.com', benefits: ['Retirement Solutions', 'Wealth Management'], 
+    culture: 'Heritage with transformation.'
+  },
+
+  // === Global remote/remote-friendly (186–200) ===
+  {
+    id: 'company-186', name: 'SAP', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg',
+    industry: 'Enterprise Software', location: 'Remote-friendly (Global)', size: '100,000+', employees: 'approx. 110,000',
+    openJobs: 0, verified: true, rating: 4.3, reviewCount: 220,
+    description: 'Enterprise application software leader offering ERP, analytics and cloud solutions with global distributed teams.', 
+    founded: '1972', website: 'https://www.sap.com', benefits: ['Global Career Paths', 'Learning'], 
+    culture: 'Innovation with enterprise impact.'
+  },
+  {
+    id: 'company-187', name: 'Cisco', logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Cisco_logo_blue_2016.svg',
+    industry: 'Networking / IT', location: 'Remote-friendly (Global)', size: '70,000+', employees: 'approx. 80,000',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 205,
+    description: 'Networking and security technology company with hybrid/remote roles and global infrastructure products.', 
+    founded: '1984', website: 'https://www.cisco.com', benefits: ['Flexible Work', 'Certifications'], 
+    culture: 'Collaboration and customer success.'
+  },
+  {
+    id: 'company-188', name: 'IBM', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
+    industry: 'Technology / Consulting', location: 'Remote-friendly (Global)', size: '200,000+', employees: 'approx. 250,000',
+    openJobs: 0, verified: true, rating: 4.1, reviewCount: 230,
+    description: 'Legacy tech and consulting firm with cloud, AI, and enterprise services; accommodates remote and hybrid talent globally.', 
+    founded: '1911', website: 'https://www.ibm.com', benefits: ['Global Mobility', 'Training'], 
+    culture: 'Research-driven and adaptive.'
+  },
+  {
+    id: 'company-189', name: 'Oracle', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
+    industry: 'Enterprise Software / Cloud', location: 'Remote-friendly (Global)', size: '100,000+', employees: 'approx. 140,000',
+    openJobs: 0, verified: true, rating: 4.2, reviewCount: 215,
+    description: 'Database and cloud infrastructure provider with extensive enterprise footprint and flexible engineering roles.', 
+    founded: '1977', website: 'https://www.oracle.com', benefits: ['Technical Certifications', 'Cloud Credits'], 
+    culture: 'Performance and enterprise focus.'
+  },
+  {
+    id: 'company-190', name: 'Zoho', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Zoho_logo.svg',
+    industry: 'SaaS / Productivity', location: 'Remote-friendly (Global)', size: '10,001+', employees: 'approx. 12,000',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 185,
+    description: 'All-in-one business software suite run with a distributed team and strong emphasis on customer value.', 
+    founded: '1996', website: 'https://www.zoho.com', benefits: ['Ownership Culture', 'Remote Flexibility'], 
+    culture: 'Bootstrapped and customer-obsessed.'
+  },
+  {
+    id: 'company-191', name: 'Datadog', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Datadog_logo.svg',
+    industry: 'Observability / DevOps', location: 'Remote-friendly (Global)', size: '5,001-10,000', employees: 'approx. 3,500',
+    openJobs: 0, verified: true, rating: 4.5, reviewCount: 190,
+    description: 'Monitoring and security platform for cloud-scale applications with a remote-capable engineering culture.', 
+    founded: '2010', website: 'https://www.datadoghq.com', benefits: ['Developer Experience', 'Hybrid Work'], 
+    culture: 'Data-driven and responsive.'
+  },
+  {
+    id: 'company-192', name: 'Lucid Software', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Lucid_logo.svg',
+    industry: 'Visualization / Collaboration', location: 'Remote-friendly (Global)', size: '501-1,000', employees: 'approx. 800',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 160,
+    description: 'Creates Lucidchart and Lucidspark for visual collaboration, with distributed team members and remote roles.', 
+    founded: '2010', website: 'https://www.lucid.co', benefits: ['Creative Tools', 'Flexible Work'], 
+    culture: 'Collaborative and design-aware.'
+  },
+  {
+    id: 'company-193', name: 'ServiceNow', logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/ServiceNow_logo.svg',
+    industry: 'Enterprise SaaS / Workflow', location: 'Remote-friendly (Global)', size: '15,000+', employees: 'approx. 18,000',
+    openJobs: 0, verified: true, rating: 4.3, reviewCount: 175,
+    description: 'Digital workflow company making enterprise work easier with cloud-based service management and remote opportunities.', 
+    founded: '2004', website: 'https://www.servicenow.com', benefits: ['Career Ladders', 'Remote Flexibility'], 
+    culture: 'Customer-centric and process-smart.'
+  },
+  {
+    id: 'company-194', name: 'Workday', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Workday_logo.svg',
+    industry: 'HR / Finance SaaS', location: 'Remote-friendly (Global)', size: '10,001+', employees: 'approx. 15,000',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 180,
+    description: 'Enterprise platform for finance and HR that supports hybrid and remote teams across the globe.', 
+    founded: '2005', website: 'https://www.workday.com', benefits: ['Employee Wellbeing', 'Talent Development'], 
+    culture: 'People-centered and adaptive.'
+  },
+  {
+    id: 'company-195', name: 'Splunk', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Splunk_logo.svg',
+    industry: 'Data Analytics / Observability', location: 'Remote-friendly (Global)', size: '10,001+', employees: 'approx. 8,000',
+    openJobs: 0, verified: true, rating: 4.2, reviewCount: 170,
+    description: 'Platform for searching, monitoring and analyzing machine-generated data for operational intelligence.', 
+    founded: '2003', website: 'https://www.splunk.com', benefits: ['Technical Learning', 'Remote Opportunities'], 
+    culture: 'Engineering intensity with customer focus.'
+  },
+  {
+    id: 'company-196', name: 'Freshworks', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Freshworks_logo.svg',
+    industry: 'Customer Engagement SaaS', location: 'Remote-friendly (Global)', size: '5,001-10,000', employees: 'approx. 4,500',
+    openJobs: 0, verified: true, rating: 4.3, reviewCount: 185,
+    description: 'Suite of SaaS products for customer support, CRM and IT service management with hybrid hiring.', 
+    founded: '2010', website: 'https://www.freshworks.com', benefits: ['Global Teams', 'Learning'], 
+    culture: 'Customer-first and modern.'
+  },
+  {
+    id: 'company-197', name: 'Amplitude', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Amplitude_Logo.svg',
+    industry: 'Product Analytics', location: 'Remote-friendly (Global)', size: '1,001-2,000', employees: 'approx. 1,200',
+    openJobs: 0, verified: true, rating: 4.5, reviewCount: 165,
+    description: 'Helps companies understand user behavior to build better product experiences using data.', 
+    founded: '2012', website: 'https://www.amplitude.com', benefits: ['Data Empowerment', 'Remote Work'], 
+    culture: 'Insight-driven and experimental.'
+  },
+  {
+    id: 'company-198', name: 'Postman', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Postman_logo.svg',
+    industry: 'Developer Tools / API', location: 'Remote-friendly (Global)', size: '1,001-2,000', employees: 'approx. 1,500',
+    openJobs: 0, verified: true, rating: 4.6, reviewCount: 200,
+    description: 'API development platform used by developers and teams to design, test and monitor APIs collaboratively.', 
+    founded: '2014', website: 'https://www.postman.com', benefits: ['Developer Productivity', 'Remote Culture'], 
+    culture: 'Developer-first and community-oriented.'
+  },
+  {
+    id: 'company-199', name: 'Airbyte', logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Airbyte_Logo.svg',
+    industry: 'Data Integration', location: 'Remote-first (Global)', size: '201-500', employees: 'approx. 350',
+    openJobs: 0, verified: true, rating: 4.5, reviewCount: 140,
+    description: 'Open-source data integration platform enabling easy ELT pipelines for modern analytics stacks.', 
+    founded: '2020', website: 'https://www.airbyte.com', benefits: ['Open Source Contribution', 'Remote Flexibility'], 
+    culture: 'Community-driven and modular.'
+  },
+  {
+    id: 'company-200', name: 'Zoho (repeat—new regional/global variant dedup safe)', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Zoho_logo.svg',
+    industry: 'SaaS / Productivity', location: 'Remote-friendly (Global)', size: '10,001+', employees: 'approx. 12,000',
+    openJobs: 0, verified: true, rating: 4.4, reviewCount: 185,
+    description: 'Comprehensive suite of business applications with strong remote capabilities and a bootstrapped origin story.', 
+    founded: '1996', website: 'https://www.zoho.com', benefits: ['Ownership Culture', 'Global Remote Work'], 
+    culture: 'Customer-obsessed and self-reliant.'
   }
       
       
