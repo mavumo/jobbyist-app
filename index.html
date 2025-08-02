@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="https://jobbyist.africa/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -47,25 +47,37 @@
     </div>
   </div>
 
-    <!-- Navigation Menu -->
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container">
+      <div class="navbar-wrapper">
+        <!-- Logo -->
+        <div class="navbar-brand">
+          <div class="logo-container" onclick="jobbyistApp.showPage('homepage')">
+            <div class="logo-icon animated-doodle-icon"></div>
+            <span class="logo-text">Jobbyist</span>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
         <nav class="navbar-nav" id="navbar-nav">
-          <div class="nav-dropdown" data-dropdown>
-            <button class="nav-link dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+          <div class="nav-dropdown">
+            <button class="nav-link dropdown-trigger">
               For Job Seekers
               <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8">
                 <path d="M6 8L0 0h12L6 8z"/>
               </svg>
             </button>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('job-listings')">Browse Jobs</a>
+              <a href="#job-listings" class="dropdown-item">Browse Jobs</a>
               <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('candidates')">Find Candidates</a>
               <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('pro')">Upgrade To Pro</a>
               <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('saved-jobs')">Saved Jobs</a>
             </div>
           </div>
-
-          <div class="nav-dropdown" data-dropdown>
-            <button class="nav-link dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+          
+          <div class="nav-dropdown">
+            <button class="nav-link dropdown-trigger">
               For Employers
               <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8">
                 <path d="M6 8L0 0h12L6 8z"/>
@@ -80,7 +92,7 @@
           </div>
 
           <div class="nav-dropdown">
-            <button class="nav-link dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+            <button class="nav-link dropdown-trigger">
               Resources
               <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8">
                 <path d="M6 8L0 0h12L6 8z"/>
@@ -93,7 +105,7 @@
             </div>
           </div>
 
-          <a href="#" class="nav-link" onclick="jobbyistApp.showPage('knowledge-center')">Help Center</a>
+          <a href="#" class="nav-link" onclick="jobbyistApp.showPage('contact')">Help Center</a>
         </nav>
 
         <!-- Actions -->
@@ -110,92 +122,100 @@
             </select>
           </div>
           
-          <!-- Mobile toggle -->
-          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
       </div>
     </div>
   </header>
 
-  
   <!-- Main Content Container -->
   <main id="main-content">
     <!-- Homepage Content -->
     <div id="homepage" class="page active">
       <!-- Hero Section -->
-    
-       
-       <section class="hero">
-        
-      <div class="container">
-         <div class="hero-background">
+      <section class="hero">
+        <div class="hero-background">
           <div class="animated-doodle floating-circle"></div>
           <div class="animated-doodle floating-triangle"></div>
           <div class="animated-doodle floating-square"></div>
         </div>
-        <div class="hero-wrapper">
-          <div class="hero-copy">
-            <h1>Find Your Dream Job in Africa</h1>
-            <p>Connect with employers across Nigeria and South Africa. Save jobs, apply easily, and go Pro for better visibility.</p>
-            <div class="cta-buttons">
-              <button class="btn--primary glow-btn">Get Started</button>
-              <button class="btn--secondary glow-btn">Learn More</button>
+        
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-text">
+              <h1 class="hero-title">
+                Find Your Dream Job in
+                <span class="highlight-text">Africa</span>
+                <div class="animated-doodle underline-swoosh"></div>
+              </h1>
+              <p class="hero-subtitle">
+                Connect with top employers across Nigeria and South Africa. 
+                Discover opportunities in tech, finance, healthcare, and more on Africa's leading job platform.
+              </p>
             </div>
-          </div>
 
-
-            
-           <!-- Enhanced Search Form -->
-          <div class="search-container">
-            <form class="search-form" id="hero-search-form">
-              <div class="search-field">
-                <label for="job-title" class="sr-only">Job Title</label>
-                <div class="input-wrapper">
-                  <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24">
-                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                  </svg>
-                  <input type="text" id="job-title" name="title" placeholder="Job title, keyword, or company" class="search-input" list="search-suggestions" />
-                  <datalist id="search-suggestions"></datalist>
+            <!-- Enhanced Search Form -->
+            <div class="search-container">
+              <form class="search-form" id="hero-search-form">
+                <div class="search-field">
+                  <label for="job-title" class="sr-only">Job Title</label>
+                  <div class="input-wrapper">
+                    <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24">
+                      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input 
+                      type="text" 
+                      id="job-title" 
+                      name="title" 
+                      placeholder="Job title, keyword, or company"
+                      class="search-input"
+                      list="search-suggestions"
+                    />
+                    <datalist id="search-suggestions"></datalist>
+                  </div>
                 </div>
-              </div>
 
-              <div class="search-field">
-                <label for="job-type" class="sr-only">Job Type</label>
-                <div class="select-wrapper">
-                  <select id="job-type" name="type" class="search-select">
-                    <option value="">Job Type</option>
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
-                    <option value="Contract">Contract</option>
-                  </select>
+                <div class="search-field">
+                  <label for="job-type" class="sr-only">Job Type</label>
+                  <div class="select-wrapper">
+                    <select id="job-type" name="type" class="search-select">
+                      <option value="">Job Type</option>
+                      <option value="Full-time">Full-time</option>
+                      <option value="Part-time">Part-time</option>
+                      <option value="Contract">Contract</option>
+                      <option value="Internship">Internship</option>
+                      <option value="Remote">Remote</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <div class="search-field">
-                <label for="location" class="sr-only">Location</label>
-                <div class="select-wrapper">
-                  <select id="location" name="location" class="search-select">
-                    <option value="">Location</option>
-                    <option value="Nigeria">Nigeria</option>
-                    <option value="South Africa">South Africa</option>
-                    <option value="Remote">Remote</option>
-                    <option value="Lagos">Lagos</option>
-                    <option value="Johannesburg">Johannesburg</option>
-                    <option value="Cape Town">Cape Town</option>
-                    <option value="Abuja">Abuja</option>
-                    <option value="Pretoria">Pretoria</option>
-                    <option value="Durban">Durban</option>
-                  </select>
+                <div class="search-field">
+                  <label for="location" class="sr-only">Location</label>
+                  <div class="select-wrapper">
+                    <select id="location" name="location" class="search-select">
+                      <option value="">Location</option>
+                      <option value="Nigeria">Nigeria</option>
+                      <option value="South Africa">South Africa</option>
+                      <option value="Remote">Remote</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Johannesburg">Johannesburg</option>
+                      <option value="Cape Town">Cape Town</option>
+                      <option value="Abuja">Abuja</option>
+                      <option value="Pretoria">Pretoria</option>
+                      <option value="Durban">Durban</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <button type="submit" class="search-btn btn--primary glow-btn">
-                <span>Search Jobs</span>
-              </button>
-            </form>
-          </div>
+                <button type="submit" class="search-btn btn--primary glow-btn">
+                  <span>Search Jobs</span>
+                </button>
+              </form>
+            </div>
 
             <!-- Statistics -->
             <div class="hero-stats">
@@ -1154,50 +1174,6 @@
       </section>
     </div>
 
-
-
-
-    
-
-
-    <!-- Knowledge Center Section -->
-    <div id="knowledge-center" class="page" style="display:none;">
-      <section class="knowledge-hero">
-        <div class="container">
-          <div class="knowledge-header">
-            <h1>Knowledge Center</h1>
-            <p>Your hub for guides, FAQs, best practices, and troubleshooting tips to get the most out of Jobbyist.</p>
-          </div>
-          <div class="knowledge-cards-grid">
-            <div class="card knowledge-card">
-              <div class="card__body">
-                <h3>Getting Started</h3>
-                <p>Learn how to create profiles, save jobs, and connect with employers.</p>
-                <a class="btn--secondary glow-btn" href="#">Learn More</a>
-              </div>
-            </div>
-            <div class="card knowledge-card">
-              <div class="card__body">
-                <h3>Recruitment Suite Guide</h3>
-                <p>Step-by-step onboarding for employers using our suite.</p>
-                <a class="btn--secondary glow-btn" href="#">View Guide</a>
-              </div>
-            </div>
-            <div class="card knowledge-card">
-              <div class="card__body">
-                <h3>Jobbyist Pro Tips</h3>
-                <p>Maximize your job search impact with Pro features.</p>
-                <a class="btn--secondary glow-btn" href="#">Explore</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-
-
-    
     <!-- Legal Pages -->
     <div id="terms" class="page">
       <section class="legal-content">
@@ -1426,7 +1402,7 @@
           <h4 class="footer-title">For Job Seekers</h4>
           <ul class="footer-links">
             <li><a href="#job-listings">Browse Jobs</a></li>
-            <li><a href="#" onclick="jobbyistApp.showPage('candidates')">Job Seeker Profiles</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('candidates')">Candidate Profiles</a></li>
             <li><a href="#" onclick="jobbyistApp.showPage('pro')">Upgrade To Pro</a></li>
             <li><a href="#" onclick="jobbyistApp.showPage('saved-jobs')">Saved Jobs</a></li>
             <li><a href="#" onclick="jobbyistApp.showPage('notifications')">Notification Settings</a></li>
@@ -1448,7 +1424,7 @@
           <ul class="footer-links">
             <li><a href="#" onclick="jobbyistApp.showPage('community-forum')">Community Forum</a></li>
             <li><a href="#" onclick="jobbyistApp.showPage('success-stories')">Success Stories</a></li>
-            <li><a href="#" onclick="jobbyistApp.showPage('knowledge-center')">Help Center</a></li>
+            <li><a href="#" onclick="jobbyistApp.showPage('contact')">Help Center</a></li>
             <li><a href="https://partners.jobbyist.africa" target="_blank">Partner Program</a></li>
           </ul>
         </div>
