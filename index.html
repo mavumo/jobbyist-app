@@ -13,13 +13,13 @@
   <meta property="og:description" content="Connect with top employers across Nigeria and South Africa. Discover opportunities in tech, finance, healthcare, and more.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobbyist.africa">
-  <meta property="og:image" content="https://jobbyist.africa/images/og-image.jpg">
+  <meta property="og:image" content="https://jobbyist.africa/jobbyistcover.png">
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jobbyist - Find Your Dream Job in Africa">
   <meta name="twitter:description" content="Connect with top employers across Nigeria and South Africa.">
-  <meta name="twitter:image" content="https://jobbyist.africa/images/twitter-card.jpg">
+  <meta name="twitter:image" content="https://jobbyist.africa/jobbyistcover.png">
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://jobbyist.africa">
@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link href="https://jobbyist.africa/style.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -73,6 +73,7 @@
               <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('candidates')">Find Candidates</a>
               <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('pro')">Upgrade To Pro</a>
               <a href="#" class="dropdown-item" onclick="jobbyistApp.showPage('saved-jobs')">Saved Jobs</a>
+              <a href="#" class="dropdown-item" onclick="jobbyistApp.openAllJobs()">All Jobs</a>
             </div>
           </div>
           
@@ -174,6 +175,7 @@
                       placeholder="Job title, keyword, or company"
                       class="search-input"
                       list="search-suggestions"
+                      autocomplete="off"
                     />
                     <datalist id="search-suggestions"></datalist>
                   </div>
@@ -263,7 +265,7 @@
           </div>
 
           <div class="section-footer">
-            <button class="btn--secondary glow-btn" id="view-all-jobs">
+            <button class="btn--secondary glow-btn" id="view-all-jobs" onclick="jobbyistApp.openAllJobs()">
               <span>View All Jobs</span>
             </button>
           </div>
@@ -388,6 +390,97 @@
         </div>
       </section>
     </div>
+
+    <!-- All Jobs Page (Auth-Gated) -->
+    <div id="all-jobs" class="page">
+      <section class="jobs-hero">
+        <div class="container">
+          <div class="jobs-header">
+            <h1>All Job Listings</h1>
+            <p>Curated roles across South Africa and Nigeria</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Auth Gate -->
+      <section class="container" id="jobs-auth-gate" style="display:none; padding: 2rem 0;">
+        <div class="card card-center">
+          <div class="card__body" style="text-align: center; padding: 3rem;">
+            <h2>Sign in required</h2>
+            <p style="margin-bottom: 2rem;">To view all jobs, please sign in or create a free account.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <button id="jobs-open-register" class="btn--primary glow-btn">
+                <span>Create Free Account</span>
+              </button>
+              <button id="jobs-open-login" class="btn--secondary">
+                <span>Sign In</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Jobs Content -->
+      <section class="jobs-content" id="jobs-content" style="display:none;">
+        <div class="container">
+          <!-- Filters -->
+          <div class="filters" style="margin-bottom: 2rem;">
+            <form class="jobs-filter-form" id="jobs-filter-form" onsubmit="return false;">
+              <div class="filter-row" style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 1rem; align-items: end;">
+                <div class="form-group">
+                  <label class="sr-only" for="jobs-filter-title">Job Title</label>
+                  <input type="text" id="jobs-filter-title" class="form-control" placeholder="e.g. Product Manager" autocomplete="off">
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="jobs-filter-type">Job Type</label>
+                  <select id="jobs-filter-type" class="form-control">
+                    <option value="">Any Type</option>
+                    <option>Full-time</option>
+                    <option>Part-time</option>
+                    <option>Contract</option>
+                    <option>Internship</option>
+                    <option>Remote</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="jobs-filter-location">Location</label>
+                  <select id="jobs-filter-location" class="form-control">
+                    <option value="">Any Location</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Johannesburg">Johannesburg</option>
+                    <option value="Cape Town">Cape Town</option>
+                    <option value="Pretoria">Pretoria</option>
+                    <option value="Durban">Durban</option>
+                    <option value="Lagos">Lagos</option>
+                    <option value="Abuja">Abuja</option>
+                  </select>
+                </div>
+                <button id="jobs-apply-filters" class="btn--primary glow-btn">
+                  <span>Apply Filters</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Results -->
+          <div class="jobs-meta">
+            <div id="jobs-count" class="muted"></div>
+          </div>
+
+          <div class="jobs-container" id="all-jobs-grid">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination" id="all-jobs-pagination" style="display:none;"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Other existing pages... (candidates, saved-jobs, pro, recruitment-suite, analytics-dashboard, company-profiles, claim-page, community-forum, success-stories, notifications, terms, privacy, contact) -->
+    <!-- I'm keeping these as they were in your original, just cleaning up any minor issues -->
 
     <!-- Candidates Page -->
     <div id="candidates" class="page">
