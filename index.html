@@ -1701,6 +1701,68 @@
     </div>
   </div>
 
+
+<!--All Jobs Page --->
+  <!-- Filters (reuse hero styles) -->
+  <form id="alljobs-filter-form" class="search-form mb-32">
+    <div class="search-field">
+      <label for="alljobs-title" class="sr-only">Job Title</label>
+      <div class="input-wrapper">
+        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="alljobs-title" name="title" placeholder="Job title, keyword, or company" class="search-input" list="search-suggestions" />
+      </div>
+    </div>
+
+    <div class="search-field">
+      <label for="alljobs-type" class="sr-only">Job Type</label>
+      <div class="select-wrapper">
+        <select id="alljobs-type" name="type" class="search-select">
+          <option value="">Job Type</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Contract">Contract</option>
+          <option value="Internship">Internship</option>
+          <option value="Remote">Remote</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="search-field">
+      <label for="alljobs-location" class="sr-only">Location</label>
+      <div class="select-wrapper">
+        <select id="alljobs-location" name="location" class="search-select">
+          <option value="">Location</option>
+          <option value="Nigeria">Nigeria</option>
+          <option value="South Africa">South Africa</option>
+          <option value="Remote">Remote</option>
+          <option value="Lagos">Lagos</option>
+          <option value="Johannesburg">Johannesburg</option>
+          <option value="Cape Town">Cape Town</option>
+          <option value="Abuja">Abuja</option>
+          <option value="Pretoria">Pretoria</option>
+          <option value="Durban">Durban</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="search-btn btn--primary glow-btn">
+      <span>Apply Filters</span>
+    </button>
+  </form>
+
+  <!-- Count -->
+  <div id="alljobs-count" class="section-subtitle mb-16"></div>
+
+  <!-- Jobs Grid -->
+  <div id="alljobs-grid" class="jobs-container"></div>
+
+  <!-- Pagination -->
+  <div id="alljobs-pagination" class="section-footer" style="display:none;"></div>
+</div>
+
+
+
+
   <!-- Floating Chatbot Button -->
   <div class="chatbot-container">
     <button class="chatbot-btn" id="chatbot-btn" onclick="jobbyistApp.toggleChatbot()">
