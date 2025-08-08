@@ -138,7 +138,113 @@ class JobbyistApp {
   loadAllSampleData() {
     console.log('📊 Loading comprehensive sample data...');
     
-    // 50+ Sample Jobs with diverse African opportunities
+  
+    // --- All Jobs Page Controller ---
+JobbyistApp.prototype.openAllJobs = function () {
+  // Redirect unauthenticated users to login/registration
+  if (!this.isUserAuthenticated()) {
+    try { localStorage.setItem('intended_path', 'all-jobs'); } catch(e){}
+    this.showPage('all-jobs'); // Will trigger auth gate
+    this.initAllJobsPage(true);
+  } else {
+    this.showPage('all-jobs');
+    this.initAllJobsPage(false);
+  }
+};
+
+JobbyistApp.prototype.initAllJobsPage = function (requireAuth) {
+  const gateEl = document.getElementById('jobs-auth-gate');
+  const contentEl = document.getElementById('jobs-content');
+
+  if (requireAuth) {
+    if (gateEl) gateEl.style.display = '';
+    if (contentEl) contentEl.style.display = 'none';
+
+    // Gate button actions
+    document.getElementById('jobs-open-register')?.addEventListener('click', () => {
+      this.openRegistrationModal({ postSubmitRedirect: 'all-jobs' });
+    });
+    document.getElementById('jobs-open-login')?.addEventListener('click', () => {
+      this.openLoginModal({ postSubmitRedirect: 'all-jobs' });
+    });
+    return;
+  }
+
+  // Show content and hide gate if auth passed
+  if (gateEl) gateEl.style.display = 'none';
+  if (contentEl) contentEl.style.display = '';
+
+  // Render jobs
+  this.renderAllJobs();
+  
+  // Filter bindings
+  document.getElementById('jobs-apply-filters')?.addEventListener('click', () => {
+    this.renderAllJobs();
+  });
+};
+
+JobbyistApp.prototype.renderAllJobs = function () {
+  const titleFilter = document.getElementById('jobs-filter-title')?.value.trim().toLowerCase();
+  const typeFilter = document.getElementById('jobs-filter-type')?.value;
+  const locFilter = document.getElementById('jobs-filter-location')?.value;
+
+  let filteredJobs = this.jobs.filter(job => {
+    const matchTitle = !titleFilter || job.title.toLowerCase().includes(titleFilter);
+    const matchType  = !typeFilter || job.type === typeFilter;
+    const matchLoc   = !locFilter || job.location.includes(locFilter) || job.country.includes(locFilter);
+    return matchTitle && matchType && matchLoc;
+  });
+
+  // Render Count
+  const jobsCountEl = document.getElementById('jobs-count');
+  if (jobsCountEl) jobsCountEl.textContent = `${filteredJobs.length} jobs found`;
+
+  // Render Grid
+  const gridEl = document.getElementById('all-jobs-grid');
+  if (gridEl) {
+    gridEl.innerHTML = filteredJobs.map(job => this.renderJobCard(job)).join('');
+  }
+};
+
+// Reuse your existing job card renderer or make this one:
+JobbyistApp.prototype.renderJobCard = function (job) {
+  const savedClass = this.isJobSaved(job.id) ? 'saved' : '';
+  const salary = (job.salaryMin && job.salaryMax)
+    ? `${job.currency} ${job.salaryMin.toLocaleString()} - ${job.salaryMax.toLocaleString()}`
+    : '';
+  return `
+    <div class="job-card">
+      <div class="job-card-header">
+        <img src="${job.companyLogo || 'https://via.placeholder.com/64'}" alt="${job.company} logo">
+        <button class="save-job-btn ${savedClass}" onclick="jobbyistApp.toggleSaveJob('${job.id}')">★</button>
+      </div>
+      <div class="job-card-body">
+        <h3>${job.title}</h3>
+        <div>${job.company}</div>
+        <div>📍 ${job.location} ${salary ? `• 💰 ${salary}` : ''}</div>
+        <p>${job.description.substring(0, 120)}...</p>
+      </div>
+      <div class="job-card-actions">
+        <a href="${job.applyUrl || '#'}" class="btn--primary glow-btn" target="_blank">Apply</a>
+      </div>
+    </div>
+  `;
+};
+
+// Auth helper
+JobbyistApp.prototype.isUserAuthenticated = function () {
+  try {
+    return !!localStorage.getItem('session_token');
+  } catch (e) {
+    return false;
+  }
+};
+
+      
+        
+          
+            
+                // 50+ Sample Jobs with diverse African opportunities
     this.jobs = [
       {
         id: 'job-001', title: 'Senior Software Engineer', company: 'TechSA Solutions', location: 'Johannesburg, South Africa',
