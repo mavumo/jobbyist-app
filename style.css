@@ -4154,4 +4154,41 @@ select.form-control {
   color: #fff;
 }
 
+/* Add this utility class that was missing */
+.card-center {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Enhanced filter row for All Jobs page */
+.filter-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* Ensure consistent job card styling between homepage and All Jobs */
+.job-card .job-header {
+  margin-bottom: var(--space-4);
+}
+
+.job-card .job-actions {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin-top: var(--space-4);
+}
+
+/* The rest of your existing CSS remains unchanged */
+
+
 
