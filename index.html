@@ -4,102 +4,32 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Jobbyist — Find work you’ll be proud of</title>
-  <meta name="description" content="Jobbyist helps South Africans land work they love. Remote-friendly roles, AI matching, ResumeAudit, and verified companies."/>
-  <link id="canonical" rel="canonical" href="https://your-domain.example/">
-  <link id="relPrev" rel="prev" href="">
-  <link id="relNext" rel="next" href="">
-  <!-- Poppins -->
+  <meta name="description" content="South Africa’s clean, fast job board. Verified roles, AI matching, and a profile employers can’t ignore."/>
+  <link rel="canonical" href="https://your-domain.example/">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* ======================= THEME & BASE ======================= */
-    :root{ --radius:14px; --shadow:0 10px 28px rgba(0,0,0,.25); --brand:#5c7cfa; --accent:#7b6cff; --success:#12c29a; --danger:#ff6b6b; }
-    :root[data-theme="light"]{ --bg:#f7f8ff; --ink:#0e1320; --muted:#5c647a; --card:#ffffff; --line:#e6e8f2; --chip:#eef0ff; --nav:rgba(255,255,255,.75); }
-    :root[data-theme="dark"]{ --bg:linear-gradient(140deg,#10131b 0%,#121726 60%,#181a2b 100%); --ink:#e9ecff; --muted:#aab3d4; --card:#121626; --line:#273155; --chip:#1b2340; --nav:rgba(10,12,20,.7); }
-    html,body{height:100%}
-    body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1180px;margin:auto;padding:0 20px}
-    .row{display:flex;gap:10px;align-items:center}
-    .cta{background:var(--brand);color:#0b0f1a;border:none;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer}
-    .cta.secondary{background:#23293a;color:#dfe3f5;border:1px solid #2e3550}
-    .btn{background:transparent;border:1px solid var(--line);padding:9px 12px;border-radius:12px;cursor:pointer}
-    .chip{font-size:12px;border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:6px 10px}
-    .panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 18px rgba(0,0,0,.15)}
-    .grid{display:grid;gap:14px}
-    .jobs{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-    .companies{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-    .ad-card{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;height:100px;border-style:dashed}
-    .sub{color:var(--muted)}
-    h1,h2{margin:8px 0 10px}
-    /* ======================= HEADER & NAV ======================= */
-    header{position:sticky;top:0;z-index:60;background:var(--nav);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{font-weight:800;letter-spacing:.2px;font-size:22px;display:flex;align-items:center;gap:6px}
-    .brand sup{font-size:12px}
-    .nav-links{display:none;gap:6px}
-    .nav-links a{padding:10px 12px;border-radius:10px;color:var(--muted)}
-    .nav-links a.active,.nav-links a:hover{color:var(--ink);background:rgba(124,133,255,.12)}
-    .icon-btn{background:transparent;border:1px solid var(--line);padding:8px 10px;border-radius:12px;cursor:pointer}
-    @media (min-width:980px){ .nav-links{display:flex} .burger{display:none} }
-    /* Drawer */
-    .sheet{position:fixed;inset:0;display:none;background:rgba(0,0,0,.45);z-index:70}
-    .sheet.open{display:block}
-    .drawer{position:absolute;left:0;top:0;bottom:0;width:88vw;max-width:360px;background:var(--card);border-right:1px solid var(--line);padding:16px;box-shadow:var(--shadow)}
-    .drawer a{display:block;padding:12px;border-radius:10px}
-    .drawer a:hover{background:rgba(124,133,255,.12)}
-    /* ======================= HERO & SEARCH ======================= */
-    .hero{padding:56px 0}
-    .search-grid{display:grid;grid-template-columns:2fr 1.4fr auto;gap:12px}
-    .input{display:flex;align-items:center;background:var(--chip);border:1px solid var(--line);border-radius:14px;padding:12px 14px;gap:10px}
-    .input input,.input select,.input textarea{flex:1;background:transparent;border:none;color:var(--ink);outline:none;font-size:16px}
-    .stats{display:flex;gap:18px;margin-top:10px;flex-wrap:wrap}
-    .stat{background:var(--chip);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
-    /* ======================= MODALS ======================= */
-    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(5,7,11,.65);z-index:80}
-    .modal.open{display:grid}
-    .modal .content{width:min(860px,94vw);max-height:92vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
-    .modal header{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;gap:10px;align-items:center;z-index:10}
-    .modal header h3{margin:0;font-size:18px}
-    .modal .body{padding:16px}
-    .close-x{margin-left:auto} .close-x,.toggle{background:transparent;border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
-    .steps{display:flex;gap:8px;margin:2px 0 12px}
-    .step{height:6px;flex:1;border-radius:999px;background:var(--chip);border:1px solid var(--line)}
-    .step.active{background:linear-gradient(90deg,#74c0fc,#5c7cfa)}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .form-grid .full{grid-column:1 / -1}
-    @media (max-width:720px){ .form-grid{grid-template-columns:1fr} }
-    /* ======================= FOOTER & FLOATERS ======================= */
-    footer{padding:32px 0;color:var(--muted);border-top:1px solid var(--line)}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:18px}
-    .cookie{position:fixed;left:16px;right:16px;bottom:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;display:none;z-index:200}
-    .cookie.open{display:block}
-    .float-left,.float-right{position:fixed;bottom:18px;z-index:65}
-    .float-left{left:18px} .float-right{right:18px}
-    .fab{padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
-    /* ======================= GRIDS ======================= */
-    section{padding:28px 0}
-    h2{font-size:26px}
-    @media (max-width:979px){ .search-grid{grid-template-columns:1fr} .footer-grid{grid-template-columns:1fr 1fr} }
-  </style>
+  <link rel="stylesheet" href="assets/app.css">
 </head>
-<body>
+<body data-page="home">
 <header>
   <div class="container nav">
     <div class="row">
       <button class="icon-btn burger" aria-label="Open menu" id="openMenu">☰</button>
       <div class="brand">Jobbyist<sup>🇿🇦</sup></div>
     </div>
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="#home" class="active">Home</a>
-      <a href="#pro">Pro</a>
-      <a href="#recruitment">Recruitment Suite</a>
-      <a href="#stats">Real-Time Job Stats</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html" class="active">Home</a>
+      <a href="browse-jobs.html">Browse Jobs</a>
+      <a href="pro.html">Pro</a>
+      <a href="recruitment.html">Recruitment Suite</a>
+      <a href="stats.html">Real-Time Job Stats</a>
       <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit</a>
+      <select id="langSelect" title="Language" style="margin-left:6px" aria-label="Language">
+        <option value="en" selected>EN</option><option value="zu">ZU</option><option value="xh">XH</option><option value="af">AF</option><option value="st">ST</option>
+      </select>
     </nav>
     <div class="row">
-      <button class="toggle" id="themeToggle" title="Toggle theme">🌓</button>
-      <button class="cta" id="openSignupTop" onclick="openSignup()">Create free account</button>
+      <button class="icon-btn" id="themeToggle" title="Toggle theme">🌓</button>
+      <button class="cta" id="openSignupTop">Create free account</button>
     </div>
   </div>
 </header>
@@ -107,21 +37,26 @@
 <!-- Drawer -->
 <div class="sheet" id="navSheet" aria-hidden="true">
   <div class="drawer">
-    <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="closeSheet()">✕</button></div>
+    <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn close-x">✕</button></div>
     <hr style="border:none;border-top:1px solid var(--line)">
-    <a href="#home" onclick="closeSheet()">Home</a>
-    <a href="#pro" onclick="closeSheet()">Jobbyist Pro</a>
-    <a href="#recruitment" onclick="closeSheet()">Recruitment Suite</a>
-    <a href="#stats" onclick="closeSheet()">Real-Time Job Stats</a>
+    <a href="index.html">Home</a>
+    <a href="browse-jobs.html">Browse Jobs</a>
+    <a href="pro.html">Jobbyist Pro</a>
+    <a href="recruitment.html">Recruitment Suite</a>
+    <a href="stats.html">Real-Time Job Stats</a>
     <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit (Free)</a>
+    <label class="input" style="margin-top:10px"><span style="min-width:80px">Language</span>
+      <select id="langSelect">
+        <option value="en" selected>English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option>
+      </select>
+    </label>
     <hr style="border:none;border-top:1px solid var(--line)">
-    <button class="cta" onclick="openSignup()">Create free account</button>
+    <button class="cta open-signup">Create free account</button>
   </div>
 </div>
 
-<main id="router">
-  <!-- ======================== HOME ======================== -->
-  <section id="home" class="container hero">
+<main>
+  <section class="container hero">
     <div class="panel">
       <div class="search-grid" role="search">
         <div class="input"><span>🔎</span><input id="qTitle" placeholder="Search job title or keyword (e.g., Accountant, React, Nurse)"/></div>
@@ -130,104 +65,40 @@
       </div>
       <div class="hero-copy">
         <h1>Stop scrolling. Start interviewing.</h1>
-        <p class="sub">Power up your job hunt with verified roles, AI matching, and a profile employers can’t ignore.</p>
-        <div class="stats">
-          <div class="stat"><b id="jobsCount">0</b><div>fresh roles today</div></div>
-          <div class="stat"><b>1 150</b><div>hiring companies</div></div>
-          <div class="stat"><b>R99</b><div>Pro launch offer</div></div>
+        <p class="sub">Cut the noise. Land roles you care about—fast.</p>
+        <div class="row" style="gap:18px;margin-top:10px">
+          <div class="chip"><b id="jobsCount">0</b> jobs live</div>
+          <div class="chip">Verified companies only</div>
+          <div class="chip">Remote-friendly</div>
         </div>
-        <div class="card ad-card">Ad — Google AdSense here</div>
+        <div class="card ad-card" style="margin-top:12px">Ad — Google AdSense (hero)</div>
       </div>
     </div>
   </section>
 
+  <!-- Latest jobs preview (home only) -->
   <section class="container" aria-labelledby="latestJobs">
     <h2 id="latestJobs">Latest jobs</h2>
-    <div class="sub">Across industries • On-site / Hybrid / Remote</div>
-    <div class="grid jobs" id="jobsGrid" aria-live="polite"></div>
-
-    <!-- SEO pagination (visible + crawlable) -->
-    <nav id="jobsPager" class="row" aria-label="Jobs pagination" style="justify-content:center;margin:14px 0;gap:8px;flex-wrap:wrap"></nav>
-
-    <!-- Infinite-scroll sentinel (progressive enhancement) -->
-    <div id="jobsSentinel" style="height:1px"></div>
-
-    <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
+    <div class="grid jobs" id="jobsGrid"></div>
+    <div class="row" style="justify-content:center;margin-top:10px">
+      <a class="cta" href="browse-jobs.html">Browse all jobs</a>
       <button class="cta secondary pro-cta">Unlock Pro — R99/mo</button>
     </div>
   </section>
 
-  <!-- ======================== PRO (dedicated landing) ======================== -->
-  <section class="container" id="pro" style="display:none">
-    <h1>Jobbyist Pro — Make recruiters chase you</h1>
-    <p class="sub">ResumeAudit, AI-powered matches, ad-free browsing, and your own <b>.cv</b> site. Cancel anytime.</p>
-    <div class="grid" style="grid-template-columns:2fr 1fr">
-      <div class="card">
-        <ul>
-          <li><b>ResumeAudit</b>: instant ATS scoring & fixes</li>
-          <li><b>AI matches</b> & personalised recommendations</li>
-          <li><b>Unlimited listings</b> + ad-free experience</li>
-          <li>Interview prep and practice drills</li>
-          <li>Professional profile site with free <b>.cv</b> domain</li>
-          <li>Smart alerts, saved searches, recruiter discovery</li>
-        </ul>
-        <div class="card ad-card">Ad — Google AdSense here</div>
-      </div>
-      <div class="card">
-        <div class="chip">Launch offer</div>
-        <h3>R99 / month <span class="sub">(R199 regular)</span></h3>
-        <button class="cta" id="openProModal">Start Pro</button>
-        <button class="btn" onclick="window.open('https://audit.jobbyist.co.za','_blank')">Try ResumeAudit free →</button>
-      </div>
-    </div>
+  <!-- Featured Companies -->
+  <section class="container">
+    <h2>Featured companies</h2>
+    <div class="sub">Follow the leaders. Get first dibs on new roles.</div>
+    <div class="grid companies" id="companiesGrid"></div>
   </section>
 
-  <!-- ======================== RECRUITMENT SUITE (dedicated) ======================== -->
-  <section class="container" id="recruitment" style="display:none">
-    <h1>Recruitment Suite — Early Access (Launching early 2026)</h1>
-    <p class="sub">Hire like a powerhouse: branded careers pages, candidate CRM, automation, AI shortlists, and unlimited job posts.</p>
-
+  <!-- Pro promo -->
+  <section class="container">
     <div class="panel">
-      <h3>Join the early access list</h3>
-      <!-- Employer onboarding (multi-step, responsive, Formspree) -->
-      <div class="steps" id="bizStepDots"></div>
-      <form id="bizFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form>
-    </div>
-
-    <div class="card ad-card" style="margin-top:12px">Ad — Google AdSense here</div>
-  </section>
-
-  <!-- ======================== REAL-TIME JOB STATS (dedicated) ======================== -->
-  <section class="container" id="stats" style="display:none">
-    <h1>Real-Time Job Stats — South Africa</h1>
-    <p class="sub">Fresh hiring signals to steer your next move.</p>
-    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
-      <div class="card"><h3>Open Roles (30d)</h3><div id="statOpen">—</div></div>
-      <div class="card"><h3>Remote Share</h3><div id="statRemote">—</div></div>
-      <div class="card"><h3>Median Salary</h3><div id="statSalary">—</div></div>
-      <div class="card"><h3>Time-to-Fill</h3><div id="statTTF">—</div></div>
-      <div class="card"><h3>Top Industry</h3><div id="statTopInd">—</div></div>
-      <div class="card"><h3>Hot Skill</h3><div id="statSkill">—</div></div>
-    </div>
-    <div class="card ad-card" style="margin-top:12px">Ad — Google AdSense here</div>
-  </section>
-
-  <!-- ======================== LEGAL ======================== -->
-  <section class="container" id="legal-terms" style="display:none">
-    <h1>Terms of Service</h1>
-    <div class="card"><p>Sample ToS. Replace with your legal text. Use of Jobbyist constitutes acceptance…</p></div>
-  </section>
-  <section class="container" id="legal-privacy" style="display:none">
-    <h1>Privacy Policy</h1>
-    <div class="card"><p>We process data to provide job search, matching, and analytics. POPIA compliant. Deletion on request.</p></div>
-  </section>
-  <section class="container" id="legal-cookies" style="display:none">
-    <h1>Cookie Settings</h1>
-    <div class="card">
-      <p>Control analytics/ads cookies. Essential cookies keep the site running.</p>
-      <label><input type="checkbox" id="analyticsCookies" checked> Analytics cookies</label><br>
-      <label><input type="checkbox" id="adsCookies" checked> Advertising cookies</label><br><br>
-      <button class="btn" onclick="alert('Preferences saved')">Save</button>
+      <h2>Own your next move.</h2>
+      <p class="sub">ResumeAudit, AI matches, ad-free browsing, interview prep, and your own <b>.cv</b> site.</p>
+      <div class="row"><a class="cta" href="pro.html">Explore Pro</a><button class="btn open-signup">Create free account</button></div>
     </div>
   </section>
 </main>
@@ -237,581 +108,46 @@
     <div>
       <div class="brand">Jobbyist<sup>🇿🇦</sup></div>
       <p class="sub">Your career, upgraded. We put job seekers first.</p>
-      <div class="card ad-card">Ad — Google AdSense here</div>
+      <div class="card ad-card">Ad — Google AdSense (footer)</div>
     </div>
-    <div>
-      <b>Product</b><br>
-      <a href="#home">Home</a><br>
-      <a href="#pro">Jobbyist Pro</a><br>
-      <a href="#stats">Real-Time Job Stats</a><br>
-      <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit</a>
-    </div>
-    <div>
-      <b>Employers</b><br>
-      <a href="#recruitment">Recruitment Suite</a><br>
-      <a href="#" id="openCompanyWall">Create/claim company profile</a>
-    </div>
-    <div>
-      <b>Legal</b><br>
-      <a href="#legal-terms">Terms</a><br>
-      <a href="#legal-privacy">Privacy</a><br>
-      <a href="#legal-cookies">Cookie settings</a>
-    </div>
+    <div><b>Product</b><br>
+      <a href="index.html">Home</a><br>
+      <a href="browse-jobs.html">Browse Jobs</a><br>
+      <a href="pro.html">Jobbyist Pro</a><br>
+      <a href="stats.html">Real-Time Job Stats</a><br>
+      <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit</a></div>
+    <div><b>Employers</b><br>
+      <a href="recruitment.html">Recruitment Suite</a></div>
+    <div><b>Legal</b><br>
+      <a href="terms.html">Terms</a><br>
+      <a href="privacy.html">Privacy</a><br>
+      <a href="cookies.html">Cookie settings</a></div>
   </div>
   <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist. All rights reserved.</div>
 </footer>
 
-<!-- ===== JOB DETAILS MODAL (counts "views" for daily quota) ===== -->
-<div class="modal" id="jobModal" aria-hidden="true" role="dialog">
-  <div class="content">
-    <header><h3 id="jobTitle">Job</h3><button class="close-x" onclick="closeModal('#jobModal')">✕</button></header>
-    <div class="body" id="jobBody"></div>
-  </div>
-</div>
+<!-- Modals (shared across pages) -->
+<div class="modal" id="jobModal"><div class="content">
+  <header><h3 id="jobTitle">Job</h3><button class="close-x">✕</button></header>
+  <div class="body" id="jobBody"></div></div></div>
 
-<!-- ===== SIGNUP / ONBOARDING (job seekers) ===== -->
-<div class="modal" id="signupModal" aria-hidden="true" role="dialog">
-  <div class="content">
-    <header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header>
-    <div class="body">
-      <div class="steps" id="stepDots"></div>
-      <form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST" novalidate></form>
-    </div>
-  </div>
-</div>
+<div class="modal" id="signupModal"><div class="content">
+  <header><h3>Join Jobbyist — Free</h3><button class="close-x">✕</button></header>
+  <div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
 
-<!-- ===== PRO MODAL (subscribe interest) ===== -->
-<div class="modal" id="proModal" aria-hidden="true" role="dialog">
-  <div class="content">
-    <header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header>
-    <div class="body">
-      <div class="steps" id="proStepDots"></div>
-      <form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST" novalidate></form>
-    </div>
-  </div>
-</div>
+<div class="modal" id="proModal"><div class="content">
+  <header><h3>Start Jobbyist Pro</h3><button class="close-x">✕</button></header>
+  <div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
 
-<!-- ===== COMPANY PROFILE MODAL ===== -->
-<div class="modal" id="companyModal" aria-hidden="true" role="dialog">
-  <div class="content">
-    <header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header>
-    <div class="body" id="coBody"></div>
-  </div>
-</div>
-
-<!-- ===== CHAT & LANGUAGE ===== -->
-<div class="float-left fab">
-  <label class="sub" style="font-size:12px;display:block;margin-bottom:4px">Language</label>
-  <select id="langSelect">
-    <option value="en" selected>English</option>
-    <option value="zu">isiZulu</option>
-    <option value="xh">isiXhosa</option>
-    <option value="af">Afrikaans</option>
-    <option value="st">Sesotho</option>
-  </select>
-</div>
-<div class="float-right fab" id="chatFab">💬 Chat</div>
-
-<!-- ===== CHAT MODAL (placeholder; Worker instructions below) ===== -->
-<div class="modal" id="chatModal" aria-hidden="true">
-  <div class="content" style="max-width:720px">
-    <header><h3>Ask Jobbyist Assistant</h3><button class="close-x" onclick="closeModal('#chatModal')">✕</button></header>
-    <div class="body">
-      <div id="chatBox" style="min-height:240px;max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px"></div>
-      <form id="chatForm">
-        <input class="input" name="q" placeholder="Type your question (e.g., ‘Show remote React roles in Cape Town’)"/>
-        <button class="cta" style="margin-top:10px">Send</button>
-      </form>
-      <p class="sub">Powered by OpenAI GPT-5 mini via a Cloudflare Worker (see instructions inside code).</p>
-    </div>
-  </div>
-</div>
-
-<!-- ===== COOKIE BANNER ===== -->
+<!-- Cookie banner -->
 <div class="cookie" id="cookieBanner">
-  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-    <div>🍪 We use cookies for essential features, analytics and ads. See <a href="#legal-cookies">settings</a>.</div>
-    <div style="margin-left:auto;display:flex;gap:8px">
-      <button class="btn" onclick="acceptCookies(false)">Only essential</button>
-      <button class="cta" onclick="acceptCookies(true)">Accept all</button>
-    </div>
+  <div class="row" style="justify-content:space-between">
+    <div>🍪 We use cookies for essential features, analytics and ads. See <a href="cookies.html">settings</a>.</div>
+    <div><button class="btn" onclick="acceptCookies(false)">Only essential</button> <button class="cta" onclick="acceptCookies(true)">Accept all</button></div>
   </div>
 </div>
 
-<script>
-/* =========================== CONFIG =========================== */
-const FORMSPREE = "https://formspree.io/f/xeokkzle";
-const DAILY_LIMITS = { views:50, applies:5 }; // free user caps
-const CHAT_API_ENDPOINT = "https://your-worker.example.workers.dev/chat"; // replace after Worker deploy
-const PAGE_SIZE = 12; // jobs per page for SEO + infinite scroll
-
-/* ====================== THEME & NAV ====================== */
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-const savedTheme = localStorage.getItem('theme');
-document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark?'dark':'light'));
-document.getElementById('themeToggle').onclick = ()=>{
-  const cur = document.documentElement.getAttribute('data-theme');
-  const next = cur==='dark'?'light':'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-};
-
-document.getElementById('openMenu').onclick = ()=>document.getElementById('navSheet').classList.add('open');
-function closeSheet(){ document.getElementById('navSheet').classList.remove('open'); }
-document.getElementById('navSheet').addEventListener('click', e=>{ if(e.target.id==='navSheet') closeSheet(); });
-
-/* ====================== ROUTER (hash-based) ====================== */
-const routes = ['home','pro','recruitment','stats','legal-terms','legal-privacy','legal-cookies'];
-function onRoute(){
-  const hash = (location.hash || '#home').replace('#','');
-  routes.forEach(id=>document.getElementById(id).style.display = (id===hash)?'block':'none');
-  document.querySelectorAll('header nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+hash || (hash==='home' && a.getAttribute('href')==='#home')));
-  // SEO-ish: adjust titles/descriptions per page
-  const canon = document.getElementById('canonical'), base = 'https://your-domain.example/';
-  if(hash==='pro'){ document.title='Jobbyist Pro — R99/mo'; canon.href=base+'#pro'; }
-  else if(hash==='recruitment'){ document.title='Recruitment Suite — Early Access'; canon.href=base+'#recruitment'; }
-  else if(hash==='stats'){ document.title='Real-Time Job Stats — South Africa'; canon.href=base+'#stats'; }
-  else { document.title='Jobbyist — Find work you’ll be proud of'; canon.href=base; }
-}
-window.addEventListener('hashchange', onRoute); onRoute();
-
-/* ====================== JOB DATA (50 items) ====================== */
-const jobs=[/* … same 50 jobs as previous message … */];
-// For brevity in this excerpt, keep your existing 50-item array here unchanged
-
-/* ====================== COMPANIES ====================== */
-const companies=[/* … same 10 companies as previous message … */];
-
-/* ====================== RENDER: JOBS with SEO pagination + infinite scroll ====================== */
-let currentList = jobs.slice(); // filtered view
-let currentPage = 1;
-const jobsGrid = document.getElementById('jobsGrid');
-const jobsPager = document.getElementById('jobsPager');
-const jobsSentinel = document.getElementById('jobsSentinel');
-
-function readableEmployment(t){return {FULL_TIME:'Full-time',PART_TIME:'Part-time',CONTRACTOR:'Contract',INTERN:'Internship','TEMPORARY':'Temporary'}[t]||'—';}
-function timeAgo(dateStr){const d=new Date(dateStr);const days=Math.max(0,Math.floor((Date.now()-d)/86400000)); return days===0?'today':days===1?'1 day ago':`${days} days ago`; }
-
-function pageCount(){ return Math.max(1, Math.ceil(currentList.length / PAGE_SIZE)); }
-function pageSlice(p){ const start=(p-1)*PAGE_SIZE; return currentList.slice(start, start+PAGE_SIZE); }
-
-function renderJobsPage(p, replace=false){
-  const slice = pageSlice(p);
-  if(replace){ jobsGrid.innerHTML=''; }
-  // Insert cards + in-feed ads every 5 items
-  const frag = document.createDocumentFragment();
-  slice.forEach((j,idx)=>{
-    if((idx % 5===0) && !(p===1 && idx===0)){ const ad=document.createElement('div'); ad.className='card ad-card'; ad.textContent='Ad — Google AdSense (in-feed)'; frag.appendChild(ad); }
-    const card=document.createElement('div'); card.className='card';
-    card.innerHTML=`
-      <div class="row"><div class="chip">${j.logo||'🏢'}</div>
-        <div><b>${j.title}</b><div class="sub">${j.company}${j.verified?' • ✅ Verified':''}</div></div></div>
-      <div class="sub">${j.location} • ${j.workType||'—'} • ${readableEmployment(j.employmentType)}</div>
-      <div class="sub">${j.salary || 'Market related'}</div>
-      <div class="chip">Posted ${timeAgo(j.datePosted)}</div>
-      <p style="min-height:56px">${j.description}</p>
-      <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:auto">
-        <button class="btn" onclick="openJob(${jobs.indexOf(j)})">Details</button>
-        <button class="btn" onclick="openCompany('${j.company}')">Company</button>
-        <button class="cta" onclick="handleApply(${jobs.indexOf(j)})">Apply</button>
-        <button class="btn" onclick="triggerWall('saveJob')">Save</button>
-        <button class="cta secondary pro-cta">Go Pro</button>
-      </div>`;
-    frag.appendChild(card);
-  });
-  jobsGrid.appendChild(frag);
-  injectPageSchema(p); // JSON-LD for jobs on this page only
-  updateJobsPager(p);
-  document.getElementById('jobsCount').textContent = currentList.length;
-  bindProCtas();
-}
-
-function updateJobsPager(p){
-  const total = pageCount();
-  const makeBtn=(label, page, disabled=false)=>`<button class="btn" ${disabled?'disabled':''} data-page="${page}">${label}</button>`;
-  let html = makeBtn('« Prev', p-1, p<=1);
-  const range = [...Array(total).keys()].map(i=>i+1).slice(0,8); // first 8 for compactness
-  html += range.map(n=>`<button class="btn" data-page="${n}" ${n===p?'disabled':''}>${n}</button>`).join('');
-  html += makeBtn('Next »', p+1, p>=total);
-  jobsPager.innerHTML = html;
-  jobsPager.querySelectorAll('[data-page]').forEach(btn => btn.onclick = (e)=>{
-    const target = parseInt(e.currentTarget.dataset.page,10);
-    if(Number.isFinite(target) && target>=1 && target<=total){
-      currentPage = target; jobsGrid.innerHTML=''; renderJobsPage(currentPage,true);
-      // SEO hints
-      setRelPrevNext(target,total);
-      window.history.replaceState({}, '', `#home?jobs_page=${target}`);
-    }
-  });
-  setRelPrevNext(p,total);
-}
-function setRelPrevNext(p,total){
-  const prev = document.getElementById('relPrev'), next = document.getElementById('relNext');
-  const url = (n)=>`https://your-domain.example/#home?jobs_page=${n}`;
-  prev.href = (p>1)?url(p-1):'';
-  next.href = (p<total)?url(p+1):'';
-  prev.disabled = !(p>1); next.disabled = !(p<total);
-}
-
-/* Progressive infinite scroll (enhances the pager for users) */
-const io = new IntersectionObserver(entries=>{
-  if(entries[0].isIntersecting){
-    const total = pageCount();
-    if(currentPage < total){
-      currentPage += 1;
-      renderJobsPage(currentPage,false);
-    }
-  }
-},{rootMargin:'400px'});
-io.observe(jobsSentinel);
-
-/* Inject only current page’s JSON-LD to keep DOM light */
-function injectPageSchema(p){
-  // remove previous page scripts
-  [...document.querySelectorAll('script[data-page-jsonld]')].forEach(s=>s.remove());
-  const items = pageSlice(p);
-  const frag = document.createDocumentFragment();
-  items.forEach((job,i)=>{
-    const data={"@context":"https://schema.org/","@type":"JobPosting","title":job.title,"description":job.description,"datePosted":job.datePosted,"validThrough":job.validThrough,"employmentType":readableEmployment(job.employmentType),"hiringOrganization":{"@type":"Organization","name":job.company,"sameAs":job.companyWebsite||job.applyUrl},"jobLocation":[{"@type":"Place","address":{"@type":"PostalAddress","addressCountry":"ZA","addressLocality":job.location}}],"applicantLocationRequirements":{"@type":"Country","name":"South Africa"},"directApply":true,"estimatedSalary":{"@type":"MonetaryAmount","currency":"ZAR","value":{"@type":"QuantitativeValue","unitText":"YEAR","value":job.salary||"Market related"}}};
-    const s=document.createElement('script'); s.type='application/ld+json'; s.dataset.pageJsonld = String(p); s.textContent = JSON.stringify(data);
-    frag.appendChild(s);
-  });
-  document.body.appendChild(frag);
-}
-
-/* ====================== JOB DETAILS / APPLY / LIMITS ====================== */
-function openJob(idx){
-  if(!canViewMore()){ upsellLimit('views'); return; }
-  tickCount('views');
-  const j=jobs[idx];
-  document.getElementById('jobTitle').textContent=j.title+' — '+j.company;
-  document.getElementById('jobBody').innerHTML=`
-    <div class="sub">${j.location} • ${j.workType||'—'} • ${readableEmployment(j.employmentType)} • ${j.salary||'Market'}</div>
-    <p>${j.description}</p>
-    <div class="row" style="gap:10px;flex-wrap:wrap">
-      <button class="cta" onclick="handleApply(${idx})">Apply now</button>
-      <button class="btn" onclick="triggerWall('saveJob')">Save</button>
-    </div>
-    <div class="card ad-card" style="margin-top:10px">Ad — Google AdSense (mid-content)</div>`;
-  document.getElementById('jobModal').classList.add('open');
-}
-function closeModal(sel){ document.querySelector(sel).classList.remove('open'); }
-
-function handleApply(idx){
-  const user=getUser();
-  if(!user.signedIn){ openSignup('apply'); return; }
-  if(!user.pro && !canApplyMore()){ upsellLimit('applies'); return; }
-  if(!user.pro) tickCount('applies');
-  const url = jobs[idx].applyUrl || '#'; window.open(url,'_blank','noopener');
-}
-
-/* ====================== COMPANIES (Pro-gated review/follow) ====================== */
-function renderCompanies(){
-  const wrap=document.getElementById('companiesGrid'); if(!wrap) return;
-  wrap.innerHTML='';
-  companies.forEach(c=>{
-    const el=document.createElement('div'); el.className='card';
-    el.innerHTML=`
-      <div><b>${c.name}</b> <span class="chip">✅ Verified</span></div>
-      <div class="sub">${c.industry} • HQ: ${c.hq} • ${c.size}</div>
-      <div>⭐ ${c.rating.toFixed(1)} / 5</div>
-      <div class="row" style="gap:10px;flex-wrap:wrap">
-        <button class="btn" onclick="proOnly(()=>triggerWall('reviewCompany','${c.name}'))">Review</button>
-        <button class="btn" onclick="proOnly(()=>triggerWall('followCompany','${c.name}'))">Follow</button>
-        <button class="cta" onclick="openCompany('${c.name}')">View</button>
-      </div>`;
-    wrap.appendChild(el);
-  });
-}
-function openCompany(name){
-  const c=companies.find(x=>x.name===name)||{name:name,site:'#',rating:4.0,followers:0,industry:'—',hq:'—'};
-  document.getElementById('coTitle').textContent=name+' — Company Profile';
-  document.getElementById('coBody').innerHTML=`
-    <div class="grid" style="grid-template-columns:2fr 1fr">
-      <div>
-        <p><b>Industry:</b> ${c.industry}</p>
-        <p><b>HQ:</b> ${c.hq}</p>
-        <p><b>Company size:</b> ${c.size}</p>
-        <p><b>Website:</b> <a href="${c.site}" target="_blank" rel="noopener">${c.site}</a></p>
-        <p><b>Rating:</b> ⭐ ${c.rating.toFixed(1)} / 5</p>
-        <div class="row" style="gap:10px;flex-wrap:wrap">
-          <button class="btn" onclick="proOnly(()=>triggerWall('reviewCompany','${c.name}'))">Write a review</button>
-          <button class="btn" onclick="proOnly(()=>triggerWall('followCompany','${c.name}'))">Follow company</button>
-        </div>
-      </div>
-      <div class="panel">
-        <h3>Want first dibs on openings?</h3>
-        <p class="sub">Go Pro to follow companies, review them, and unlock unlimited listings.</p>
-        <button class="cta" id="openProModal2">Unlock Pro — R99/mo</button>
-      </div>
-    </div>`;
-  document.getElementById('companyModal').classList.add('open');
-  document.getElementById('openProModal2').onclick = ()=>document.getElementById('proModal').classList.add('open');
-}
-function proOnly(action){
-  const u=getUser();
-  if(!u.signedIn){ openSignup('proGating'); return; }
-  if(!u.pro){ location.hash='#pro'; alert('Pro feature: follow & review companies.'); return; }
-  action();
-}
-
-/* ====================== SIGNUP (job seeker) ====================== */
-const steps = [
-  {id:'account',title:'Create your account',fields:[
-    {name:'firstName',placeholder:'First name',required:true},
-    {name:'lastName',placeholder:'Last name',required:true},
-    {name:'email',type:'email',placeholder:'Email address',required:true},
-    {name:'password',type:'password',placeholder:'Password',required:true},
-    {name:'location',placeholder:'City/Province',class:'full',required:true},
-  ]},
-  {id:'experience',title:'Experience',fields:[
-    {name:'years',type:'number',placeholder:'Years of experience',required:true},
-    {name:'currentTitle',placeholder:'Current/last job title',required:true},
-    {name:'industry',placeholder:'Industry (e.g., Banking, Tech)',required:true},
-    {name:'workPref',type:'select',options:['Remote','Hybrid','On-site'],placeholder:'Work preference',required:true},
-    {name:'notice',type:'select',options:['Immediate','2 weeks','1 month','3 months'],placeholder:'Notice period',required:true},
-    {name:'salaryExp',placeholder:'Salary expectation (ZAR)',class:'full'}
-  ]},
-  {id:'skills',title:'Skills & Tools',fields:[
-    {name:'skills',placeholder:'Key skills (comma-separated)',class:'full',required:true},
-    {name:'tools',placeholder:'Tools/tech (comma-separated)',class:'full'},
-    {name:'languages',placeholder:'Languages (comma-separated)',class:'full'}
-  ]},
-  {id:'documents',title:'Documents',fields:[
-    {name:'cv',type:'file',placeholder:'Upload CV (PDF/DOCX) — optional',class:'full'},
-    {name:'portfolio',placeholder:'Portfolio URL (https://)',class:'full'}
-  ]},
-  {id:'preferences',title:'Alerts & Privacy',fields:[
-    {name:'alerts',type:'checkbox',placeholder:'Send me new job alerts'},
-    {name:'directory',type:'checkbox',placeholder:'Add me to the job seeker directory (visible to verified recruiters)',checked:true},
-    {name:'terms',type:'checkbox',placeholder:'I agree to the Terms & Privacy',required:true}
-  ]}
-];
-
-/* ===== Pro modal steps ===== */
-const proSteps = [
-  {id:'account',title:'Your details',fields:[
-    {name:'fullName',placeholder:'Full name',required:true},
-    {name:'email',type:'email',placeholder:'Email address',required:true},
-    {name:'phone',placeholder:'Phone number',required:true},
-  ]},
-  {id:'plan',title:'Choose plan',fields:[
-    {name:'plan',type:'select',options:['Monthly — R99 (promo)','Monthly — R199 (regular)'],placeholder:'Select plan',required:true},
-    {name:'alerts',type:'checkbox',placeholder:'Email me Pro tips & job alerts',checked:true}
-  ]},
-  {id:'billing',title:'Billing info',fields:[
-    {name:'city',placeholder:'Billing city',required:true},
-    {name:'country',placeholder:'Country (South Africa)',required:true},
-    {name:'notes',placeholder:'Anything we should know?',class:'full'}
-  ]}
-];
-
-/* ===== Employer onboarding steps ===== */
-const bizSteps = [
-  {id:'company',title:'Company profile',fields:[
-    {name:'company',placeholder:'Company name',required:true},
-    {name:'website',placeholder:'Company website (https://)'},
-    {name:'hq',placeholder:'HQ city',required:true},
-    {name:'size',type:'select',options:['1-10','11-50','51-200','200+'],placeholder:'Company size',required:true},
-    {name:'industry',placeholder:'Industry (e.g., Retail, Tech)',class:'full',required:true}
-  ]},
-  {id:'contact',title:'Your details',fields:[
-    {name:'contact_name',placeholder:'Your name',required:true},
-    {name:'email',type:'email',placeholder:'Work email',required:true},
-    {name:'role',placeholder:'Role (e.g., HR Manager)'}
-  ]},
-  {id:'intent',title:'Goals & intent',fields:[
-    {name:'intent',type:'select',options:['Create a new verified profile','Claim an existing company profile'],placeholder:'I want to…',required:true},
-    {name:'notes',placeholder:'Hiring goals / first roles you’ll post',class:'full'}
-  ]}
-];
-
-/* Shared form rendering */
-function openSignup(){ currentStep=0; drawMulti('#stepDots','#signupFlow',steps,'signup'); document.getElementById('signupModal').classList.add('open'); }
-function openPro(){ proCurrentStep=0; drawMulti('#proStepDots','#proFlow',proSteps,'pro'); document.getElementById('proModal').classList.add('open'); }
-function drawMulti(dotsSel, formSel, STEPS, kind){
-  const dots=document.querySelector(dotsSel); dots.innerHTML=''; STEPS.forEach((_,i)=>{const d=document.createElement('div'); d.className='step'+(i===0?' active':''); dots.appendChild(d)});
-  const form=document.querySelector(formSel); form.innerHTML='';
-  STEPS.forEach((s,i)=>{
-    const page=document.createElement('div'); page.dataset.step=i; page.style.display=i===0?'block':'none';
-    page.innerHTML=`<h3>${s.title}</h3><div class="form-grid">${s.fields.map(f=>fieldHTML(f)).join('')}</div>
-      <div class="row" style="justify-content:space-between;margin-top:12px;flex-wrap:wrap">
-        <button class="btn" ${i===0?'disabled':''} data-prev="${i}">Back</button>
-        ${i<STEPS.length-1?`<button class="btn" data-next="${i}">Next</button>`:`<button class="cta" data-submit>Finish</button>`}
-      </div>`;
-    form.appendChild(page);
-  });
-  form.onsubmit=(e)=>{e.preventDefault()};
-  form.addEventListener('click', e=>{
-    if(e.target.dataset.next!==undefined){ if(validatePage(form,+e.target.dataset.next)){ swapPage(form,+e.target.dataset.next,+e.target.dataset.next+1,dotsSel); } }
-    if(e.target.dataset.prev!==undefined){ swapPage(form,+e.target.dataset.prev,+e.target.dataset.prev-1,dotsSel); }
-    if(e.target.hasAttribute('data-submit')){ submitFormspree(form, kind); }
-  }, {once:true});
-}
-function fieldHTML(f){
-  if(f.type==='select'){
-    return `<div class="input ${f.class||''}"><select name="${f.name}" required="${!!f.required}">
-      <option value="" selected disabled>${f.placeholder||'Select'}</option>${(f.options||[]).map(o=>`<option value="${o}">${o}</option>`).join('')}</select></div>`;
-  }
-  if(f.type==='checkbox'){ return `<label class="input ${f.class||''}" style="gap:8px"><input type="checkbox" name="${f.name}" ${f.checked?'checked':''}/> ${f.placeholder||''}</label>`; }
-  if(f.type==='file'){ return `<label class="input ${f.class||''}"><input type="file" name="${f.name}"/> ${f.placeholder||''}</label>`; }
-  return `<div class="input ${f.class||''}"><input name="${f.name}" type="${f.type||'text'}" placeholder="${f.placeholder||''}" ${f.required?'required':''}/></div>`;
-}
-function swapPage(form,from,to,dotsSel){ form.querySelector(`[data-step="${from}"]`).style.display='none'; form.querySelector(`[data-step="${to}"]`).style.display='block'; form.querySelectorAll(dotsSel+' .step').forEach((d,i)=>d.classList.toggle('active', i<=to)); }
-function validatePage(form,i){ let ok=true; form.querySelectorAll(`[data-step="${i}"] input[required], [data-step="${i}"] select[required]`).forEach(el=>{ if(!el.value){ el.style.borderColor='#ff8787'; ok=false;} else el.style.borderColor='var(--line)'; }); return ok; }
-async function submitFormspree(form, kind){
-  if(!validatePage(form, form.querySelectorAll('[data-step]').length-1)) return;
-  const fd=new FormData(form); fd.append('_subject', kind==='pro'?'New Jobbyist Pro signup':'New Jobbyist signup');
-  try{
-    await fetch(FORMSPREE,{method:'POST',body:fd,headers:{'Accept':'application/json'}});
-    if(kind==='pro'){ localStorage.setItem('jobbyist_user','1'); localStorage.setItem('jobbyist_pro','1'); }
-    else { localStorage.setItem('jobbyist_user','1'); localStorage.setItem('jobbyist_pro','0'); }
-    alert('All set! Check your email for next steps.'); document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));
-  }catch{ alert('Saved locally. We’ll finalise shortly.'); }
-}
-
-/* Employer onboarding form render */
-function drawEmployer(){
-  const dots=document.getElementById('bizStepDots');
-  const form=document.getElementById('bizFlow'); dots.innerHTML=''; form.innerHTML='';
-  bizSteps.forEach((_,i)=>{const d=document.createElement('div'); d.className='step'+(i===0?' active':''); dots.appendChild(d);});
-  bizSteps.forEach((s,i)=>{
-    const page=document.createElement('div'); page.dataset.step=i; page.style.display=i===0?'block':'none';
-    page.innerHTML=`<h3>${s.title}</h3><div class="form-grid">${s.fields.map(f=>fieldHTML(f)).join('')}</div>
-      <div class="row" style="justify-content:space-between;margin-top:12px;flex-wrap:wrap">
-        <button class="btn" ${i===0?'disabled':''} data-prev="${i}">Back</button>
-        ${i<bizSteps.length-1?`<button class="btn" data-next="${i}">Next</button>`:`<button class="cta" data-submit>Request early access</button>`}
-      </div>`;
-    form.appendChild(page);
-  });
-  form.addEventListener('click', e=>{
-    if(e.target.dataset.next!==undefined){ if(validatePage(form,+e.target.dataset.next)){ swapPage(form,+e.target.dataset.next,+e.target.dataset.next+1,'#bizStepDots'); } }
-    if(e.target.dataset.prev!==undefined){ swapPage(form,+e.target.dataset.prev,+e.target.dataset.prev-1,'#bizStepDots'); }
-    if(e.target.hasAttribute('data-submit')){ submitFormspree(form,'biz'); }
-  }, {once:true});
-}
-
-/* ====================== COOKIE, SEARCH, STATS, CHAT, LANG ====================== */
-function acceptCookies(all){ localStorage.setItem('cookie_ok', all?'all':'essential'); document.getElementById('cookieBanner').classList.remove('open'); }
-if(!localStorage.getItem('cookie_ok')) document.getElementById('cookieBanner').classList.add('open');
-document.getElementById('yr').textContent=new Date().getFullYear();
-
-document.getElementById('searchBtn').onclick=()=>{
-  const t=document.getElementById('qTitle').value.toLowerCase();
-  const l=document.getElementById('qLoc').value.toLowerCase();
-  currentList=jobs.filter(j=>(!t||(j.title+j.company+j.description).toLowerCase().includes(t))&&(!l||j.location.toLowerCase().includes(l)));
-  currentPage=1; jobsGrid.innerHTML=''; renderJobsPage(1,true);
-};
-
-document.getElementById('chatFab').onclick=()=>document.getElementById('chatModal').classList.add('open');
-document.getElementById('chatForm').addEventListener('submit', async (e)=>{
-  e.preventDefault(); const msg=e.target.q.value.trim(); if(!msg) return;
-  addChat('you', msg); e.target.reset(); addChat('bot','Thinking…');
-  try{
-    const res=await fetch(CHAT_API_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({message:msg,user:getUser()})});
-    const data=await res.json(); replaceLastBot(data.reply||'(No response)');
-  }catch{ replaceLastBot('Setup needed. See Worker notes in the code.'); }
-});
-function addChat(who, text){ const box=document.getElementById('chatBox'); const d=document.createElement('div'); d.style.margin='6px 0'; d.innerHTML=`<b>${who==='you'?'You':'Assistant'}:</b> ${text}`; box.appendChild(d); box.scrollTop=box.scrollHeight; }
-function replaceLastBot(text){ const box=document.getElementById('chatBox'); const nodes=[...box.querySelectorAll('div')]; nodes[nodes.length-1].innerHTML=`<b>Assistant:</b> ${text}`; }
-document.getElementById('langSelect').addEventListener('change', (e)=>{ localStorage.setItem('lang',e.target.value); alert('Language saved. Localisation coming soon.'); });
-
-/* ====================== USER STATE & QUOTAS ====================== */
-function getUser(){ return { signedIn: localStorage.getItem('jobbyist_user')==='1', pro: localStorage.getItem('jobbyist_pro')==='1' }; }
-function tickCount(kind){
-  const key=`quota_${kind}`, dateKey='quota_date', today=new Date().toISOString().slice(0,10);
-  if(localStorage.getItem(dateKey)!==today){ localStorage.setItem(dateKey,today); localStorage.setItem('quota_views','0'); localStorage.setItem('quota_applies','0'); }
-  const n=parseInt(localStorage.getItem(key)||'0',10)+1; localStorage.setItem(key,String(n));
-}
-function canViewMore(){ const u=getUser(); if(!u.signedIn||u.pro) return true; resetIfNewDay(); const n=parseInt(localStorage.getItem('quota_views')||'0',10); return n<DAILY_LIMITS.views; }
-function canApplyMore(){ const u=getUser(); if(!u.signedIn||u.pro) return true; resetIfNewDay(); const n=parseInt(localStorage.getItem('quota_applies')||'0',10); return n<DAILY_LIMITS.applies; }
-function resetIfNewDay(){ const today=new Date().toISOString().slice(0,10); if(localStorage.getItem('quota_date')!==today){ localStorage.setItem('quota_date',today); localStorage.setItem('quota_views','0'); localStorage.setItem('quota_applies','0'); } }
-function upsellLimit(type){
-  const cap=DAILY_LIMITS[type];
-  alert(`Limit reached: Free accounts can ${type==='views'?'view up to 50 job details':'apply to 5 jobs'} per day.\nUnlock unlimited access with Jobbyist Pro.`);
-  location.hash='#pro';
-}
-
-/* ====================== WALL TRIGGERS ====================== */
-function triggerWall(action, meta){
-  const u=getUser();
-  if(!u.signedIn){ openSignup(action, meta); return; }
-  if(action==='followCompany' || action==='reviewCompany'){
-    if(!u.pro){ location.hash='#pro'; alert('Pro feature — follow & review companies.'); return; }
-  }
-  alert(action==='saveJob'?'Saved! We’ll keep this in your dashboard.':
-       action==='followCompany'?'Followed! You’ll get updates by email.':'Thanks!');
-}
-
-/* ====================== INIT ====================== */
-function bindProCtas(){ document.querySelectorAll('.pro-cta,#openProModal').forEach(b=>b.onclick=()=>openPro()); }
-document.getElementById('openSignupTop').onclick = ()=>openSignup(); // ensure wired
-document.getElementById('openProModal') && (document.getElementById('openProModal').onclick = ()=>openPro());
-renderCompanies();
-drawEmployer();
-// initial jobs render (respect ?jobs_page)
-const initialPage = Number((location.hash.split('?jobs_page=')[1])||'1')||1;
-renderJobsPage(initialPage,true); currentPage=initialPage;
-
-/* ====================== JOB STATS (demo) ====================== */
-function updateJobStats(s){ statOpen.textContent=s.openRoles; statRemote.textContent=s.remoteShare; statSalary.textContent=s.medianSalary; statTTF.textContent=s.timeToFill; statTopInd.textContent=s.topIndustry; statSkill.textContent=s.hotSkill; }
-updateJobStats({openRoles:'8,567',remoteShare:'27%',medianSalary:'R38,000 / mo',timeToFill:'34 days',topIndustry:'Financial Services',hotSkill:'Python'});
-
-/* ====================== GOOGLE INDEXING API – GITHUB ACTIONS (instructions) ======================
-1) Why: Google’s Indexing API supports JobPosting pages. We’ll ping it whenever jobs change.
-2) What you need:
-   - Verify your site in Search Console.
-   - Create a Google Cloud project → enable “Indexing API”.
-   - Create a Service Account, grant owner to the project, and add the SA email as an owner in Search Console.
-   - Download the service account JSON. In GitHub repo settings:
-       * Add secret GOOGLE_SERVICE_ACCOUNT_JSON (entire JSON as the secret)
-       * Add secret SITE_BASE_URL (e.g., https://jobbyist.co.za)
-3) Create .github/workflows/indexing.yml (example):
-----------------------------------------------------------------
-name: Google Indexing (Jobs)
-on:
-  push:
-    paths:
-      - jobs.json
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - name: Install deps
-        run: npm i google-auth-library
-      - name: Notify Indexing API
-        env:
-          SA_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-          SITE: ${{ secrets.SITE_BASE_URL }}
-        run: |
-          node - <<'NODE'
-          const {GoogleAuth} = require('google-auth-library');
-          const sa = JSON.parse(process.env.SA_JSON);
-          const auth = new GoogleAuth({
-            credentials: sa,
-            scopes: ['https://www.googleapis.com/auth/indexing']
-          });
-          async function call(url, type='URL_UPDATED'){
-            const client = await auth.getClient();
-            const res = await client.request({
-              url:'https://indexing.googleapis.com/v3/urlNotifications:publish',
-              method:'POST',
-              data:{ url, type }
-            });
-            console.log(res.data);
-          }
-          // For paginated job pages (SEO URLs like /#home?jobs_page=N)
-          // Create canonical static URLs per page if possible (e.g., /jobs/page-1.html).
-          // For now, notify the site root and jobs sitemap if you maintain one.
-          call(process.env.SITE + '/');
-          NODE
-----------------------------------------------------------------
-4) Google Jobs structured data: already injected per visible page (`JobPosting` JSON-LD).
-5) Sitemaps: add /sitemap.xml & /jobs-sitemap.xml listing your page URLs.
-====================================================================== */
-</script>
+<script src="assets/jobs-data.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>
