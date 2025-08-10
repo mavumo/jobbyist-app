@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Real-Time Job Stats — South Africa | Jobbyist</title>
+  <meta name="description" content="Live hiring signals: open roles, remote share, salaries, time-to-fill, hot skills and industries in South Africa.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body data-page="stats">
+<header>
+  <div class="container nav">
+    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><a class="brand" href="index.html">Jobbyist<sup>🇿🇦</sup></a></div>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="browse-jobs.html">Browse Jobs</a><a href="pro.html">Pro</a><a href="recruitment.html">Recruitment Suite</a><a class="active" href="stats.html">Real-Time Job Stats</a>
+      <a href="https://audit.jobbyist.co.za" target="_blank">ResumeAudit</a>
+      <select id="langSelect" title="Language" style="margin-left:6px"><option value="en" selected>EN</option><option value="zu">ZU</option><option value="xh">XH</option><option value="af">AF</option><option value="st">ST</option></select></nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" id="openSignupTop">Create free account</button></div>
+  </div>
+</header>
+<div class="sheet" id="navSheet" aria-hidden="true"><div class="drawer"><div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn close-x">✕</button></div><a href="index.html">Home</a><a href="browse-jobs.html">Browse Jobs</a><a href="pro.html">Jobbyist Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real-Time Job Stats</a><a href="https://audit.jobbyist.co.za" target="_blank">ResumeAudit</a>
+<label class="input" style="margin-top:10px"><span style="min-width:80px">Language</span><select id="langSelect"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select></label><hr style="border:none;border-top:1px solid var(--line)"><button class="cta open-signup">Create free account</button></div></div>
+
+<main class="container">
+  <section class="hero">
+    <div class="panel">
+      <h1>Real-Time Job Stats — South Africa</h1>
+      <p class="sub">We aggregate fresh signals from trusted sources to help you aim your search where the momentum is.</p>
+      <div class="card ad-card" style="margin-top:12px">Ad — Google AdSense (hero)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+      <div class="card"><h3>Open Roles (30d)</h3><div id="statOpen">—</div></div>
+      <div class="card"><h3>Remote Share</h3><div id="statRemote">—</div></div>
+      <div class="card"><h3>Median Salary</h3><div id="statSalary">—</div></div>
+      <div class="card"><h3>Time-to-Fill</h3><div id="statTTF">—</div></div>
+      <div class="card"><h3>Top Industry</h3><div id="statTopInd">—</div></div>
+      <div class="card"><h3>Hot Skill</h3><div id="statSkill">—</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="panel">
+      <h2>Get the weekly report</h2>
+      <form action="https://formspree.io/f/xeokkzle" method="POST" class="form-grid">
+        <input class="input" name="email" type="email" placeholder="Work email" required>
+        <input class="input" name="company" placeholder="Company (optional)">
+        <button class="cta">Send me the report</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="card ad-card">Ad — Google AdSense (bottom)</div>
+</main>
+
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+
+<footer><div class="container footer-grid"><div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Insights that move careers.</p></div><div><b>Explore</b><br><a href="browse-jobs.html">Browse Jobs</a> • <a href="pro.html">Pro</a></div><div><b>Legal</b><br><a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div></div><div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div></footer>
+
+<script src="assets/jobs-data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
