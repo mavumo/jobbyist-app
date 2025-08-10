@@ -1,55 +1,68 @@
-<!-- Dedicated Geo-Filtered Job Listings Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Browse Jobs | Jobbyist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Browse Jobs — Jobbyist</title>
+  <meta name="description" content="Browse all jobs on Jobbyist. Fresh roles across industries in South Africa.">
+  <link rel="canonical" href="https://your-domain.example/browse-jobs.html">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css">
+  <link rel="prev" href="">
+  <link rel="next" href="">
 </head>
-<body>
-  <div class="page" id="browse-jobs-page">
-    <!-- Re-use navbar include -->
-    <header id="navbar-placeholder"></header>
-
-    <section class="section py-80">
-      <div class="container">
-        <h1 class="heading-xl mb-24">Browse Job Listings</h1>
-        <!-- Filter Bar -->
-        <form class="job-filter-bar" id="job-filter-form" aria-label="Job filter">
-          <input type="text" id="filter-title" class="form-control" placeholder="Job title or keyword" aria-label="Job title"/>
-          <select id="filter-type" class="form-control" aria-label="Job type">
-            <option value="">All Types</option>
-            <option>Full-time</option>
-            <option>Part-time</option>
-            <option>Contract</option>
-            <option>Internship</option>
-            <option>Remote</option>
-          </select>
-          <select id="filter-city" class="form-control" aria-label="City"></select>
-          <label class="checkbox-label">
-            <input type="checkbox" id="filter-remote"/>
-            <span class="checkbox-custom"></span>Remote only
-          </label>
-          <button type="submit" class="btn btn--primary"><span>Filter</span><i data-feather="filter"></i></button>
-        </form>
-
-        <!-- Job Cards Container -->
-        <div class="jobs-container mt-40" id="jobs-container"></div>
-      </div>
-    </section>
-
-    <!-- Footer Include -->
-    <footer id="footer-placeholder"></footer>
+<body data-page="browse">
+<header>
+  <div class="container nav">
+    <div class="row">
+      <button class="icon-btn burger" aria-label="Open menu" id="openMenu">☰</button>
+      <a class="brand" href="index.html">Jobbyist<sup>🇿🇦</sup></a>
+    </div>
+    <nav class="nav-links"><a href="index.html">Home</a><a class="active" href="browse-jobs.html">Browse Jobs</a><a href="pro.html">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real-Time Job Stats</a>
+      <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit</a>
+      <select id="langSelect" title="Language" style="margin-left:6px"><option value="en" selected>EN</option><option value="zu">ZU</option><option value="xh">XH</option><option value="af">AF</option><option value="st">ST</option></select>
+    </nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" id="openSignupTop">Create free account</button></div>
   </div>
+</header>
 
-  <script defer src="data-loader.js"></script>
-  <script defer src="https://jobbyist.africa/nav.js"></script>
-  <script defer src="search.js"></script>
-  <script defer src="bookmark.js"></script>
-  <script defer src="https://jobbyist.africa/app.js"></script>
-  <script defer src="https://jobbyist.africa/jobs-filter.js"></script>
-  <script>feather.replace();</script>
+<div class="sheet" id="navSheet" aria-hidden="true"><div class="drawer"><div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn close-x">✕</button></div>
+  <a href="index.html">Home</a><a href="browse-jobs.html">Browse Jobs</a><a href="pro.html">Jobbyist Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real-Time Job Stats</a><a href="https://audit.jobbyist.co.za" target="_blank">ResumeAudit</a>
+  <label class="input" style="margin-top:10px"><span style="min-width:80px">Language</span><select id="langSelect"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select></label>
+  <hr style="border:none;border-top:1px solid var(--line)"><button class="cta open-signup">Create free account</button></div></div>
+
+<main class="container">
+  <section>
+    <h1>Browse all jobs</h1>
+    <p class="sub">Fresh roles from verified companies. Filter by keyword and location on the home page.</p>
+    <div class="card ad-card">Ad — Google AdSense (top)</div>
+  </section>
+
+  <section>
+    <div id="jobsGrid" class="grid jobs"></div>
+    <nav id="jobsPager" class="row" style="justify-content:center;margin:14px 0;gap:8px"></nav>
+    <div id="jobsSentinel" style="height:1px"></div>
+  </section>
+
+  <section>
+    <div class="panel">
+      <h2>Want unlimited access?</h2>
+      <p class="sub">Go Pro to lift daily limits, browse ad-free, and get AI-powered recommendations.</p>
+      <button class="cta pro-cta" id="openProModal">Start Jobbyist Pro — R99/mo</button>
+    </div>
+  </section>
+  <div class="card ad-card">Ad — Google AdSense (bottom)</div>
+</main>
+
+<!-- Modals -->
+<div class="modal" id="jobModal"><div class="content"><header><h3 id="jobTitle">Job</h3><button class="close-x">✕</button></header><div class="body" id="jobBody"></div></div></div>
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+
+<!-- Cookie -->
+<div class="cookie" id="cookieBanner"><div class="row" style="justify-content:space-between"><div>🍪 We use cookies for essential features, analytics and ads. See <a href="cookies.html">settings</a>.</div><div><button class="btn" onclick="acceptCookies(false)">Only essential</button> <button class="cta" onclick="acceptCookies(true)">Accept all</button></div></div></div>
+
+<script src="assets/jobs-data.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>
