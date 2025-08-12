@@ -1,0 +1,12 @@
+[
+  {"name":"Naspers","industry":"Technology","hq":"Cape Town","size":"10,000+","rating":4.4,"site":"https://www.naspers.com/"},
+  {"name":"Discovery","industry":"Insurance","hq":"Sandton","size":"10,000+","rating":4.3,"site":"https://www.discovery.co.za/"},
+  {"name":"MTN South Africa","industry":"Telecoms","hq":"Johannesburg","size":"10,000+","rating":4.2,"site":"https://www.mtn.co.za/"},
+  {"name":"Shoprite Group","industry":"Retail","hq":"Cape Town","size":"10,000+","rating":4.1,"site":"https://www.shopriteholdings.co.za/"},
+  {"name":"Anglo American","industry":"Mining","hq":"Johannesburg","size":"10,000+","rating":4.2,"site":"https://www.angloamerican.com/"},
+  {"name":"Sasol","industry":"Energy","hq":"Johannesburg","size":"10,000+","rating":4.1,"site":"https://www.sasol.com/"},
+  {"name":"Standard Bank","industry":"Banking","hq":"Johannesburg","size":"10,000+","rating":4.2,"site":"https://www.standardbank.com/"},
+  {"name":"Vodacom","industry":"Telecoms","hq":"Midrand","size":"10,000+","rating":4.0,"site":"https://www.vodacom.com/"},
+  {"name":"Woolworths","industry":"Retail","hq":"Cape Town","size":"10,000+","rating":4.0,"site":"https://www.woolworths.co.za/"},
+  {"name":"Capitec Bank","industry":"Banking","hq":"Stellenbosch","size":"10,000+","rating":4.3,"site":"https://www.capitecbank.co.za/"}
+]
