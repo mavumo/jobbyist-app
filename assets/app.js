@@ -44,7 +44,7 @@
   }
 })();
 
-/* ---- Global modals: Signup + Pro ---- */
+/* ---- Forms (Formspree multistep) ---- */
 const FORMSPREE = "https://formspree.io/f/xeokkzle";
 function fieldHTML(f){
   if(f.type==='select'){
@@ -177,16 +177,20 @@ function openFlow(steps, dotsSel, formSel, subject){
 /* Close helpers */
 window.closeModal = (sel)=>document.querySelector(sel)?.classList.remove('open');
 
-/* ---- Companies (home) ---- */
+/* ----------------------------------------------------------
+   Companies (home + directory)
+---------------------------------------------------------- */
 let COMPANIES = [];
-async function loadCompanies(){
+async function loadCompanies(limit, targetId){
   const r = await fetch('./data/companies.json'); COMPANIES = await r.json();
-  const grid = document.getElementById('companiesGrid');
+  renderCompaniesList(COMPANIES.slice(0, limit || COMPANIES.length), targetId || 'companiesGrid');
+}
+function renderCompaniesList(list, targetId){
+  const grid = document.getElementById(targetId);
   if(!grid) return;
   grid.innerHTML='';
-  COMPANIES.forEach(c=>{
-    const el = document.createElement('div');
-    el.className='card';
+  list.forEach(c=>{
+    const el=document.createElement('div'); el.className='card';
     el.innerHTML = `
       <div><b>${c.name}</b> <span class="chip">✅ Verified</span></div>
       <div class="sub">${c.industry} • HQ: ${c.hq} • ${c.size}</div>
@@ -198,8 +202,6 @@ async function loadCompanies(){
     grid.appendChild(el);
   });
 }
-
-/* Company modal */
 window.openCompany = function(name){
   const c = COMPANIES.find(x=>x.name===name) || {name:name,site:'#',rating:4.0,industry:'—',hq:'—',size:'—'};
   const m = document.getElementById('companyModal');
@@ -224,14 +226,15 @@ window.openCompany = function(name){
       </div>
     </div>`;
   m.classList.add('open');
-  // ensure pro CTAs work inside modal
   m.querySelectorAll('[data-open="pro"]').forEach(b=>b.onclick=()=>{
     openFlow(proSteps, '#proStepDots', '#proFlow', 'New Jobbyist Pro signup');
     document.getElementById('proModal')?.classList.add('open');
   });
 };
 
-/* ---- Jobs (Browse page) ---- */
+/* ----------------------------------------------------------
+   Jobs (Browse + Featured on Home + Job detail links)
+---------------------------------------------------------- */
 let JOBS = [];
 const PAGE_SIZE = 12;
 let currentList = [];
@@ -239,9 +242,10 @@ let currentPage = 1;
 
 function readableEmployment(t){return {FULL_TIME:'Full-time',PART_TIME:'Part-time',CONTRACTOR:'Contract',INTERN:'Internship','TEMPORARY':'Temporary'}[t]||'—';}
 function timeAgo(dateStr){const d=new Date(dateStr);const days=Math.max(0,Math.floor((Date.now()-d)/86400000)); return days===0?'today':days===1?'1 day ago':`${days} days ago`; }
-
 function pageCount(){ return Math.max(1, Math.ceil(currentList.length / PAGE_SIZE)); }
 function pageSlice(p){ const start=(p-1)*PAGE_SIZE; return currentList.slice(start, start+PAGE_SIZE); }
+function slugify(str){ return (str||'').toString().toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+function slugFor(j){ return `${slugify(j.company)}-${slugify(j.title)}-${slugify(j.location)}`; } // keep in sync with generator
 
 function injectPageSchema(p){
   [...document.querySelectorAll('script[data-page-jsonld]')].forEach(s=>s.remove());
@@ -262,16 +266,59 @@ function injectPageSchema(p){
   });
   document.body.appendChild(frag);
 }
-
 function setRelPrevNext(p,total){
   const prev = document.getElementById('relPrev');
   const next = document.getElementById('relNext');
+  if(!prev || !next) return;
   const base = location.origin + location.pathname.replace(/[^\/]*$/,'') + 'browse.html';
   const url = (n)=>`${base}?page=${n}`;
-  if(prev){ prev.href = (p>1)?url(p-1):''; }
-  if(next){ next.href = (p<total)?url(p+1):''; }
+  prev.href = (p>1)?url(p-1):'';
+  next.href = (p<total)?url(p+1):'';
 }
 
+function cardHTML(j){
+  const detail = `jobs/${slugFor(j)}/`;
+  return `
+    <div class="card">
+      <div class="row"><div class="chip">${j.logo||'🏢'}</div>
+        <div><b>${j.title}</b><div class="sub">${j.company}${j.verified?' • ✅ Verified':''}</div></div></div>
+      <div class="sub">${j.location} • ${j.workType||'—'} • ${readableEmployment(j.employmentType)}</div>
+      <div class="sub">${j.salary || 'Market related'}</div>
+      <div class="chip">Posted ${timeAgo(j.datePosted)}</div>
+      <p style="min-height:56px">${j.description}</p>
+      <div class="row" style="gap:10px;margin-top:auto">
+        <a class="btn" href="${detail}">Details</a>
+        <button class="btn" onclick="openCompany('${j.company}')">Company</button>
+        <a class="cta" href="${j.applyUrl||'#'}" target="_blank" rel="nofollow noopener">Apply</a>
+        <button class="btn" data-open="signup">Save</button>
+        <button class="cta invert" data-open="pro">Go Pro</button>
+      </div>
+    </div>`;
+}
+
+/* -------- Featured on Home (25) -------- */
+async function initHome(){
+  // jobs count + featured
+  const res = await fetch('./data/jobs.json'); JOBS = await res.json();
+  const count = document.getElementById('jobsCount'); if(count) count.textContent = JOBS.length;
+
+  const grid = document.getElementById('homeFeaturedGrid');
+  if(grid){
+    grid.innerHTML='';
+    const featured = JOBS.slice(0,25);
+    featured.forEach((j,idx)=>{
+      if(idx>0 && idx % 5 === 0){
+        const ad = document.createElement('div'); ad.className='card ad-card'; ad.textContent='Ad — Google AdSense (in‑feed)';
+        grid.appendChild(ad);
+      }
+      grid.insertAdjacentHTML('beforeend', cardHTML(j));
+    });
+  }
+  // companies (5)
+  await loadCompanies(5, 'companiesGrid');
+}
+
+/* -------- Browse page (all + pagination + infinite) -------- */
 function renderJobsPage(p, replace=false){
   const grid = document.getElementById('browseGrid'); if(!grid) return;
   const pager = document.getElementById('browsePager');
@@ -284,25 +331,11 @@ function renderJobsPage(p, replace=false){
   slice.forEach((j,idx)=>{
     if((idx % 5===0) && !(p===1 && idx===0)){
       const ad=document.createElement('div'); ad.className='card ad-card';
-      ad.innerHTML='Ad — Google AdSense (in-feed)';
+      ad.innerHTML='Ad — Google AdSense (in‑feed)';
       frag.appendChild(ad);
     }
-    const card=document.createElement('div'); card.className='card';
-    card.innerHTML=`
-      <div class="row"><div class="chip">${j.logo||'🏢'}</div>
-        <div><b>${j.title}</b><div class="sub">${j.company}${j.verified?' • ✅ Verified':''}</div></div></div>
-      <div class="sub">${j.location} • ${j.workType||'—'} • ${readableEmployment(j.employmentType)}</div>
-      <div class="sub">${j.salary || 'Market related'}</div>
-      <div class="chip">Posted ${timeAgo(j.datePosted)}</div>
-      <p style="min-height:56px">${j.description}</p>
-      <div class="row" style="gap:10px;margin-top:auto">
-        <button class="btn" onclick="openJob(${JOBS.indexOf(j)})">Details</button>
-        <button class="btn" onclick="openCompany('${j.company}')">Company</button>
-        <a class="cta" href="${j.applyUrl||'#'}" target="_blank" rel="nofollow noopener">Apply</a>
-        <button class="btn" data-open="signup">Save</button>
-        <button class="cta invert" data-open="pro">Go Pro</button>
-      </div>`;
-    frag.appendChild(card);
+    const wrapper = document.createElement('div'); wrapper.innerHTML = cardHTML(j);
+    frag.appendChild(wrapper.firstElementChild);
   });
   grid.appendChild(frag);
 
@@ -310,7 +343,7 @@ function renderJobsPage(p, replace=false){
   const total = pageCount();
   const makeBtn=(label, page, disabled=false)=>`<button class="btn" ${disabled?'disabled':''} data-page="${page}">${label}</button>`;
   let html = makeBtn('« Prev', p-1, p<=1);
-  const range = [...Array(total).keys()].map(i=>i+1).slice(0,10);
+  const range = [...Array(total).keys()].map(i=>i+1);
   html += range.map(n=>`<button class="btn" data-page="${n}" ${n===p?'disabled':''}>${n}</button>`).join('');
   html += makeBtn('Next »', p+1, p>=total);
   if(pager){ pager.innerHTML = html; pager.querySelectorAll('[data-page]').forEach(btn => btn.onclick = e=>{
@@ -348,33 +381,6 @@ function renderJobsPage(p, replace=false){
   });
 }
 
-/* Job Modal (for both home/browse) */
-window.openJob = function(idx){
-  const j = JOBS[idx]; if(!j) return;
-  const m = document.getElementById('jobModal');
-  document.getElementById('jobTitle').textContent = j.title + ' — ' + j.company;
-  document.getElementById('jobBody').innerHTML = `
-    <div class="sub">${j.location} • ${j.workType||'—'} • ${readableEmployment(j.employmentType)} • ${j.salary||'Market'}</div>
-    <p>${j.description}</p>
-    <div class="row" style="gap:10px">
-      <a class="cta" href="${j.applyUrl||'#'}" target="_blank" rel="nofollow noopener">Apply now</a>
-      <button class="btn" data-open="signup">Save</button>
-    </div>
-    <div class="ad-card" style="margin-top:10px">Ad — Google AdSense (mid-content)</div>`;
-  m.classList.add('open');
-  m.querySelectorAll('[data-open="signup"]').forEach(b=>b.onclick=()=>{
-    openFlow(seekerSteps, '#stepDots', '#signupFlow', 'New Jobbyist signup');
-    document.getElementById('signupModal')?.classList.add('open');
-  });
-};
-
-/* Page Initialisers */
-async function initHome(){
-  const count = document.getElementById('jobsCount');
-  const res = await fetch('./data/jobs.json'); JOBS = await res.json();
-  if(count) count.textContent = JOBS.length;
-  await loadCompanies();
-}
 async function initBrowse(){
   const res = await fetch('./data/jobs.json'); JOBS = await res.json();
   currentList = JOBS.slice();
@@ -383,13 +389,42 @@ async function initBrowse(){
   renderJobsPage(currentPage, true);
   injectPageSchema(currentPage);
   setRelPrevNext(currentPage, pageCount());
+
+  // simple search
+  const sBtn = document.getElementById('searchBtn');
+  if(sBtn){
+    sBtn.onclick = ()=>{
+      const t=document.getElementById('qTitle').value.toLowerCase();
+      const l=document.getElementById('qLoc').value.toLowerCase();
+      currentList = JOBS.filter(j=>(!t||(j.title+j.company+j.description).toLowerCase().includes(t))&&(!l||j.location.toLowerCase().includes(l)));
+      currentPage=1; renderJobsPage(currentPage,true); injectPageSchema(currentPage); setRelPrevNext(currentPage, pageCount());
+    };
+  }
 }
 
-/* Boot per page */
+/* -------- Companies directory page -------- */
+async function initCompaniesPage(){
+  const r = await fetch('./data/companies.json'); COMPANIES = await r.json();
+  renderCompaniesList(COMPANIES, 'companiesAllGrid');
+  const btn = document.getElementById('coSearchBtn');
+  if(btn){
+    btn.onclick = ()=>{
+      const q = (document.getElementById('coSearch')?.value || '').toLowerCase();
+      const filtered = COMPANIES.filter(c =>
+        c.name.toLowerCase().includes(q) ||
+        c.industry.toLowerCase().includes(q) ||
+        c.hq.toLowerCase().includes(q)
+      );
+      renderCompaniesList(filtered, 'companiesAllGrid');
+    };
+  }
+}
+
+/* -------- Boot per page -------- */
 document.addEventListener('DOMContentLoaded', ()=>{
   document.getElementById('yr') && (document.getElementById('yr').textContent = new Date().getFullYear());
 
-  // Wire global header CTAs
+  // Wire global header CTAs (in case dynamic content added later)
   document.querySelectorAll('[data-open="signup"]').forEach(b=>b.onclick=()=>{
     openFlow(seekerSteps, '#stepDots', '#signupFlow', 'New Jobbyist signup');
     document.getElementById('signupModal')?.classList.add('open');
@@ -399,12 +434,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('proModal')?.classList.add('open');
   });
 
-  // Page detection
+  // Pages
   if(document.body.dataset.page==='home') initHome();
   if(document.body.dataset.page==='browse') initBrowse();
-
-  // Recruitment Suite employer onboarding (on that page)
   if(document.body.dataset.page==='recruitment'){
     openFlow(bizSteps, '#bizStepDots', '#bizFlow', 'Recruitment Suite — Early Access');
   }
+  if(document.body.dataset.page==='companies') initCompaniesPage();
 });
