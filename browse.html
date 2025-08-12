@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Browse Jobs — Jobbyist</title>
+  <meta name="description" content="Browse verified jobs across South Africa — remote, hybrid and on‑site roles. AI‑ready, recruiter‑friendly."/>
+  <link rel="canonical" href="https://jobbyist.africa/browse.html">
+  <link id="relPrev" rel="prev" href="">
+  <link id="relNext" rel="next" href="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
+</head>
+<body data-page="browse">
+<header>
+  <div class="container nav">
+    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><div class="brand">Jobbyist<sup>🇿🇦</sup></div></div>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="browse.html" class="active">Browse Jobs</a><a href="companies.html">Companies</a><a href="pro.html">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+      <select class="lang-select"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+    </nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" data-open="signup">Create free account</button></div>
+  </div>
+</header>
+<div class="sheet" id="navSheet"><div class="drawer">
+  <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="document.getElementById('navSheet').classList.remove('open')">✕</button></div>
+  <hr style="border:none;border-top:1px solid var(--line)">
+  <a href="index.html">Home</a><a href="browse.html" class="active">Browse Jobs</a><a href="companies.html">Companies</a><a href="pro.html">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+  <select class="lang-select" style="margin-top:10px;width:100%"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+  <hr style="border:none;border-top:1px solid var(--line)"><button class="cta" data-open="signup">Create free account</button>
+</div></div>
+
+<main class="container">
+  <section class="hero">
+    <div class="panel">
+      <h1>Browse Jobs</h1>
+      <p class="sub">All industries. All levels. Remote, hybrid and on‑site — find your next move.</p>
+      <div class="search-grid" role="search">
+        <div class="input"><span>🔎</span><input id="qTitle" placeholder="Search job title or keyword"/></div>
+        <div class="input"><span>📍</span><input id="qLoc" placeholder="Location"/></div>
+        <button class="cta" id="searchBtn">Search</button>
+      </div>
+      <div class="ad-card" style="margin-top:12px">Ad — Google AdSense (top of browse)</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="jobs">
+    <h2 id="jobs" style="display:none">All jobs</h2>
+    <div class="grid jobs" id="browseGrid" aria-live="polite"></div>
+    <nav id="browsePager" class="row" aria-label="Jobs pagination" style="justify-content:center;margin:14px 0;gap:8px"></nav>
+    <div id="browseSentinel" style="height:1px"></div>
+    <div class="ad-card" style="margin:12px 0">Ad — Google AdSense (below list)</div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Your career, upgraded.</p><div class="ad-card">Ad — Google AdSense (footer)</div></div>
+    <div><b>Product</b><br><a href="index.html">Home</a><br><a href="pro.html">Pro</a></div>
+    <div><b>Employers</b><br><a href="recruitment.html">Recruitment Suite</a></div>
+    <div><b>Insights</b><br><a href="stats.html">Real‑Time Job Stats</a></div>
+  </div>
+  <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div>
+</footer>
+
+<!-- Shared modals -->
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="companyModal"><div class="content"><header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header><div class="body" id="coBody"></div></div></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
