@@ -2,77 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Jobbyist Pro — R99 Launch Offer</title>
-  <meta name="description" content="Unlock ResumeAudit, AI matching, ad-free browsing, unlimited listings, interview prep, and a personal .cv site.">
+  <title>Jobbyist Pro — Land faster</title>
+  <meta name="description" content="ResumeAudit, AI job matching, ad‑free browsing, interview prep, and your own .cv site. Jobbyist Pro makes recruiters chase you."/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="assets/app.css"/>
 </head>
-<body data-page="pro">
+<body>
 <header>
   <div class="container nav">
-    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><a class="brand" href="index.html">Jobbyist<sup>🇿🇦</sup></a></div>
-    <nav class="nav-links"><a href="index.html">Home</a><a href="browse-jobs.html">Browse Jobs</a><a class="active" href="pro.html">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real-Time Job Stats</a>
-      <a href="https://audit.jobbyist.co.za" target="_blank">ResumeAudit</a>
-      <select id="langSelect" title="Language" style="margin-left:6px"><option value="en" selected>EN</option><option value="zu">ZU</option><option value="xh">XH</option><option value="af">AF</option><option value="st">ST</option></select></nav>
-    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" id="openSignupTop">Create free account</button></div>
+    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><div class="brand">Jobbyist<sup>🇿🇦</sup></div></div>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="browse.html">Browse Jobs</a><a href="pro.html" class="active">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+      <select class="lang-select"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+    </nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" data-open="signup">Create free account</button></div>
   </div>
 </header>
-<div class="sheet" id="navSheet" aria-hidden="true"><div class="drawer"><div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn close-x">✕</button></div><a href="index.html">Home</a><a href="browse-jobs.html">Browse Jobs</a><a href="pro.html">Jobbyist Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real-Time Job Stats</a><a href="https://audit.jobbyist.co.za" target="_blank">ResumeAudit</a>
-<label class="input" style="margin-top:10px"><span style="min-width:80px">Language</span><select id="langSelect"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select></label><hr style="border:none;border-top:1px solid var(--line)"><button class="cta open-signup">Create free account</button></div></div>
+<div class="sheet" id="navSheet"><div class="drawer">
+  <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="document.getElementById('navSheet').classList.remove('open')">✕</button></div>
+  <hr style="border:none;border-top:1px solid var(--line)">
+  <a href="index.html">Home</a><a href="browse.html">Browse Jobs</a><a href="pro.html" class="active">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+  <select class="lang-select" style="margin-top:10px;width:100%"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+  <hr style="border:none;border-top:1px solid var(--line)"><button class="cta" data-open="signup">Create free account</button>
+</div></div>
 
 <main class="container">
   <section class="hero">
     <div class="panel">
       <h1>Jobbyist Pro — Make recruiters chase you</h1>
-      <p class="sub">R99/month launch offer (R199 regular). Cancel anytime. Price locked for 12 months.</p>
-      <div class="row">
-        <button class="cta" id="openProModal">Start Pro now</button>
-        <a class="btn" href="https://audit.jobbyist.co.za" target="_blank">Try ResumeAudit free →</a>
-      </div>
-      <div class="card ad-card" style="margin-top:12px">Ad — Google AdSense (hero)</div>
+      <p class="sub">ResumeAudit, AI matches, ad‑free browsing, interview prep, and your own <b>.cv</b> site. Cancel anytime.</p>
+      <div class="row"><button class="cta" data-open="pro">Start Pro — R99/mo</button><a class="btn" href="browse.html">Browse jobs first</a></div>
+      <div class="ad-card" style="margin-top:12px">Ad — Google AdSense</div>
     </div>
   </section>
 
   <section>
-    <h2>Why Pro?</h2>
+    <h2>What you get</h2>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
-      <div class="card"><b>ResumeAudit</b><p>Instant ATS scoring, keyword boosts, and section-by-section fixes so your CV climbs to the top.</p></div>
-      <div class="card"><b>AI-powered matches</b><p>We scan new roles as they land and push you laser-matched openings daily.</p></div>
-      <div class="card"><b>Unlimited listings</b><p>No caps. Search deep, save everything, and explore ad-free.</p></div>
-      <div class="card"><b>Interview prep</b><p>Role-specific prep packs, practice questions, and STAR templates.</p></div>
-      <div class="card"><b>Personal .cv site</b><p>Your own professional profile website with a free <b>.cv</b> domain.</p></div>
-      <div class="card"><b>Recruiter discovery</b><p>Opt in to our directory so verified employers can invite you directly.</p></div>
+      <div class="card"><b>ResumeAudit</b><p class="sub">Instant ATS scoring with clear, actionable edits.</p></div>
+      <div class="card"><b>AI‑powered matching</b><p class="sub">We stack‑rank roles based on your skills and goals.</p></div>
+      <div class="card"><b>Unlimited access</b><p class="sub">All listings. Zero restrictions. Ad‑free.</p></div>
+      <div class="card"><b>Interview prep</b><p class="sub">Question banks, frameworks, and mock interviews.</p></div>
+      <div class="card"><b>.cv website</b><p class="sub">Your personal site, automatically generated.</p></div>
+      <div class="card"><b>Smart alerts</b><p class="sub">You’ll hear about the right roles first.</p></div>
     </div>
   </section>
 
   <section>
-    <h2>How it works</h2>
-    <ol class="card">
-      <li>Sign up in 60 seconds</li>
-      <li>Run ResumeAudit → fix red flags in minutes</li>
-      <li>Switch on AI matches & job alerts</li>
-      <li>Apply with confidence and track your progress</li>
-    </ol>
-  </section>
-
-  <section>
-    <h2>FAQs</h2>
-    <div class="grid" style="grid-template-columns:1fr 1fr">
-      <div class="card"><b>Can I cancel anytime?</b><p>Yes. Your access runs until the end of your billing cycle.</p></div>
-      <div class="card"><b>Is my data private?</b><p>100%. POPIA-ready. Delete or export your data anytime.</p></div>
+    <h2>Proof you’ll feel</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+      <div class="card"><b>+3× more callbacks</b><p class="sub">Members report more interviews within 14 days.</p></div>
+      <div class="card"><b>Hours saved weekly</b><p class="sub">Automated matching and alerts do the heavy lifting.</p></div>
+      <div class="card"><b>Confidence boost</b><p class="sub">Your CV and profile signal “serious candidate”.</p></div>
     </div>
   </section>
 
-  <div class="card ad-card">Ad — Google AdSense (bottom)</div>
+  <section>
+    <h2>Questions, answered</h2>
+    <div class="card"><b>Can I cancel anytime?</b><p class="sub">Yes. Your price locks for 12 months; cancel whenever.</p>
+    <b>Is Pro worth it if I’m new?</b><p class="sub">Absolutely. ResumeAudit and AI matches shortcut the learning curve.</p></div>
+  </section>
 </main>
 
+<footer>
+  <div class="container footer-grid">
+    <div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Your career, upgraded.</p><div class="ad-card">Ad — Google AdSense</div></div>
+    <div><b>Explore</b><br><a href="browse.html">Browse Jobs</a></div>
+    <div><b>Employers</b><br><a href="recruitment.html">Recruitment Suite</a></div>
+    <div><b>Insights</b><br><a href="stats.html">Real‑Time Job Stats</a></div>
+  </div>
+  <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div>
+</footer>
+
 <!-- Modals -->
-<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
-<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="companyModal"><div class="content"><header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header><div class="body" id="coBody"></div></div></div>
+<div class="modal" id="jobModal"><div class="content"><header><h3 id="jobTitle">Job</h3><button class="close-x" onclick="closeModal('#jobModal')">✕</button></header><div class="body" id="jobBody"></div></div></div>
 
-<footer><div class="container footer-grid"><div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Your career, upgraded.</p></div><div><b>Explore</b><br><a href="browse-jobs.html">Browse Jobs</a></div><div><b>Employers</b><br><a href="recruitment.html">Recruitment Suite</a></div><div><b>Legal</b><br><a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div></div><div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div></footer>
-
-<script src="assets/jobs-data.js"></script>
-<script src="assets/app.js"></script>
+<script src="asset/app.js"></script>
 </body>
 </html>
