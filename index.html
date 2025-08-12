@@ -4,54 +4,51 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Jobbyist — Find work you’ll be proud of</title>
-  <meta name="description" content="South Africa’s clean, fast job board. Verified roles, AI matching, and a profile employers can’t ignore."/>
-  <link rel="canonical" href="https://your-domain.example/">
+  <meta name="description" content="Jobbyist helps South Africans land work they love. Remote-friendly roles, AI matching, ResumeAudit, and verified companies."/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body data-page="home">
 <header>
   <div class="container nav">
     <div class="row">
-      <button class="icon-btn burger" aria-label="Open menu" id="openMenu">☰</button>
+      <button class="icon-btn burger" id="openMenu" aria-label="Open menu">☰</button>
       <div class="brand">Jobbyist<sup>🇿🇦</sup></div>
     </div>
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html" class="active">Home</a>
-      <a href="browse-jobs.html">Browse Jobs</a>
+      <a href="browse.html">Browse Jobs</a>
       <a href="pro.html">Pro</a>
       <a href="recruitment.html">Recruitment Suite</a>
-      <a href="stats.html">Real-Time Job Stats</a>
-      <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit</a>
-      <select id="langSelect" title="Language" style="margin-left:6px" aria-label="Language">
-        <option value="en" selected>EN</option><option value="zu">ZU</option><option value="xh">XH</option><option value="af">AF</option><option value="st">ST</option>
+      <a href="stats.html">Real‑Time Job Stats</a>
+      <select class="lang-select" title="Language">
+        <option value="en">English</option>
+        <option value="zu">isiZulu</option>
+        <option value="xh">isiXhosa</option>
+        <option value="af">Afrikaans</option>
+        <option value="st">Sesotho</option>
       </select>
     </nav>
     <div class="row">
       <button class="icon-btn" id="themeToggle" title="Toggle theme">🌓</button>
-      <button class="cta" id="openSignupTop">Create free account</button>
+      <button class="cta" data-open="signup">Create free account</button>
     </div>
   </div>
 </header>
-
-<!-- Drawer -->
-<div class="sheet" id="navSheet" aria-hidden="true">
+<div class="sheet" id="navSheet">
   <div class="drawer">
-    <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn close-x">✕</button></div>
+    <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="document.getElementById('navSheet').classList.remove('open')">✕</button></div>
     <hr style="border:none;border-top:1px solid var(--line)">
     <a href="index.html">Home</a>
-    <a href="browse-jobs.html">Browse Jobs</a>
+    <a href="browse.html">Browse Jobs</a>
     <a href="pro.html">Jobbyist Pro</a>
     <a href="recruitment.html">Recruitment Suite</a>
-    <a href="stats.html">Real-Time Job Stats</a>
-    <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit (Free)</a>
-    <label class="input" style="margin-top:10px"><span style="min-width:80px">Language</span>
-      <select id="langSelect">
-        <option value="en" selected>English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option>
-      </select>
-    </label>
+    <a href="stats.html">Real‑Time Job Stats</a>
+    <select class="lang-select" style="margin-top:10px;width:100%">
+      <option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option>
+    </select>
     <hr style="border:none;border-top:1px solid var(--line)">
-    <button class="cta open-signup">Create free account</button>
+    <button class="cta" data-open="signup">Create free account</button>
   </div>
 </div>
 
@@ -59,46 +56,47 @@
   <section class="container hero">
     <div class="panel">
       <div class="search-grid" role="search">
-        <div class="input"><span>🔎</span><input id="qTitle" placeholder="Search job title or keyword (e.g., Accountant, React, Nurse)"/></div>
-        <div class="input"><span>📍</span><input id="qLoc" placeholder="Location (e.g., Johannesburg, Remote)"/></div>
-        <button class="cta" id="searchBtn">Find jobs</button>
+        <div class="input"><span>🔎</span><input placeholder="Search job title or keyword (e.g., Accountant, React, Nurse)" /></div>
+        <div class="input"><span>📍</span><input placeholder="Location (e.g., Johannesburg, Remote)" /></div>
+        <a class="cta" href="browse.html">Find jobs</a>
       </div>
       <div class="hero-copy">
         <h1>Stop scrolling. Start interviewing.</h1>
-        <p class="sub">Cut the noise. Land roles you care about—fast.</p>
+        <p class="sub">Power up your job hunt with verified roles, AI matching, and a profile employers can’t ignore.</p>
         <div class="row" style="gap:18px;margin-top:10px">
-          <div class="chip"><b id="jobsCount">0</b> jobs live</div>
-          <div class="chip">Verified companies only</div>
-          <div class="chip">Remote-friendly</div>
+          <div class="chip"><b id="jobsCount">0</b> roles live</div>
+          <div class="chip">1 150 hiring companies</div>
+          <div class="chip">Pro launch: R99/mo</div>
         </div>
         <div class="card ad-card" style="margin-top:12px">Ad — Google AdSense (hero)</div>
       </div>
     </div>
   </section>
 
-  <!-- Latest jobs preview (home only) -->
-  <section class="container" aria-labelledby="latestJobs">
-    <h2 id="latestJobs">Latest jobs</h2>
-    <div class="grid jobs" id="jobsGrid"></div>
-    <div class="row" style="justify-content:center;margin-top:10px">
-      <a class="cta" href="browse-jobs.html">Browse all jobs</a>
-      <button class="cta secondary pro-cta">Unlock Pro — R99/mo</button>
+  <section class="container">
+    <h2>Why job seekers choose Jobbyist</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+      <div class="card"><b>Verified opportunities only</b><p class="sub">We cut noise so you spend less time guessing and more time applying with confidence.</p></div>
+      <div class="card"><b>AI‑powered matching</b><p class="sub">We surface roles that fit your skills and goals. No more “spray and pray”.</p></div>
+      <div class="card"><b>ResumeAudit, done right</b><p class="sub">Instant ATS checks and concrete fixes so your CV lands at the top of the pile.</p></div>
+      <div class="card"><b>Career momentum</b><p class="sub">Interview prep, alerts, and a slick profile — everything you need to keep moving.</p></div>
     </div>
   </section>
 
-  <!-- Featured Companies -->
   <section class="container">
-    <h2>Featured companies</h2>
-    <div class="sub">Follow the leaders. Get first dibs on new roles.</div>
+    <h2>Verified companies</h2>
+    <p class="sub">Follow the leaders and get first dibs on openings.</p>
     <div class="grid companies" id="companiesGrid"></div>
   </section>
 
-  <!-- Pro promo -->
   <section class="container">
     <div class="panel">
-      <h2>Own your next move.</h2>
-      <p class="sub">ResumeAudit, AI matches, ad-free browsing, interview prep, and your own <b>.cv</b> site.</p>
-      <div class="row"><a class="cta" href="pro.html">Explore Pro</a><button class="btn open-signup">Create free account</button></div>
+      <h2>Go Pro. Get hired faster.</h2>
+      <p class="sub">Unlock ResumeAudit, AI matches, ad‑free browsing, interview prep, and your own <b>.cv</b> site.</p>
+      <div class="row">
+        <a class="cta" href="pro.html">Unlock Pro — R99/mo</a>
+        <button class="btn" data-open="signup">Create free account</button>
+      </div>
     </div>
   </section>
 </main>
@@ -107,47 +105,56 @@
   <div class="container footer-grid">
     <div>
       <div class="brand">Jobbyist<sup>🇿🇦</sup></div>
-      <p class="sub">Your career, upgraded. We put job seekers first.</p>
-      <div class="card ad-card">Ad — Google AdSense (footer)</div>
+      <p class="sub">Your career, upgraded. Built for job seekers first.</p>
+      <div class="ad-card">Ad — Google AdSense (footer)</div>
     </div>
     <div><b>Product</b><br>
       <a href="index.html">Home</a><br>
-      <a href="browse-jobs.html">Browse Jobs</a><br>
-      <a href="pro.html">Jobbyist Pro</a><br>
-      <a href="stats.html">Real-Time Job Stats</a><br>
-      <a href="https://audit.jobbyist.co.za" target="_blank" rel="noopener">ResumeAudit</a></div>
+      <a href="browse.html">Browse Jobs</a><br>
+      <a href="stats.html">Real‑Time Job Stats</a>
+    </div>
     <div><b>Employers</b><br>
-      <a href="recruitment.html">Recruitment Suite</a></div>
+      <a href="recruitment.html">Recruitment Suite</a>
+    </div>
     <div><b>Legal</b><br>
-      <a href="terms.html">Terms</a><br>
-      <a href="privacy.html">Privacy</a><br>
-      <a href="cookies.html">Cookie settings</a></div>
+      <a href="#">Terms</a><br>
+      <a href="#">Privacy</a>
+    </div>
   </div>
   <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist. All rights reserved.</div>
 </footer>
 
-<!-- Modals (shared across pages) -->
-<div class="modal" id="jobModal"><div class="content">
-  <header><h3 id="jobTitle">Job</h3><button class="close-x">✕</button></header>
-  <div class="body" id="jobBody"></div></div></div>
-
+<!-- Modals shared across pages -->
 <div class="modal" id="signupModal"><div class="content">
-  <header><h3>Join Jobbyist — Free</h3><button class="close-x">✕</button></header>
-  <div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+  <header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header>
+  <div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div>
+</div></div>
 
 <div class="modal" id="proModal"><div class="content">
-  <header><h3>Start Jobbyist Pro</h3><button class="close-x">✕</button></header>
-  <div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+  <header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header>
+  <div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div>
+</div></div>
 
-<!-- Cookie banner -->
+<div class="modal" id="companyModal"><div class="content">
+  <header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header>
+  <div class="body" id="coBody"></div>
+</div></div>
+
+<div class="modal" id="jobModal"><div class="content">
+  <header><h3 id="jobTitle">Job</h3><button class="close-x" onclick="closeModal('#jobModal')">✕</button></header>
+  <div class="body" id="jobBody"></div>
+</div></div>
+
 <div class="cookie" id="cookieBanner">
   <div class="row" style="justify-content:space-between">
-    <div>🍪 We use cookies for essential features, analytics and ads. See <a href="cookies.html">settings</a>.</div>
-    <div><button class="btn" onclick="acceptCookies(false)">Only essential</button> <button class="cta" onclick="acceptCookies(true)">Accept all</button></div>
+    <div>🍪 We use cookies for essential features, analytics and ads.</div>
+    <div class="row">
+      <button class="btn" onclick="acceptCookies(false)">Only essential</button>
+      <button class="cta" onclick="acceptCookies(true)">Accept all</button>
+    </div>
   </div>
 </div>
 
-<script src="assets/jobs-data.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
