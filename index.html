@@ -18,6 +18,7 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html" class="active">Home</a>
       <a href="browse.html">Browse Jobs</a>
+      <a href="companies.html">Companies</a>
       <a href="pro.html">Pro</a>
       <a href="recruitment.html">Recruitment Suite</a>
       <a href="stats.html">Real‑Time Job Stats</a>
@@ -41,6 +42,7 @@
     <hr style="border:none;border-top:1px solid var(--line)">
     <a href="index.html">Home</a>
     <a href="browse.html">Browse Jobs</a>
+    <a href="companies.html">Companies</a>
     <a href="pro.html">Jobbyist Pro</a>
     <a href="recruitment.html">Recruitment Suite</a>
     <a href="stats.html">Real‑Time Job Stats</a>
@@ -73,16 +75,17 @@
     </div>
   </section>
 
+  <!-- FEATURED JOBS (25) -->
   <section class="container">
-    <h2>Why job seekers choose Jobbyist</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
-      <div class="card"><b>Verified opportunities only</b><p class="sub">We cut noise so you spend less time guessing and more time applying with confidence.</p></div>
-      <div class="card"><b>AI‑powered matching</b><p class="sub">We surface roles that fit your skills and goals. No more “spray and pray”.</p></div>
-      <div class="card"><b>ResumeAudit, done right</b><p class="sub">Instant ATS checks and concrete fixes so your CV lands at the top of the pile.</p></div>
-      <div class="card"><b>Career momentum</b><p class="sub">Interview prep, alerts, and a slick profile — everything you need to keep moving.</p></div>
+    <h2>Featured jobs</h2>
+    <p class="sub">Curated roles from top South African employers.</p>
+    <div class="grid jobs" id="homeFeaturedGrid"></div>
+    <div style="display:flex;justify-content:center;margin-top:10px">
+      <a class="cta" href="browse.html">View more jobs</a>
     </div>
   </section>
 
+  <!-- VERIFIED COMPANIES (5) -->
   <section class="container">
     <h2>Verified companies</h2>
     <p class="sub">Follow the leaders and get first dibs on openings.</p>
@@ -95,7 +98,7 @@
       <p class="sub">Unlock ResumeAudit, AI matches, ad‑free browsing, interview prep, and your own <b>.cv</b> site.</p>
       <div class="row">
         <a class="cta" href="pro.html">Unlock Pro — R99/mo</a>
-        <button class="btn" data-open="signup">Create free account</button>
+        <a class="btn" href="browse.html">Browse jobs first</a>
       </div>
     </div>
   </section>
@@ -109,8 +112,8 @@
       <div class="ad-card">Ad — Google AdSense (footer)</div>
     </div>
     <div><b>Product</b><br>
-      <a href="index.html">Home</a><br>
       <a href="browse.html">Browse Jobs</a><br>
+      <a href="companies.html">Companies</a><br>
       <a href="stats.html">Real‑Time Job Stats</a>
     </div>
     <div><b>Employers</b><br>
@@ -124,36 +127,10 @@
   <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist. All rights reserved.</div>
 </footer>
 
-<!-- Modals shared across pages -->
-<div class="modal" id="signupModal"><div class="content">
-  <header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header>
-  <div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div>
-</div></div>
-
-<div class="modal" id="proModal"><div class="content">
-  <header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header>
-  <div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div>
-</div></div>
-
-<div class="modal" id="companyModal"><div class="content">
-  <header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header>
-  <div class="body" id="coBody"></div>
-</div></div>
-
-<div class="modal" id="jobModal"><div class="content">
-  <header><h3 id="jobTitle">Job</h3><button class="close-x" onclick="closeModal('#jobModal')">✕</button></header>
-  <div class="body" id="jobBody"></div>
-</div></div>
-
-<div class="cookie" id="cookieBanner">
-  <div class="row" style="justify-content:space-between">
-    <div>🍪 We use cookies for essential features, analytics and ads.</div>
-    <div class="row">
-      <button class="btn" onclick="acceptCookies(false)">Only essential</button>
-      <button class="cta" onclick="acceptCookies(true)">Accept all</button>
-    </div>
-  </div>
-</div>
+<!-- Shared Modals -->
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="companyModal"><div class="content"><header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header><div class="body" id="coBody"></div></div></div>
 
 <script src="assets/app.js"></script>
 </body>
