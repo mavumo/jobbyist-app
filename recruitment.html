@@ -3,72 +3,93 @@
 <head>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Recruitment Suite — Early Access</title>
-  <meta name="description" content="Turnkey talent toolkit for SMEs: verified company profiles, careers pages, candidate CRM, AI shortlists, automations, and unlimited job posts.">
+  <meta name="description" content="Turnkey hiring toolkit for SMEs: branded careers pages, candidate CRM, screening automations, AI shortlists, and unlimited job posts."/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="assets/app.css"/>
+  <style>
+    /* Mobile polish specific to this page */
+    @media (max-width: 720px){
+      .hero h1{font-size:24px;line-height:1.2}
+      .panel{padding:18px}
+    }
+  </style>
 </head>
 <body data-page="recruitment">
 <header>
   <div class="container nav">
-    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><a class="brand" href="index.html">Jobbyist<sup>🇿🇦</sup></a></div>
-    <nav class="nav-links"><a href="index.html">Home</a><a href="browse-jobs.html">Browse Jobs</a><a href="pro.html">Pro</a><a class="active" href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real-Time Job Stats</a>
-      <a href="https://audit.jobbyist.co.za" target="_blank">ResumeAudit</a>
-      <select id="langSelect" title="Language" style="margin-left:6px"><option value="en" selected>EN</option><option value="zu">ZU</option><option value="xh">XH</option><option value="af">AF</option><option value="st">ST</option></select></nav>
-    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" id="openSignupTop">Create free account</button></div>
+    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><div class="brand">Jobbyist<sup>🇿🇦</sup></div></div>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="browse.html">Browse Jobs</a><a href="companies.html">Companies</a><a href="pro.html">Pro</a><a href="recruitment.html" class="active">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+      <select class="lang-select"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+    </nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" data-open="signup">Create free account</button></div>
   </div>
 </header>
-<div class="sheet" id="navSheet" aria-hidden="true"><div class="drawer"><div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn close-x">✕</button></div><a href="index.html">Home</a><a href="browse-jobs.html">Browse Jobs</a><a href="pro.html">Jobbyist Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real-Time Job Stats</a><a href="https://audit.jobbyist.co.za" target="_blank">ResumeAudit</a>
-<label class="input" style="margin-top:10px"><span style="min-width:80px">Language</span><select id="langSelect"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select></label><hr style="border:none;border-top:1px solid var(--line)"><button class="cta open-signup">Create free account</button></div></div>
+<div class="sheet" id="navSheet"><div class="drawer">
+  <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="document.getElementById('navSheet').classList.remove('open')">✕</button></div>
+  <hr style="border:none;border-top:1px solid var(--line)">
+  <a href="index.html">Home</a><a href="browse.html">Browse Jobs</a><a href="companies.html">Companies</a><a href="pro.html">Pro</a><a href="recruitment.html" class="active">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+  <select class="lang-select" style="margin-top:10px;width:100%"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+  <hr style="border:none;border-top:1px solid var(--line)"><button class="cta" data-open="signup">Create free account</button>
+</div></div>
 
 <main class="container">
   <section class="hero">
     <div class="panel">
       <h1>Recruitment Suite — Early Access (Launching early 2026)</h1>
-      <p class="sub">Hire like a powerhouse. A single toolkit for sourcing, screening, and closing talent — built for South African SMEs.</p>
-      <ul class="row" style="gap:8px"><li class="chip">Unlimited verified job posts</li><li class="chip">Careers pages</li><li class="chip">Candidate CRM</li><li class="chip">AI shortlists</li><li class="chip">Zapier + Sheets automations</li></ul>
-      <div class="card ad-card" style="margin-top:12px">Ad — Google AdSense (hero)</div>
+      <p class="sub">Hire like a powerhouse: branded careers pages, candidate CRM, automation, AI shortlists, and unlimited job posts once verified.</p>
+      <div class="row"><a class="cta" href="#onboarding">Request early access</a></div>
+      <div class="ad-card" style="margin-top:12px">Ad — Google AdSense</div>
     </div>
   </section>
 
   <section>
-    <div class="grid" style="grid-template-columns:2fr 1fr">
-      <div class="panel">
-        <h2>Join the early access list</h2>
-        <p class="sub">Create or claim a verified company profile. We’ll invite you as we open slots.</p>
-        <div class="steps" id="bizStepDots"></div>
-        <form id="bizFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form>
-      </div>
-      <div class="card">
-        <h3>What you’ll get</h3>
-        <ul>
-          <li>Unlimited posts + simple approvals</li>
-          <li>Automated candidate messaging</li>
-          <li>Analytics & funnel reports</li>
-          <li>Team roles & permissions</li>
-          <li>POPIA-ready consent flows</li>
-        </ul>
-        <div class="card ad-card">Ad — Google AdSense</div>
-      </div>
+    <h2>What’s inside</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+      <div class="card"><b>Unlimited job posts</b><p class="sub">Verified accounts publish without limits.</p></div>
+      <div class="card"><b>Candidate CRM</b><p class="sub">Talent pools, notes, tags, and POPIA-safe workflows.</p></div>
+      <div class="card"><b>Automations</b><p class="sub">Screening forms, email sequences, and Zapier hooks.</p></div>
+      <div class="card"><b>AI shortlists</b><p class="sub">Top candidates surfaced instantly against your must-haves.</p></div>
+      <div class="card"><b>Careers pages</b><p class="sub">Beautiful, branded and easy to update — no dev needed.</p></div>
+      <div class="card"><b>Analytics</b><p class="sub">Channel performance, time‑to‑fill, and diversity signals.</p></div>
+    </div>
+  </section>
+
+  <section id="onboarding">
+    <div class="panel">
+      <h2>Apply for early access</h2>
+      <div class="steps" id="bizStepDots"></div>
+      <form id="bizFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form>
     </div>
   </section>
 
   <section>
-    <h2>How early access works</h2>
-    <ol class="card">
-      <li>Apply for verification (free)</li>
-      <li>Set up your company profile & careers page</li>
-      <li>Post unlimited jobs (we syndicate to Google Jobs)</li>
-      <li>Use AI shortlists to speed up first interviews</li>
-    </ol>
+    <h2>How it works</h2>
+    <div class="card">
+      <ol>
+        <li><b>Apply</b> with the form above. We verify company details.</li>
+        <li><b>Claim or create</b> your company profile.</li>
+        <li><b>Post jobs</b> and stream candidates directly into your Google Sheet or ATS.</li>
+        <li><b>Automate</b> with our Zapier recipes. Build AI shortlists and send update emails automatically.</li>
+      </ol>
+    </div>
   </section>
 </main>
 
-<!-- Modals -->
-<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<footer>
+  <div class="container footer-grid">
+    <div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Smarter hiring for SA businesses.</p></div>
+    <div><b>Explore</b><br><a href="browse.html">Browse Jobs</a></div>
+    <div><b>Product</b><br><a href="pro.html">Pro</a></div>
+    <div><b>Insights</b><br><a href="stats.html">Real‑Time Job Stats</a></div>
+  </div>
+  <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div>
+</footer>
 
-<footer><div class="container footer-grid"><div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">We help SMEs hire faster.</p></div><div><b>Product</b><br><a href="browse-jobs.html">Browse Jobs</a> • <a href="pro.html">Pro</a></div><div><b>Legal</b><br><a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div><div class="card ad-card">Ad — Google AdSense (footer)</div></div><div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div></footer>
+<!-- Shared Modals -->
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="companyModal"><div class="content"><header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header><div class="body" id="coBody"></div></div></div>
 
-<script src="assets/jobs-data.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
