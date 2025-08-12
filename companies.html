@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Companies — Jobbyist</title>
+  <meta name="description" content="Explore verified South African employers. Follow companies (Pro), read reviews, and discover open roles."/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css"/>
+</head>
+<body data-page="companies">
+<header>
+  <div class="container nav">
+    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><div class="brand">Jobbyist<sup>🇿🇦</sup></div></div>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="browse.html">Browse Jobs</a><a href="companies.html" class="active">Companies</a><a href="pro.html">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+      <select class="lang-select"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+    </nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" data-open="signup">Create free account</button></div>
+  </div>
+</header>
+<div class="sheet" id="navSheet"><div class="drawer">
+  <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="document.getElementById('navSheet').classList.remove('open')">✕</button></div>
+  <hr style="border:none;border-top:1px solid var(--line)">
+  <a href="index.html">Home</a><a href="browse.html">Browse Jobs</a><a href="companies.html" class="active">Companies</a><a href="pro.html">Pro</a><a href="recruitment.html">Recruitment Suite</a><a href="stats.html">Real‑Time Job Stats</a>
+  <select class="lang-select" style="margin-top:10px;width:100%"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+  <hr style="border:none;border-top:1px solid var(--line)"><button class="cta" data-open="signup">Create free account</button>
+</div></div>
+
+<main class="container">
+  <section class="hero">
+    <div class="panel">
+      <h1>Verified companies</h1>
+      <p class="sub">Explore employers, read reviews (Pro), and follow updates (Pro).</p>
+      <div class="search-grid" role="search">
+        <div class="input"><span>🏢</span><input id="coSearch" placeholder="Search company or industry"/></div>
+        <button class="cta" id="coSearchBtn">Search</button>
+      </div>
+      <div class="ad-card" style="margin-top:12px">Ad — Google AdSense</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid companies" id="companiesAllGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Your career, upgraded.</p></div>
+    <div><b>Explore</b><br><a href="browse.html">Browse Jobs</a></div>
+    <div><b>Product</b><br><a href="pro.html">Pro</a></div>
+    <div><b>Employers</b><br><a href="recruitment.html">Recruitment Suite</a></div>
+  </div>
+  <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div>
+</footer>
+
+<!-- Shared Modals -->
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="companyModal"><div class="content"><header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header><div class="body" id="coBody"></div></div></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
