@@ -1,0 +1,222 @@
+name: Generate Job Pages + Indexing
+on:
+  push:
+    paths:
+      - 'data/jobs.json'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate static job pages and sitemap
+        env:
+          SITE: ${{ secrets.SITE_BASE_URL }} # e.g. https://jobbyist.co.za
+        run: |
+          node - <<'NODE'
+          const fs = require('fs'); const path = require('path');
+          const SITE = process.env.SITE || '';
+          const jobs = JSON.parse(fs.readFileSync('data/jobs.json','utf8'));
+
+          const slugify = s => s.toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+          const slugFor = j => `${slugify(j.company)}-${slugify(j.title)}-${slugify(j.location)}`;
+          const esc = s => String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+          const header = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/styles.css"/>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><div class="brand">Jobbyist<sup>🇿🇦</sup></div></div>
+    <nav class="nav-links"><a href="../../index.html">Home</a><a href="../../browse.html">Browse Jobs</a><a href="../../companies.html">Companies</a><a href="../../pro.html">Pro</a><a href="../../recruitment.html">Recruitment Suite</a><a href="../../stats.html">Real‑Time Job Stats</a>
+      <select class="lang-select"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+    </nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" data-open="signup">Create free account</button></div>
+  </div>
+</header>
+<div class="sheet" id="navSheet"><div class="drawer">
+  <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="document.getElementById('navSheet').classList.remove('open')">✕</button></div>
+  <hr style="border:none;border-top:1px solid var(--line)">
+  <a href="../../index.html">Home</a><a href="../../browse.html">Browse Jobs</a><a href="../../companies.html">Companies</a><a href="../../pro.html">Pro</a><a href="../../recruitment.html">Recruitment Suite</a><a href="../../stats.html">Real‑Time Job Stats</a>
+  <select class="lang-select" style="margin-top:10px;width:100%"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+  <hr style="border:none;border-top:1px solid var(--line)"><button class="cta" data-open="signup">Create free account</button>
+</div></div>
+<main class="container">
+`;
+
+          const footer = `
+</main>
+<footer>
+  <div class="container footer-grid">
+    <div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Your career, upgraded.</p><div class="ad-card">Ad — Google AdSense</div></div>
+    <div><b>Explore</b><br><a href="../../browse.html">Browse Jobs</a></div>
+    <div><b>Product</b><br><a href="../../pro.html">Pro</a></div>
+    <div><b>Employers</b><br><a href="../../recruitment.html">Recruitment Suite</a></div>
+  </div>
+  <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div>
+</footer>
+<!-- Shared modals -->
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="companyModal"><div class="content"><header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header><div class="body" id="coBody"></div></div></div>
+<script src="../../assets/js/app.js"></script>
+</body></html>`;
+
+          // generate
+          let sitemap = [`<?xml version="1.0" encoding="UTF-8"?>`,`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`];
+          for(const j of jobs){
+            const slug = slugFor(j);
+            const dir = path.join('jobs', slug);
+            fs.mkdirSync(dir, {recursive:true});
+            const url = `${SITE ? SITE : ''}/jobs/${slug}/`;
+            const title = `${j.title} — ${j.company} | Jobbyist`;
+            const desc = esc(j.description).slice(0, 160);
+
+            const jsonld = {
+              "@context":"https://schema.org/","@type":"JobPosting",
+              "title": j.title, "description": j.description,
+              "datePosted": j.datePosted, "validThrough": j.validThrough,
+              "employmentType": j.employmentType,
+              "hiringOrganization": {"@type":"Organization","name": j.company, "sameAs": j.companyWebsite || j.applyUrl},
+              "jobLocation":[{"@type":"Place","address":{"@type":"PostalAddress","addressCountry":"ZA","addressLocality": j.location}}],
+              "applicantLocationRequirements":{"@type":"Country","name":"South Africa"},
+              "directApply": true,
+              "estimatedSalary":{"@type":"MonetaryAmount","currency":"ZAR","value":{"@type":"QuantitativeValue","unitText":"YEAR","value": j.salary || "Market related"}}
+            };
+
+            const page = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>${esc(title)}</title>
+  <meta name="description" content="${desc}"/>
+  <link rel="canonical" href="${url}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/styles.css"/>
+  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="row"><button class="icon-btn burger" id="openMenu">☰</button><div class="brand">Jobbyist<sup>🇿🇦</sup></div></div>
+    <nav class="nav-links"><a href="../../index.html">Home</a><a href="../../browse.html">Browse Jobs</a><a href="../../companies.html">Companies</a><a href="../../pro.html">Pro</a><a href="../../recruitment.html">Recruitment Suite</a><a href="../../stats.html">Real‑Time Job Stats</a>
+      <select class="lang-select"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+    </nav>
+    <div class="row"><button class="icon-btn" id="themeToggle">🌓</button><button class="cta" data-open="signup">Create free account</button></div>
+  </div>
+</header>
+<div class="sheet" id="navSheet"><div class="drawer">
+  <div class="row" style="justify-content:space-between"><div class="brand">Jobbyist<sup>🇿🇦</sup></div><button class="icon-btn" onclick="document.getElementById('navSheet').classList.remove('open')">✕</button></div>
+  <hr style="border:none;border-top:1px solid var(--line)">
+  <a href="../../index.html">Home</a><a href="../../browse.html">Browse Jobs</a><a href="../../companies.html">Companies</a><a href="../../pro.html">Pro</a><a href="../../recruitment.html">Recruitment Suite</a><a href="../../stats.html">Real‑Time Job Stats</a>
+  <select class="lang-select" style="margin-top:10px;width:100%"><option value="en">English</option><option value="zu">isiZulu</option><option value="xh">isiXhosa</option><option value="af">Afrikaans</option><option value="st">Sesotho</option></select>
+  <hr style="border:none;border-top:1px solid var(--line)"><button class="cta" data-open="signup">Create free account</button>
+</div></div>
+
+<main class="container">
+  <section class="hero">
+    <div class="panel">
+      <h1>${esc(j.title)}</h1>
+      <p class="sub">${esc(j.company)} ${j.verified?'• ✅ Verified':''}</p>
+      <div class="row" style="gap:8px;flex-wrap:wrap">
+        <span class="chip">${esc(j.location)}</span>
+        <span class="chip">${esc(j.workType||'—')}</span>
+        <span class="chip">${esc(j.employmentType)}</span>
+        <span class="chip">Posted: ${esc(j.datePosted)}</span>
+        <span class="chip">Valid through: ${esc(j.validThrough)}</span>
+      </div>
+      <p style="margin-top:12px">${esc(j.description)}</p>
+      <div class="row" style="gap:10px;margin-top:10px">
+        <a class="cta" href="${esc(j.applyUrl||'#')}" target="_blank" rel="nofollow noopener">Apply now</a>
+        <button class="btn" onclick="openCompany('${esc(j.company)}')">Company</button>
+        <button class="btn" data-open="signup">Save</button>
+        <a class="btn" href="../../browse.html">Back to Browse</a>
+      </div>
+      <div class="ad-card" style="margin-top:12px">Ad — Google AdSense (mid‑content)</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><div class="brand">Jobbyist<sup>🇿🇦</sup></div><p class="sub">Your career, upgraded.</p></div>
+    <div><b>Explore</b><br><a href="../../browse.html">Browse Jobs</a></div>
+    <div><b>Product</b><br><a href="../../pro.html">Pro</a></div>
+    <div><b>Employers</b><br><a href="../../recruitment.html">Recruitment Suite</a></div>
+  </div>
+  <div class="container" style="margin-top:14px">© <span id="yr"></span> Jobbyist.</div>
+</footer>
+
+<!-- Shared modals -->
+<div class="modal" id="signupModal"><div class="content"><header><h3>Join Jobbyist — Free</h3><button class="close-x" onclick="closeModal('#signupModal')">✕</button></header><div class="body"><div class="steps" id="stepDots"></div><form id="signupFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="proModal"><div class="content"><header><h3>Start Jobbyist Pro</h3><button class="close-x" onclick="closeModal('#proModal')">✕</button></header><div class="body"><div class="steps" id="proStepDots"></div><form id="proFlow" action="https://formspree.io/f/xeokkzle" method="POST"></form></div></div></div>
+<div class="modal" id="companyModal"><div class="content"><header><h3 id="coTitle">Company</h3><button class="close-x" onclick="closeModal('#companyModal')">✕</button></header><div class="body" id="coBody"></div></div></div>
+
+<script src="../../assets/js/app.js"></script>
+</body>
+</html>`;
+
+            fs.writeFileSync(path.join(dir, 'index.html'), page.trim());
+            if(SITE){ sitemap.push(`<url><loc>${url}</loc><changefreq>daily</changefreq></url>`); }
+          }
+          if(SITE){
+            sitemap.push('</urlset>');
+            fs.writeFileSync('sitemap-jobs.xml', sitemap.join('\n'));
+          }
+
+          console.log('Generated job pages:', jobs.length);
+          NODE
+      - name: Commit generated pages
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add jobs/ sitemap-jobs.xml || true
+            git commit -m "chore: generate job pages & sitemap"
+            git push
+          else
+            echo "No changes to commit."
+          fi
+      - name: Notify Google Indexing API (Jobs)
+        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON != '' && secrets.SITE_BASE_URL != '' }}
+        run: |
+          npm i google-auth-library
+          node - <<'NODE'
+          const {GoogleAuth} = require('google-auth-library');
+          const fs = require('fs');
+          const sa = JSON.parse(process.env.SA_JSON);
+          const SITE = process.env.SITE;
+          const jobs = JSON.parse(fs.readFileSync('data/jobs.json','utf8'));
+          const slugify = s => s.toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+          const slugFor = j => `${slugify(j.company)}-${slugify(j.title)}-${slugify(j.location)}`;
+          async function call(url, type='URL_UPDATED'){
+            const auth = new GoogleAuth({credentials: sa, scopes: ['https://www.googleapis.com/auth/indexing']});
+            const client = await auth.getClient();
+            const res = await client.request({ url:'https://indexing.googleapis.com/v3/urlNotifications:publish', method:'POST', data:{url, type}});
+            console.log(res.data);
+          }
+          (async ()=>{
+            await call(SITE + '/');
+            await call(SITE + '/browse.html');
+            for(const j of jobs){
+              const url = `${SITE}/jobs/${slugFor(j)}/`;
+              await call(url);
+            }
+          })();
+          NODE
+        env:
+          SA_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SITE: ${{ secrets.SITE_BASE_URL }}
