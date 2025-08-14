@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Resume Audit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+            border-radius: 20px;
+            border: 3px solid #1f2937;
+        }
+        /* Custom styles for the audio player */
+        audio::-webkit-media-controls-panel {
+            background-color: #374151;
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-mute-button {
+            background-color: #9ca3af;
+            border-radius: 50%;
+        }
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-10 space-y-8">
+        <!-- Header Section -->
+        <header class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">
+                AI-Powered Resume Audit
+            </h1>
+            <p class="text-gray-400 mt-2 text-lg">
+                Get instant, intelligent feedback to supercharge your career.
+            </p>
+        </header>
+
+        <main id="mainContent">
+            <!-- Resume Input Form -->
+            <div id="resumeForm">
+                <label for="resumeText" class="block text-lg font-semibold mb-2 text-gray-300">Paste your resume below:</label>
+                <textarea id="resumeText" rows="15" class="w-full p-4 bg-gray-900 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-gray-300" placeholder="Paste your full resume text here..."></textarea>
+                <button id="auditButton" class="mt-6 w-full bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-bold py-3 px-4 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                    Audit My Resume
+                </button>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="hidden text-center py-10">
+                <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-400 mx-auto"></div>
+                <p class="mt-4 text-lg text-gray-400">Analyzing your resume... This may take a moment.</p>
+            </div>
+
+            <!-- Results Display -->
+            <div id="results" class="hidden space-y-6">
+                <h2 class="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">Your Audit Results</h2>
+                
+                <!-- Audio Player -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Audio Feedback</h3>
+                    <audio id="audioPlayer" controls class="w-full rounded-lg"></audio>
+                </div>
+
+                <!-- Text Feedback -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Detailed Analysis</h3>
+                    <div id="textResults" class="p-4 bg-gray-900 border border-gray-700 rounded-lg whitespace-pre-wrap max-h-96 overflow-y-auto"></div>
+                </div>
+
+                <button id="startOverButton" class="mt-6 w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg text-lg transition duration-300 ease-in-out">
+                    Start New Audit
+                </button>
+            </div>
+            
+            <!-- Error Message Box -->
+            <div id="errorMessage" class="hidden p-4 bg-red-900 border border-red-700 text-red-300 rounded-lg">
+                <p id="errorMessageText"></p>
+                <button id="closeErrorButton" class="mt-2 text-sm text-red-200 underline">Close</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // DOM element references
+        const auditButton = document.getElementById('auditButton');
+        const resumeText = document.getElementById('resumeText');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const results = document.getElementById('results');
+        const textResults = document.getElementById('textResults');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const resumeForm = document.getElementById('resumeForm');
+        const startOverButton = document.getElementById('startOverButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorMessageText = document.getElementById('errorMessageText');
+        const closeErrorButton = document.getElementById('closeErrorButton');
+        
+        // --- Event Listeners ---
+        auditButton.addEventListener('click', handleAuditRequest);
+        startOverButton.addEventListener('click', resetUI);
+        closeErrorButton.addEventListener('click', () => errorMessage.classList.add('hidden'));
+
+        /**
+         * Main handler for the audit process.
+         * It gets the resume, validates it, and orchestrates the API calls.
+         */
+        async function handleAuditRequest() {
+            const resume = resumeText.value.trim();
+            if (!resume) {
+                showError("Please paste your resume into the text box before auditing.");
+                return;
+            }
+
+            // Update UI to show loading state
+            resumeForm.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+            results.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+
+            try {
+                // Step 1: Generate text analysis from the resume
+                const analysisText = await generateTextAnalysis(resume);
+                textResults.textContent = analysisText;
+
+                // Step 2: Generate audio from the analysis text
+                const audioUrl = await generateAudio(analysisText);
+                audioPlayer.src = audioUrl;
+
+                // Step 3: Display the results
+                loadingIndicator.classList.add('hidden');
+                results.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("An error occurred during the audit process:", error);
+                showError("Sorry, we couldn't complete the audit. Please try again later.");
+                resetUI();
+            }
+        }
+
+        /**
+         * Resets the UI to its initial state.
+         */
+        function resetUI() {
+            results.classList.add('hidden');
+            loadingIndicator.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            resumeForm.classList.remove('hidden');
+            resumeText.value = '';
+            if (audioPlayer.src) {
+                URL.revokeObjectURL(audioPlayer.src); // Clean up the old audio object URL
+                audioPlayer.src = '';
+            }
+        }
+        
+        /**
+         * Displays an error message to the user.
+         * @param {string} message - The error message to display.
+         */
+        function showError(message) {
+            errorMessageText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            loadingIndicator.classList.add('hidden');
+        }
+
+        /**
+         * A generic fetch wrapper with exponential backoff for retries.
+         * @param {string} url - The API endpoint URL.
+         * @param {object} options - The fetch options (method, headers, body).
+         * @param {number} maxRetries - The maximum number of retries.
+         * @returns {Promise<object>} - The JSON response from the API.
+         */
+        async function fetchWithRetry(url, options, maxRetries = 3) {
+            let attempt = 0;
+            while (attempt < maxRetries) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    attempt++;
+                    if (attempt >= maxRetries) {
+                        throw error;
+                    }
+                    const delay = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        }
+
+        /**
+         * Generates text analysis using the Gemini API.
+         * @param {string} resume - The user's resume text.
+         * @returns {Promise<string>} - The generated analysis text.
+         */
+        async function generateTextAnalysis(resume) {
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            const prompt = `
+                Act as an expert career coach and resume writing professional.
+                Analyze the following resume and provide a comprehensive audit.
+                Structure your feedback into the following sections:
+                1.  **Overall First Impression:** A brief summary of the resume's strengths and weaknesses.
+                2.  **Formatting and Readability:** Comments on layout, font, and clarity.
+                3.  **Impact and Action Verbs:** Analysis of the language used. Are they using strong action verbs? Is the impact of their work clear?
+                4.  **Skills Section:** How well does the skills section align with modern roles? Are there any key skills missing for common career paths related to the experience?
+                5.  **Top 3 Actionable Suggestions:** Provide three clear, specific, and actionable tips for immediate improvement.
+                6.  **Potential Career Paths:** Based on the experience and skills, suggest 2-3 potential job titles or career paths they could explore.
+
+                Keep the tone encouraging and constructive.
+
+                Resume to analyze:
+                ---
+                ${resume}
+                ---
+            `;
+
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+            };
+            
+            const result = await fetchWithRetry(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (result.candidates && result.candidates[0].content.parts[0].text) {
+                return result.candidates[0].content.parts[0].text;
+            } else {
+                throw new Error("Invalid response structure from text generation API.");
+            }
+        }
+
+        /**
+         * Generates audio from text using the Gemini TTS API.
+         * @param {string} textToSpeak - The text to convert to speech.
+         * @returns {Promise<string>} - An object URL for the generated WAV audio.
+         */
+        async function generateAudio(textToSpeak) {
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Say in a clear, encouraging, and professional tone: ${textToSpeak}` }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Kore" } // A firm, professional voice
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+
+            const result = await fetchWithRetry(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            
+            const part = result?.candidates?.[0]?.content?.parts?.[0];
+            const audioData = part?.inlineData?.data;
+            const mimeType = part?.inlineData?.mimeType;
+
+            if (audioData && mimeType && mimeType.startsWith("audio/")) {
+                const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                if (!sampleRateMatch) throw new Error("Sample rate not found in mimeType");
+                
+                const sampleRate = parseInt(sampleRateMatch[1], 10);
+                const pcmData = base64ToArrayBuffer(audioData);
+                const pcm16 = new Int16Array(pcmData);
+                const wavBlob = pcmToWav(pcm16, sampleRate);
+                return URL.createObjectURL(wavBlob);
+            } else {
+                throw new Error("Invalid response structure from audio generation API.");
+            }
+        }
+
+        /**
+         * Decodes a base64 string into an ArrayBuffer.
+         * @param {string} base64 - The base64 encoded string.
+         * @returns {ArrayBuffer} - The decoded ArrayBuffer.
+         */
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        /**
+         * Converts raw PCM audio data into a WAV file format.
+         * @param {Int16Array} pcmData - The raw PCM audio data.
+         * @param {number} sampleRate - The sample rate of the audio (e.g., 24000).
+         * @returns {Blob} - A Blob object representing the WAV file.
+         */
+        function pcmToWav(pcmData, sampleRate) {
+            const numChannels = 1;
+            const bitsPerSample = 16;
+            const blockAlign = (numChannels * bitsPerSample) / 8;
+            const byteRate = sampleRate * blockAlign;
+            const dataSize = pcmData.length * (bitsPerSample / 8);
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+
+            // RIFF header
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + dataSize, true);
+            writeString(view, 8, 'WAVE');
+            // fmt subchunk
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true); // Audio format (1 for PCM)
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, byteRate, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitsPerSample, true);
+            // data subchunk
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataSize, true);
+
+            // Write PCM data
+            for (let i = 0; i < pcmData.length; i++) {
+                view.setInt16(44 + i * 2, pcmData[i], true);
+            }
+
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        /**
+         * Helper function to write a string to a DataView.
+         * @param {DataView} view - The DataView to write to.
+         * @param {number} offset - The offset to start writing at.
+         * @param {string} string - The string to write.
+         */
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+    </script>
+</body>
+</html>
