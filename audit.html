@@ -3,227 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResumeAudit by Jobbyist - AI-Powered Resume/CV Analysis and Career Planning</title>
+    <title>ResumeAudit - Powered by Jobbyist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Library for reading .docx files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <!-- Library for reading .pdf files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+        // Required worker for pdf.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Custom scrollbar for better aesthetics */
-        textarea::-webkit-scrollbar {
-            width: 8px;
+        .form-input {
+            transition: all 0.3s ease;
         }
-        textarea::-webkit-scrollbar-track {
-            background: #1f2937;
-        }
-        textarea::-webkit-scrollbar-thumb {
-            background-color: #4b5563;
-            border-radius: 20px;
-            border: 3px solid #1f2937;
-        }
-        /* Custom styles for the audio player */
-        audio::-webkit-media-controls-panel {
-            background-color: #374151;
-        }
-        audio::-webkit-media-controls-play-button,
-        audio::-webkit-media-controls-mute-button {
-            background-color: #9ca3af;
-            border-radius: 50%;
-        }
-        audio::-webkit-media-controls-current-time-display,
-        audio::-webkit-media-controls-time-remaining-display {
-            color: #e5e7eb;
+        /* Hide the default file input */
+        input[type="file"] {
+            display: none;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200 flex items-center justify-center min-h-screen p-4">
+<body class="bg-white text-gray-900 flex items-center justify-center min-h-screen p-4">
 
-    <div class="w-full max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-10 space-y-8">
-        <!-- Header Section -->
+    <div class="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-2xl border border-gray-200 p-6 md:p-10 space-y-6">
+        <!-- Header with Logo -->
         <header class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">
-                AI-Powered Resume Audit
-            </h1>
-            <p class="text-gray-400 mt-2 text-lg">
-                Get instant, intelligent feedback to supercharge your career.
-            </p>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAFeCAYAAACEeQ0XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAhdEVYdENyZWF0aW9uIFRpbWUAMjAyNC0wNy0xOFQwODozMjozMyswMDowMECU4XMAABomSURBVHjarP1pnuVJdkk/74yqVlVVV3dX9+7u3Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Z-md2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Zmd2Z" alt="ResumeAudit by Jobbyist Logo" class="mx-auto h-16 w-auto">
         </header>
 
         <main id="mainContent">
-            <!-- Resume Input Form -->
-            <div id="resumeForm">
-                <label for="resumeText" class="block text-lg font-semibold mb-2 text-gray-300">Paste your resume below:</label>
-                <textarea id="resumeText" rows="15" class="w-full p-4 bg-gray-900 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-gray-300" placeholder="Paste your full resume text here..."></textarea>
-                <button id="auditButton" class="mt-6 w-full bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-bold py-3 px-4 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
-                    Audit My Resume
-                </button>
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div id="progressBar" class="bg-black h-2.5 rounded-full" style="width: 25%;"></div>
+            </div>
+
+            <!-- Step 1: Contact Details -->
+            <div id="step1" class="step">
+                <h2 class="text-2xl font-bold text-center mb-4">Step 1: Tell us about yourself</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="userName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="userName" class="form-input mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black" placeholder="e.g., Jane Doe">
+                    </div>
+                    <div>
+                        <label for="userEmail" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="userEmail" class="form-input mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black" placeholder="e.g., you@example.com">
+                    </div>
+                </div>
+                <button onclick="nextStep(2)" class="mt-6 w-full bg-black text-white font-bold py-3 px-4 rounded-md hover:bg-gray-800 transition duration-300">Next</button>
+            </div>
+
+            <!-- Step 2: Career Goals -->
+            <div id="step2" class="step hidden">
+                <h2 class="text-2xl font-bold text-center mb-4">Step 2: What is your career goal?</h2>
+                 <div>
+                    <label for="targetRole" class="block text-sm font-medium text-gray-700">What is the target job title you are applying for?</label>
+                    <input type="text" id="targetRole" class="form-input mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black" placeholder="e.g., Senior Product Manager">
+                </div>
+                <div class="flex space-x-4 mt-6">
+                    <button onclick="prevStep(1)" class="w-1/2 bg-gray-200 text-gray-800 font-bold py-3 px-4 rounded-md hover:bg-gray-300 transition duration-300">Back</button>
+                    <button onclick="nextStep(3)" class="w-1/2 bg-black text-white font-bold py-3 px-4 rounded-md hover:bg-gray-800 transition duration-300">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: File Upload -->
+            <div id="step3" class="step hidden">
+                <h2 class="text-2xl font-bold text-center mb-4">Step 3: Upload your resume</h2>
+                <label for="resumeFile" id="dropZone" class="flex flex-col justify-center items-center w-full h-48 px-6 transition bg-white border-2 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-500 focus:outline-none border-gray-300">
+                    <span class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                        <span id="dropZoneText" class="font-medium text-gray-600">Drop file (PDF/DOCX), or <span class="text-blue-600 underline">browse</span></span>
+                    </span>
+                </label>
+                <input type="file" id="resumeFile" accept=".pdf,.docx">
+                <p id="fileStatus" class="text-center mt-2 text-gray-500 h-6"></p>
+                <textarea id="resumeText" class="hidden"></textarea>
+                 <div class="flex space-x-4 mt-6">
+                    <button onclick="prevStep(2)" class="w-1/2 bg-gray-200 text-gray-800 font-bold py-3 px-4 rounded-md hover:bg-gray-300 transition duration-300">Back</button>
+                    <button id="processResumeBtn" class="w-1/2 bg-black text-white font-bold py-3 px-4 rounded-md hover:bg-gray-800 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Process Resume</button>
+                </div>
+            </div>
+            
+             <!-- Step 4: Subscription Check -->
+            <div id="step4" class="step hidden">
+                <h2 class="text-2xl font-bold text-center mb-2">Unlock Your Pro Analysis</h2>
+                <p class="text-center text-gray-600 mb-4">This feature is available for Jobbyist Pro subscribers. Please enter your subscription email to continue.</p>
+                <div>
+                    <label for="proEmail" class="block text-sm font-medium text-gray-700">Jobbyist Pro Email</label>
+                    <input type="email" id="proEmail" class="form-input mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black" placeholder="Your Pro subscription email">
+                </div>
+                <button id="unlockButton" class="mt-6 w-full bg-black text-white font-bold py-3 px-4 rounded-md hover:bg-gray-800 transition duration-300">Unlock Results</button>
             </div>
 
             <!-- Loading Indicator -->
             <div id="loadingIndicator" class="hidden text-center py-10">
-                <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-400 mx-auto"></div>
-                <p class="mt-4 text-lg text-gray-400">Analyzing your resume... This may take a moment.</p>
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto"></div>
+                <p id="loadingText" class="mt-4 text-lg text-gray-600">Please wait...</p>
             </div>
 
             <!-- Results Display -->
             <div id="results" class="hidden space-y-6">
-                <h2 class="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">Your Audit Results</h2>
-                
-                <!-- Audio Player -->
+                <h2 class="text-3xl font-bold text-center">Your Audit Results</h2>
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Audio Feedback</h3>
                     <audio id="audioPlayer" controls class="w-full rounded-lg"></audio>
                 </div>
-
-                <!-- Text Feedback -->
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Detailed Analysis</h3>
-                    <div id="textResults" class="p-4 bg-gray-900 border border-gray-700 rounded-lg whitespace-pre-wrap max-h-96 overflow-y-auto"></div>
+                    <div id="textResults" class="p-4 bg-gray-50 border border-gray-200 rounded-lg whitespace-pre-wrap max-h-96 overflow-y-auto"></div>
                 </div>
-
-                <button id="startOverButton" class="mt-6 w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg text-lg transition duration-300 ease-in-out">
-                    Start New Audit
-                </button>
+                <button onclick="resetUI()" class="mt-6 w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-4 rounded-md transition duration-300">Start New Audit</button>
             </div>
             
             <!-- Error Message Box -->
-            <div id="errorMessage" class="hidden p-4 bg-red-900 border border-red-700 text-red-300 rounded-lg">
-                <p id="errorMessageText"></p>
-                <button id="closeErrorButton" class="mt-2 text-sm text-red-200 underline">Close</button>
+            <div id="errorMessage" class="hidden p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg">
+                <p id="errorMessageText" class="text-center"></p>
             </div>
         </main>
     </div>
 
     <script>
-        // DOM element references
-        const auditButton = document.getElementById('auditButton');
-        const resumeText = document.getElementById('resumeText');
+        // --- MOCK SUBSCRIBER DATABASE ---
+        // In a real application, you would verify this against your backend.
+        const proSubscribers = [
+            { name: "Alice Pro", email: "alice@pro.com" },
+            { name: "Bob Subscriber", email: "bob@pro.com" },
+            { name: "Charlie Member", email: "charlie@pro.com" }
+        ];
+
+        // --- DOM ELEMENT REFERENCES ---
+        const steps = document.querySelectorAll('.step');
+        const progressBar = document.getElementById('progressBar');
+        const processResumeBtn = document.getElementById('processResumeBtn');
+        const resumeFile = document.getElementById('resumeFile');
+        const dropZone = document.getElementById('dropZone');
+        const dropZoneText = document.getElementById('dropZoneText');
+        const fileStatus = document.getElementById('fileStatus');
+        const unlockButton = document.getElementById('unlockButton');
         const loadingIndicator = document.getElementById('loadingIndicator');
+        const loadingText = document.getElementById('loadingText');
         const results = document.getElementById('results');
         const textResults = document.getElementById('textResults');
         const audioPlayer = document.getElementById('audioPlayer');
-        const resumeForm = document.getElementById('resumeForm');
-        const startOverButton = document.getElementById('startOverButton');
         const errorMessage = document.getElementById('errorMessage');
         const errorMessageText = document.getElementById('errorMessageText');
-        const closeErrorButton = document.getElementById('closeErrorButton');
         
-        // --- Event Listeners ---
-        auditButton.addEventListener('click', handleAuditRequest);
-        startOverButton.addEventListener('click', resetUI);
-        closeErrorButton.addEventListener('click', () => errorMessage.classList.add('hidden'));
+        let currentStep = 1;
+        const userData = {
+            name: '',
+            email: '',
+            targetRole: '',
+            resumeText: ''
+        };
 
-        /**
-         * Main handler for the audit process.
-         * It gets the resume, validates it, and orchestrates the API calls.
-         */
+        // --- EVENT LISTENERS ---
+        dropZone.addEventListener('click', () => resumeFile.click());
+        resumeFile.addEventListener('change', handleFileSelect);
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false)
+        });
+        dropZone.addEventListener('drop', handleDrop, false);
+        processResumeBtn.addEventListener('click', () => {
+            loadingText.textContent = `Processing resume...`;
+            loadingIndicator.classList.remove('hidden');
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            // Simulate processing time before showing subscription check
+            setTimeout(() => {
+                loadingIndicator.classList.add('hidden');
+                nextStep(4);
+            }, 1500);
+        });
+        unlockButton.addEventListener('click', handleAuditRequest);
+
+
+        // --- NAVIGATION LOGIC ---
+        function updateProgressBar() {
+            const progress = (currentStep - 1) / (steps.length -1) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function nextStep(step) {
+            if (!validateStep(currentStep)) return;
+            
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
+            updateProgressBar();
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
+            updateProgressBar();
+        }
+
+        function validateStep(step) {
+            errorMessage.classList.add('hidden');
+            if (step === 1) {
+                const name = document.getElementById('userName').value.trim();
+                const email = document.getElementById('userEmail').value.trim();
+                if (!name || !email) {
+                    showError("Please fill in both your name and email.");
+                    return false;
+                }
+                if (!/\S+@\S+\.\S+/.test(email)) {
+                    showError("Please enter a valid email address.");
+                    return false;
+                }
+                userData.name = name;
+                userData.email = email;
+            }
+            if (step === 2) {
+                const targetRole = document.getElementById('targetRole').value.trim();
+                if (!targetRole) {
+                    showError("Please enter your target job role.");
+                    return false;
+                }
+                userData.targetRole = targetRole;
+            }
+            return true;
+        }
+
+        // --- FILE HANDLING ---
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            handleFileSelect({ target: { files: dt.files } });
+        }
+
+        async function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const validTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            if (!validTypes.includes(file.type)) {
+                showError("Invalid file type. Please upload a PDF or DOCX file.");
+                return;
+            }
+            
+            fileStatus.textContent = `Processing "${file.name}"...`;
+            dropZoneText.textContent = file.name;
+            processResumeBtn.disabled = true;
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                let text = '';
+                if (file.type === 'application/pdf') {
+                    text = await parsePdf(arrayBuffer);
+                } else {
+                    text = await parseDocx(arrayBuffer);
+                }
+                userData.resumeText = text;
+                processResumeBtn.disabled = false;
+                fileStatus.textContent = `Ready to process "${file.name}"`;
+            } catch (error) {
+                showError(`Failed to read the file: ${error.message}`);
+                resetFileInput();
+            }
+        }
+
+        async function parsePdf(arrayBuffer) {
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            let fullText = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                fullText += textContent.items.map(item => item.str).join(' ') + '\n';
+            }
+            return fullText;
+        }
+
+        async function parseDocx(arrayBuffer) {
+            const result = await mammoth.extractRawText({ arrayBuffer });
+            return result.value;
+        }
+
+        // --- CORE AUDIT LOGIC ---
         async function handleAuditRequest() {
-            const resume = resumeText.value.trim();
-            if (!resume) {
-                showError("Please paste your resume into the text box before auditing.");
+            const proEmail = document.getElementById('proEmail').value.trim();
+            if (!proEmail) {
+                showError("Please enter your subscription email.");
                 return;
             }
 
-            // Update UI to show loading state
-            resumeForm.classList.add('hidden');
+            // Check against our mock database
+            const isSubscriber = proSubscribers.some(sub => sub.email.toLowerCase() === proEmail.toLowerCase());
+
+            if (!isSubscriber) {
+                showError("This email is not linked to a Jobbyist Pro subscription. Please check the email or subscribe to Pro.");
+                return;
+            }
+            
+            // --- If subscriber, proceed with AI generation ---
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            loadingText.textContent = "Analyzing your resume...";
             loadingIndicator.classList.remove('hidden');
-            results.classList.add('hidden');
             errorMessage.classList.add('hidden');
 
             try {
-                // Step 1: Generate text analysis from the resume
-                const analysisText = await generateTextAnalysis(resume);
+                const analysisText = await generateTextAnalysis(userData.resumeText, userData.targetRole);
                 textResults.textContent = analysisText;
 
-                // Step 2: Generate audio from the analysis text
+                loadingText.textContent = "Generating audio feedback...";
                 const audioUrl = await generateAudio(analysisText);
                 audioPlayer.src = audioUrl;
 
-                // Step 3: Display the results
                 loadingIndicator.classList.add('hidden');
                 results.classList.remove('hidden');
-
             } catch (error) {
-                console.error("An error occurred during the audit process:", error);
                 showError("Sorry, we couldn't complete the audit. Please try again later.");
-                resetUI();
+                loadingIndicator.classList.add('hidden');
+                document.getElementById('step4').classList.remove('hidden'); // Go back to unlock step
             }
         }
 
-        /**
-         * Resets the UI to its initial state.
-         */
+        // --- UI RESET & ERROR HANDLING ---
         function resetUI() {
             results.classList.add('hidden');
-            loadingIndicator.classList.add('hidden');
             errorMessage.classList.add('hidden');
-            resumeForm.classList.remove('hidden');
-            resumeText.value = '';
+            resetFileInput();
+            document.getElementById('userName').value = '';
+            document.getElementById('userEmail').value = '';
+            document.getElementById('targetRole').value = '';
+            document.getElementById('proEmail').value = '';
+            
             if (audioPlayer.src) {
-                URL.revokeObjectURL(audioPlayer.src); // Clean up the old audio object URL
+                URL.revokeObjectURL(audioPlayer.src);
                 audioPlayer.src = '';
             }
+            
+            currentStep = 1;
+            steps.forEach((step, index) => {
+                step.classList.toggle('hidden', index !== 0);
+            });
+            updateProgressBar();
         }
         
-        /**
-         * Displays an error message to the user.
-         * @param {string} message - The error message to display.
-         */
+        function resetFileInput() {
+            resumeFile.value = '';
+            userData.resumeText = '';
+            processResumeBtn.disabled = true;
+            dropZoneText.innerHTML = `Drop file (PDF/DOCX), or <span class="text-blue-600 underline">browse</span>`;
+            fileStatus.textContent = '';
+        }
+        
         function showError(message) {
             errorMessageText.textContent = message;
             errorMessage.classList.remove('hidden');
-            loadingIndicator.classList.add('hidden');
         }
 
-        /**
-         * A generic fetch wrapper with exponential backoff for retries.
-         * @param {string} url - The API endpoint URL.
-         * @param {object} options - The fetch options (method, headers, body).
-         * @param {number} maxRetries - The maximum number of retries.
-         * @returns {Promise<object>} - The JSON response from the API.
-         */
+        // --- API CALLS (GEMINI) ---
         async function fetchWithRetry(url, options, maxRetries = 3) {
             let attempt = 0;
             while (attempt < maxRetries) {
                 try {
                     const response = await fetch(url, options);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     return await response.json();
                 } catch (error) {
                     attempt++;
-                    if (attempt >= maxRetries) {
-                        throw error;
-                    }
-                    const delay = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
-                    await new Promise(resolve => setTimeout(resolve, delay));
+                    if (attempt >= maxRetries) throw error;
+                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
                 }
             }
         }
 
-        /**
-         * Generates text analysis using the Gemini API.
-         * @param {string} resume - The user's resume text.
-         * @returns {Promise<string>} - The generated analysis text.
-         */
-        async function generateTextAnalysis(resume) {
-            const apiKey = ""; // API key is handled by the environment
+        async function generateTextAnalysis(resume, targetRole) {
+            const apiKey = ""; // Handled by environment
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
             
             const prompt = `
-                Act as an expert career coach and resume writing professional.
-                Analyze the following resume and provide a comprehensive audit.
-                Structure your feedback into the following sections:
-                1.  **Overall First Impression:** A brief summary of the resume's strengths and weaknesses.
-                2.  **Formatting and Readability:** Comments on layout, font, and clarity.
-                3.  **Impact and Action Verbs:** Analysis of the language used. Are they using strong action verbs? Is the impact of their work clear?
-                4.  **Skills Section:** How well does the skills section align with modern roles? Are there any key skills missing for common career paths related to the experience?
-                5.  **Top 3 Actionable Suggestions:** Provide three clear, specific, and actionable tips for immediate improvement.
-                6.  **Potential Career Paths:** Based on the experience and skills, suggest 2-3 potential job titles or career paths they could explore.
-
-                Keep the tone encouraging and constructive.
+                Act as an expert career coach for Jobbyist Africa.
+                The user's target job role is: "${targetRole}".
+                Analyze the following resume and provide a comprehensive audit tailored to this target role.
+                Structure your feedback into these sections:
+                1.  **Overall Impression for a ${targetRole}:** A summary of the resume's effectiveness for the target role.
+                2.  **Formatting & Readability:** Comments on layout and clarity.
+                3.  **Content-to-Role Alignment:** How well does the experience and language align with expectations for a ${targetRole}?
+                4.  **Skills Gap Analysis:** What key skills for a ${targetRole} are missing or under-emphasized?
+                5.  **Top 3 Actionable Suggestions:** Provide three clear, specific tips for immediate improvement to better target the desired role.
+                
+                Keep the tone professional, encouraging, and constructive.
 
                 Resume to analyze:
                 ---
@@ -231,76 +400,35 @@
                 ---
             `;
 
-            const payload = {
-                contents: [{ role: "user", parts: [{ text: prompt }] }],
-            };
-            
-            const result = await fetchWithRetry(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (result.candidates && result.candidates[0].content.parts[0].text) {
+            const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+            const result = await fetchWithRetry(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
                 return result.candidates[0].content.parts[0].text;
-            } else {
-                throw new Error("Invalid response structure from text generation API.");
             }
+            throw new Error("Invalid response from text generation API.");
         }
 
-        /**
-         * Generates audio from text using the Gemini TTS API.
-         * @param {string} textToSpeak - The text to convert to speech.
-         * @returns {Promise<string>} - An object URL for the generated WAV audio.
-         */
         async function generateAudio(textToSpeak) {
-            const apiKey = ""; // API key is handled by the environment
+            const apiKey = ""; // Handled by environment
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
-
             const payload = {
-                contents: [{
-                    parts: [{ text: `Say in a clear, encouraging, and professional tone: ${textToSpeak}` }]
-                }],
-                generationConfig: {
-                    responseModalities: ["AUDIO"],
-                    speechConfig: {
-                        voiceConfig: {
-                            prebuiltVoiceConfig: { voiceName: "Kore" } // A firm, professional voice
-                        }
-                    }
-                },
+                contents: [{ parts: [{ text: `Say in a clear, professional, and encouraging tone: ${textToSpeak}` }] }],
+                generationConfig: { responseModalities: ["AUDIO"], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } } },
                 model: "gemini-2.5-flash-preview-tts"
             };
-
-            const result = await fetchWithRetry(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            
+            const result = await fetchWithRetry(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
             const part = result?.candidates?.[0]?.content?.parts?.[0];
-            const audioData = part?.inlineData?.data;
-            const mimeType = part?.inlineData?.mimeType;
-
-            if (audioData && mimeType && mimeType.startsWith("audio/")) {
-                const sampleRateMatch = mimeType.match(/rate=(\d+)/);
-                if (!sampleRateMatch) throw new Error("Sample rate not found in mimeType");
-                
-                const sampleRate = parseInt(sampleRateMatch[1], 10);
-                const pcmData = base64ToArrayBuffer(audioData);
+            if (part?.inlineData?.data) {
+                const sampleRate = parseInt(part.inlineData.mimeType.match(/rate=(\d+)/)[1], 10);
+                const pcmData = base64ToArrayBuffer(part.inlineData.data);
                 const pcm16 = new Int16Array(pcmData);
                 const wavBlob = pcmToWav(pcm16, sampleRate);
                 return URL.createObjectURL(wavBlob);
-            } else {
-                throw new Error("Invalid response structure from audio generation API.");
             }
+            throw new Error("Invalid response from audio generation API.");
         }
 
-        /**
-         * Decodes a base64 string into an ArrayBuffer.
-         * @param {string} base64 - The base64 encoded string.
-         * @returns {ArrayBuffer} - The decoded ArrayBuffer.
-         */
+        // --- UTILITY FUNCTIONS ---
         function base64ToArrayBuffer(base64) {
             const binaryString = window.atob(base64);
             const len = binaryString.length;
@@ -311,57 +439,39 @@
             return bytes.buffer;
         }
 
-        /**
-         * Converts raw PCM audio data into a WAV file format.
-         * @param {Int16Array} pcmData - The raw PCM audio data.
-         * @param {number} sampleRate - The sample rate of the audio (e.g., 24000).
-         * @returns {Blob} - A Blob object representing the WAV file.
-         */
         function pcmToWav(pcmData, sampleRate) {
-            const numChannels = 1;
-            const bitsPerSample = 16;
+            const numChannels = 1, bitsPerSample = 16;
             const blockAlign = (numChannels * bitsPerSample) / 8;
             const byteRate = sampleRate * blockAlign;
             const dataSize = pcmData.length * (bitsPerSample / 8);
             const buffer = new ArrayBuffer(44 + dataSize);
             const view = new DataView(buffer);
-
-            // RIFF header
+            const writeString = (view, offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
             writeString(view, 0, 'RIFF');
             view.setUint32(4, 36 + dataSize, true);
             writeString(view, 8, 'WAVE');
-            // fmt subchunk
             writeString(view, 12, 'fmt ');
             view.setUint32(16, 16, true);
-            view.setUint16(20, 1, true); // Audio format (1 for PCM)
+            view.setUint16(20, 1, true);
             view.setUint16(22, numChannels, true);
             view.setUint32(24, sampleRate, true);
             view.setUint32(28, byteRate, true);
             view.setUint16(32, blockAlign, true);
             view.setUint16(34, bitsPerSample, true);
-            // data subchunk
             writeString(view, 36, 'data');
             view.setUint32(40, dataSize, true);
-
-            // Write PCM data
             for (let i = 0; i < pcmData.length; i++) {
                 view.setInt16(44 + i * 2, pcmData[i], true);
             }
-
             return new Blob([view], { type: 'audio/wav' });
         }
-
-        /**
-         * Helper function to write a string to a DataView.
-         * @param {DataView} view - The DataView to write to.
-         * @param {number} offset - The offset to start writing at.
-         * @param {string} string - The string to write.
-         */
-        function writeString(view, offset, string) {
-            for (let i = 0; i < string.length; i++) {
-                view.setUint8(offset + i, string.charCodeAt(i));
-            }
-        }
+        
+        // Initialize the UI
+        updateProgressBar();
     </script>
 </body>
 </html>
