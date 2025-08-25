@@ -51,6 +51,8 @@ class JobbyistApp {
     this.currentLanguage = 'en';
     this.isMobileMenuOpen = false;
     this.isChatbotOpen = false;
+    this.user = null;
+    this.authChecked = false;
     
     // User data and preferences
     this.userLocation = null;
@@ -101,6 +103,9 @@ class JobbyistApp {
     console.log('🔧 Starting comprehensive platform initialization...');
     
     try {
+      // Check authentication status first
+      await this.checkAuthStatus();
+      
       // Load all sample data
       this.loadAllSampleData();
       
@@ -130,6 +135,112 @@ class JobbyistApp {
       console.error('❌ Initialization error:', error);
       this.showNotification('Platform initialization failed. Please refresh the page.', 'error');
     }
+  }
+
+  /**
+   * AUTHENTICATION SYSTEM
+   */
+  async checkAuthStatus() {
+    try {
+      const response = await fetch('/api/auth/status');
+      const data = await response.json();
+      
+      if (data.authenticated) {
+        this.user = data.user;
+        this.updateAuthUI(true);
+      } else {
+        this.user = null;
+        this.updateAuthUI(false);
+      }
+      this.authChecked = true;
+    } catch (error) {
+      console.error('Auth check failed:', error);
+      this.authChecked = true;
+    }
+  }
+
+  updateAuthUI(isAuthenticated) {
+    const authButtons = document.querySelectorAll('.auth-required');
+    const guestButtons = document.querySelectorAll('.guest-only');
+    
+    if (isAuthenticated) {
+      authButtons.forEach(btn => btn.style.display = '');
+      guestButtons.forEach(btn => btn.style.display = 'none');
+      
+      // Update user name in header
+      const userNameElements = document.querySelectorAll('.user-name');
+      userNameElements.forEach(el => el.textContent = this.user.name);
+    } else {
+      authButtons.forEach(btn => btn.style.display = 'none');
+      guestButtons.forEach(btn => btn.style.display = '');
+    }
+  }
+
+  async logout() {
+    try {
+      await fetch('/api/auth/logout');
+      this.user = null;
+      this.updateAuthUI(false);
+      this.showNotification('Logged out successfully', 'success');
+      location.reload();
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  }
+
+  async saveJob(jobId) {
+    if (!this.user) {
+      this.showNotification('Please log in to save jobs', 'warning');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/jobs/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ job_id: jobId })
+      });
+
+      if (response.ok) {
+        this.showNotification('Job saved successfully!', 'success');
+        this.updateSaveButton(jobId, true);
+      }
+    } catch (error) {
+      console.error('Save job failed:', error);
+      this.showNotification('Failed to save job', 'error');
+    }
+  }
+
+  async unsaveJob(jobId) {
+    if (!this.user) return;
+
+    try {
+      const response = await fetch('/api/jobs/unsave', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ job_id: jobId })
+      });
+
+      if (response.ok) {
+        this.showNotification('Job removed from saved list', 'info');
+        this.updateSaveButton(jobId, false);
+      }
+    } catch (error) {
+      console.error('Unsave job failed:', error);
+    }
+  }
+
+  updateSaveButton(jobId, saved) {
+    const buttons = document.querySelectorAll(`[data-job-id="${jobId}"]`);
+    buttons.forEach(btn => {
+      if (saved) {
+        btn.classList.add('saved');
+        btn.innerHTML = '❤️ Saved';
+      } else {
+        btn.classList.remove('saved');
+        btn.innerHTML = '🤍 Save';
+      }
+    });
   }
 
   /**

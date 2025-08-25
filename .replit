@@ -6,3 +6,24 @@ channel = "stable-25_05"
 
 [deployment]
 run = ["sh", "-c", "/"]
+
+[workflows]
+runButton = "Auth Server"
+
+[[workflows.workflow]]
+name = "Daily Job Scraper"
+author = 46881627
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python daily_job_update.py"
+
+[[workflows.workflow]]
+name = "Auth Server"
+author = 46881627
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python auth.py"

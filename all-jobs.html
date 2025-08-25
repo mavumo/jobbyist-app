@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>All Jobs - Jobbyist | Find Your Perfect Career Match</title>
+  <meta name="description" content="Browse all available jobs across South Africa and Nigeria. Filter by industry, location, salary and more on Jobbyist.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Schema.org structured data for Jobs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "All Jobs - Jobbyist",
+    "description": "Browse all available jobs across South Africa and Nigeria",
+    "url": "https://jobbyist.africa/all-jobs.html",
+    "mainEntity": {
+      "@type": "JobPostingList",
+      "name": "Job Listings"
+    }
+  }
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <!-- Navigation (same as main site) -->
+  <header class="navbar">
+    <div class="container">
+      <div class="navbar-wrapper">
+        <div class="navbar-brand">
+          <div class="logo-container" onclick="location.href='index.html'">
+            <div class="logo-icon animated-doodle-icon"></div>
+            <span class="logo-text">Jobbyist.</span>
+          </div>
+        </div>
+
+        <nav class="navbar-nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="all-jobs.html" class="nav-link active">All Jobs</a>
+          <a href="companies.html" class="nav-link">Companies</a>
+          <a href="#" class="nav-link guest-only" onclick="showAuthModal()">Sign Up</a>
+          <a href="#" class="nav-link auth-required" onclick="jobbyistApp.logout()" style="display: none;">Logout</a>
+        </nav>
+
+        <div class="navbar-actions">
+          <span class="user-name auth-required" style="display: none;"></span>
+          
+          <!-- Repl Auth Script -->
+          <div class="guest-only">
+            <script
+              authed="location.reload()"
+              src="https://auth.util.repl.co/script.js"
+            ></script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="jobs-page">
+    <!-- Hero Section -->
+    <section class="jobs-hero">
+      <div class="container">
+        <h1>All Job Opportunities</h1>
+        <p>Discover your next career move from our comprehensive job listings</p>
+        
+        <!-- Advanced Search -->
+        <div class="search-container">
+          <form class="advanced-search-form" id="jobs-search-form">
+            <div class="search-row">
+              <input type="text" id="search-title" placeholder="Job title or keywords..." class="search-input">
+              <select id="search-location" class="search-select">
+                <option value="">All Locations</option>
+                <option value="Johannesburg">Johannesburg</option>
+                <option value="Cape Town">Cape Town</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Durban">Durban</option>
+                <option value="Pretoria">Pretoria</option>
+                <option value="Remote">Remote</option>
+              </select>
+              <select id="search-type" class="search-select">
+                <option value="">All Types</option>
+                <option value="FULL_TIME">Full-time</option>
+                <option value="PART_TIME">Part-time</option>
+                <option value="CONTRACT">Contract</option>
+                <option value="Remote">Remote</option>
+              </select>
+              <button type="submit" class="btn--primary glow-btn">Search</button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- AdSense Ad -->
+        <div class="ad-container" style="text-align: center; margin: 20px 0;">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-1237323355260727"
+               data-ad-slot="1234567890"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jobs Listings -->
+    <section class="jobs-listings">
+      <div class="container">
+        <div class="jobs-filter-bar">
+          <div class="filter-info">
+            <span id="jobs-count">Loading jobs...</span>
+          </div>
+          <div class="filter-options">
+            <select id="sort-by" class="form-control">
+              <option value="date">Newest First</option>
+              <option value="title">Job Title A-Z</option>
+              <option value="company">Company A-Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="jobs-grid" id="all-jobs-grid">
+          <!-- Jobs will be populated here -->
+        </div>
+
+        <!-- AdSense Ad in middle of listings -->
+        <div class="ad-container" style="text-align: center; margin: 40px 0;">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-1237323355260727"
+               data-ad-slot="0987654321"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="jobs-pagination">
+          <!-- Pagination will be populated here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <div class="logo-container">
+              <div class="logo-icon animated-doodle-icon"></div>
+              <span class="logo-text">Jobbyist</span>
+            </div>
+          </div>
+          <p>Africa's leading job platform connecting talent with opportunity.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="all-jobs.html">All Jobs</a></li>
+            <li><a href="companies.html">Companies</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Jobbyist. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Job Modal for Quick View -->
+  <div class="modal job-modal hidden" id="job-modal">
+    <div class="modal-backdrop" onclick="closeJobModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="job-modal-title">Job Title</h3>
+        <button class="modal-close" onclick="closeJobModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="job-modal-body">
+        <!-- Job details will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allJobs = [];
+    let currentJobs = [];
+    let currentPage = 1;
+    const jobsPerPage = 12;
+
+    // Initialize jobs page
+    document.addEventListener('DOMContentLoaded', async function() {
+      await loadJobs();
+      renderJobs();
+      setupEventListeners();
+      
+      // Initialize AdSense
+      if (typeof adsbygoogle !== 'undefined') {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    });
+
+    async function loadJobs() {
+      try {
+        const response = await fetch('data/jobs.json');
+        allJobs = await response.json();
+        currentJobs = [...allJobs];
+        updateJobsCount();
+      } catch (error) {
+        console.error('Error loading jobs:', error);
+        document.getElementById('jobs-count').textContent = 'Error loading jobs';
+      }
+    }
+
+    function renderJobs() {
+      const startIndex = (currentPage - 1) * jobsPerPage;
+      const endIndex = startIndex + jobsPerPage;
+      const jobsToShow = currentJobs.slice(startIndex, endIndex);
+
+      const jobsGrid = document.getElementById('all-jobs-grid');
+      jobsGrid.innerHTML = jobsToShow.map(job => createJobCard(job)).join('');
+      
+      renderPagination();
+    }
+
+    function createJobCard(job) {
+      const salaryDisplay = job.salary && job.salary !== 'Market related' 
+        ? `<div class="job-salary">${job.salary}</div>` 
+        : '';
+        
+      return `
+        <div class="job-card" data-job-id="${job.id || ''}">
+          <div class="job-header">
+            <div class="job-logo">${job.logo || '💼'}</div>
+            <div class="job-meta-info">
+              <h3 class="job-title">${job.title}</h3>
+              <div class="job-company">
+                ${job.company} ${job.verified ? '<span class="verified">✅</span>' : ''}
+              </div>
+            </div>
+            <button class="save-job-btn auth-required" onclick="toggleSaveJob('${job.id || ''}')" style="display: none;">
+              🤍 Save
+            </button>
+          </div>
+          
+          <div class="job-details">
+            <div class="job-location">📍 ${job.location}</div>
+            <div class="job-type">${job.workType || job.employmentType || 'Full-time'}</div>
+            ${salaryDisplay}
+            <div class="job-date">Posted: ${job.datePosted}</div>
+          </div>
+          
+          <div class="job-description">
+            ${(job.description || '').substring(0, 150)}...
+          </div>
+          
+          <div class="job-actions">
+            <a href="${job.applyUrl || '#'}" class="btn--primary glow-btn" target="_blank" rel="noopener">
+              Apply Now
+            </a>
+            <button class="btn--secondary" onclick="showJobModal('${job.id || ''}')">
+              Quick View
+            </button>
+          </div>
+          
+          <!-- Structured Data for each job -->
+          <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "JobPosting",
+            "title": "${job.title}",
+            "description": "${(job.description || '').replace(/"/g, '\\"')}",
+            "datePosted": "${job.datePosted}",
+            "validThrough": "${job.validThrough}",
+            "employmentType": "${job.employmentType || 'FULL_TIME'}",
+            "hiringOrganization": {
+              "@type": "Organization",
+              "name": "${job.company}",
+              "sameAs": "${job.applyUrl || ''}"
+            },
+            "jobLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "${job.location}",
+                "addressCountry": "ZA"
+              }
+            }
+          }
+          </script>
+        </div>
+      `;
+    }
+
+    function setupEventListeners() {
+      // Search form
+      document.getElementById('jobs-search-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        filterJobs();
+      });
+
+      // Sort dropdown
+      document.getElementById('sort-by').addEventListener('change', function() {
+        sortJobs(this.value);
+      });
+    }
+
+    function filterJobs() {
+      const title = document.getElementById('search-title').value.toLowerCase();
+      const location = document.getElementById('search-location').value;
+      const type = document.getElementById('search-type').value;
+
+      currentJobs = allJobs.filter(job => {
+        const matchesTitle = !title || 
+          job.title.toLowerCase().includes(title) ||
+          job.company.toLowerCase().includes(title) ||
+          (job.description || '').toLowerCase().includes(title);
+        
+        const matchesLocation = !location || job.location.includes(location);
+        const matchesType = !type || job.employmentType === type || job.workType === type;
+
+        return matchesTitle && matchesLocation && matchesType;
+      });
+
+      currentPage = 1;
+      updateJobsCount();
+      renderJobs();
+    }
+
+    function sortJobs(criteria) {
+      currentJobs.sort((a, b) => {
+        switch(criteria) {
+          case 'title':
+            return a.title.localeCompare(b.title);
+          case 'company':
+            return a.company.localeCompare(b.company);
+          case 'date':
+          default:
+            return new Date(b.datePosted) - new Date(a.datePosted);
+        }
+      });
+      renderJobs();
+    }
+
+    function updateJobsCount() {
+      document.getElementById('jobs-count').textContent = 
+        `${currentJobs.length} job${currentJobs.length !== 1 ? 's' : ''} found`;
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(currentJobs.length / jobsPerPage);
+      const pagination = document.getElementById('jobs-pagination');
+      
+      if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+      }
+
+      let paginationHTML = '';
+      
+      // Previous button
+      if (currentPage > 1) {
+        paginationHTML += `<button onclick="changePage(${currentPage - 1})">Previous</button>`;
+      }
+      
+      // Page numbers
+      for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+        const activeClass = i === currentPage ? ' active' : '';
+        paginationHTML += `<button class="page-btn${activeClass}" onclick="changePage(${i})">${i}</button>`;
+      }
+      
+      // Next button
+      if (currentPage < totalPages) {
+        paginationHTML += `<button onclick="changePage(${currentPage + 1})">Next</button>`;
+      }
+      
+      pagination.innerHTML = paginationHTML;
+    }
+
+    function changePage(page) {
+      currentPage = page;
+      renderJobs();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showJobModal(jobId) {
+      const job = allJobs.find(j => j.id === jobId);
+      if (!job) return;
+
+      document.getElementById('job-modal-title').textContent = job.title;
+      document.getElementById('job-modal-body').innerHTML = `
+        <div class="job-modal-content">
+          <div class="job-modal-header">
+            <h4>${job.company} ${job.verified ? '✅' : ''}</h4>
+            <div class="job-modal-meta">
+              <span>📍 ${job.location}</span>
+              <span>💼 ${job.employmentType || 'Full-time'}</span>
+              <span>📅 ${job.datePosted}</span>
+            </div>
+          </div>
+          <div class="job-modal-description">
+            <h5>Job Description</h5>
+            <p>${job.description || 'No description available.'}</p>
+          </div>
+          <div class="job-modal-actions">
+            <a href="${job.applyUrl || '#'}" class="btn--primary glow-btn" target="_blank" rel="noopener">
+              Apply Now
+            </a>
+            <button class="btn--secondary auth-required" onclick="toggleSaveJob('${jobId}')" style="display: none;">
+              Save Job
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('job-modal').classList.remove('hidden');
+    }
+
+    function closeJobModal() {
+      document.getElementById('job-modal').classList.add('hidden');
+    }
+
+    function showAuthModal() {
+      alert('Please use the login button in the header to sign in with your Replit account');
+    }
+
+    async function toggleSaveJob(jobId) {
+      // This function will be implemented when the auth system is connected
+      console.log('Toggle save job:', jobId);
+    }
+
+    // Initialize AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <!-- AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1237323355260727"
+          crossorigin="anonymous"></script>
+</body>
+</html>
